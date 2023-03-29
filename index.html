@@ -1,0 +1,25 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+  <div style="width: 200px; height: 300px; background: skyblue;">
+    <p id="messages"></p>
+    <p id="messagesub" style="display: flex; justify-content: flex-end; flex-direction: column;"></p>
+    <!-- <li id="messagesub"></li> -->
+  </div>
+
+  <div>
+    <input id="message" type="text" />
+    <button onclick="handleSubmitNewMessage()">Submit</button>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+  <script src="./chat-socket.js"></script>
+</body>
+
+</html>
