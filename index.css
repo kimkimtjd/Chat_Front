@@ -1,0 +1,13 @@
+.test {
+    color: white;
+    display: flex;
+    justify-content: flex-end;
+  }
+  li{
+    list-style: none;
+  }
+  #messages{
+    display: flex;
+    /* flex-direction: column; */
+    flex-direction: column-reverse;
+  }

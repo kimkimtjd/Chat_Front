@@ -18,16 +18,27 @@ socket.on('message', ({ data }) => {
 
 const handleNewMessage = (message) => {
   // messages.appendChild(buildNewMessage(message));
-  if(message.split(":")[0] === nickname ){
+  // if(message.split(":")[0] === nickname ){
     messages.appendChild(buildNewMessage(message));
-  }
-  else{
-    messagesub.appendChild(buildNewMessage(message));
-  }
+  // }
+  // else{
+  //   messagesub.appendChild(buildNewMessage(message));
+  // }
 }
 
 const buildNewMessage = (message) => {
+  if(message.split(":")[0] === nickname ){
   const li = document.createElement("li");
   li.appendChild(document.createTextNode(message))
   return li;
+  }
+  else{
+    const li = document.createElement("li");
+    li.classList.add('test');
+    let text = document.createTextNode(message);
+    li.appendChild(text);
+    document.body.appendChild(li)
+    return li;
+  
+  }
 }
