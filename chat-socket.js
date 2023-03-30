@@ -1,4 +1,4 @@
-const socket = io("wss://port-0-chat-back-6g2llfsyx812.sel3.cloudtype.app/")
+const socket = io("ws://118.67.135.60:3000/")
 const nickname = prompt('닉네임을 알려주세요.');
 // const room = prompt('입장할 방의 코드를 적어주세요.');
 
