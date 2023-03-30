@@ -1,17 +1,18 @@
 const socket = io("ws://118.67.135.60:3000/")
+// const socket = io("ws://localhost:3000/")
 const nickname = prompt('닉네임을 알려주세요.');
-// const room = prompt('입장할 방의 코드를 적어주세요.');
+const room = prompt('입장할 방의 코드를 적어주세요.');
 
 const message = document.getElementById('message');
 const messages = document.getElementById('messages');
 const messagesub = document.getElementById('messagesub');
 
 const handleSubmitNewMessage = () => {
-  socket.emit('message', { data: nickname + ":" + message.value })
+  socket.emit('message', nickname + ":" + message.value +"방이름" + room )
 
 }
 
-socket.on('message', ({ data }) => {
+socket.on('message', (data) => {
   handleNewMessage(data);
 
 })
@@ -29,13 +30,13 @@ const handleNewMessage = (message) => {
 const buildNewMessage = (message) => {
   if(message.split(":")[0] === nickname ){
   const li = document.createElement("li");
-  li.appendChild(document.createTextNode(message))
+  li.appendChild(document.createTextNode(message.split("방이름")[0]))
   return li;
   }
   else{
     const li = document.createElement("li");
     li.classList.add('test');
-    let text = document.createTextNode(message);
+    let text = document.createTextNode(message.split("방이름")[0]);
     li.appendChild(text);
     document.body.appendChild(li)
     return li;
