@@ -1,7 +1,7 @@
 const socket = io("ws://118.67.135.60:3000/")
 // const socket = io("ws://localhost:3000/")
 const nickname = prompt('닉네임을 알려주세요.');
-const room = prompt('입장할 방의 코드를 적어주세요.');
+const room = prompt('kimeender');
 
 const message = document.getElementById('message');
 const messages = document.getElementById('messages');
