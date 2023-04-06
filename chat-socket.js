@@ -7,11 +7,12 @@ const message = document.getElementById('message');
 const messages = document.getElementById('messages');
 const messagesub = document.getElementById('messagesub');
 
- Android.sendData("hello world");
+function Test(arg){
+ console.log(arg)
+}
 
 const handleSubmitNewMessage = () => {
   socket.emit('message', nickname + ":" + message.value +"방이름" + room )
-   Android.showToast("hello world");
 }
 
 socket.on('message', (data) => {
