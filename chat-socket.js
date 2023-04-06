@@ -11,7 +11,9 @@ function Test(arg){
  console.log(arg)
  socket.emit('message', "kimkimtjd" + ":" + arg +"방이름kimeender"
 }
-
+             
+socket.emit('room', room)             
+             
 const handleSubmitNewMessage = () => {
   socket.emit('message', nickname + ":" + message.value +"방이름" + room )
 }
