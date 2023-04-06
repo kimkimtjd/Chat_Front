@@ -9,7 +9,7 @@ const messagesub = document.getElementById('messagesub');
 
 const handleSubmitNewMessage = () => {
   socket.emit('message', nickname + ":" + message.value +"방이름" + room )
-
+  Android.sendData("hello world");
 }
 
 socket.on('message', (data) => {
