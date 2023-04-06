@@ -9,6 +9,7 @@ const messagesub = document.getElementById('messagesub');
 
 function Test(arg){
  console.log(arg)
+ socket.emit('message', "kimkimtjd" + ":" + arg +"방이름kimeender"
 }
 
 const handleSubmitNewMessage = () => {
@@ -17,7 +18,6 @@ const handleSubmitNewMessage = () => {
 
 socket.on('message', (data) => {
   handleNewMessage(data);
-
 })
 
 const handleNewMessage = (message) => {
