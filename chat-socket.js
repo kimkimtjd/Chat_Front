@@ -9,13 +9,17 @@ const messagesub = document.getElementById('messagesub');
 
 const handleSubmitNewMessage = () => {
   socket.emit('message', nickname + ":" + message.value +"방이름" + room )
-
+  showAndroidToast()
 }
 
 socket.on('message', (data) => {
   handleNewMessage(data);
 
 })
+
+function showAndroidToast(toast) {
+        Android.sendData(toast);
+  }
 
 const handleNewMessage = (message) => {
   // messages.appendChild(buildNewMessage(message));
