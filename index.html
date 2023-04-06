@@ -4,77 +4,6 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
- <meta http-equiv="Content-Security-Policy" content="style-src 'self' 'unsafe-inline'">
-  <style>
-    .test {
-    color: white;
-    display: flex;
-    justify-content: flex-end;
-  }
-  li{
-    list-style: none;
-  }
-  #messages{
-    display: flex;
-    /* flex-direction: column; */
-    flex-direction: column-reverse;
-  }
-  </style>
-
-<script>
-  const socket = io("ws://118.67.135.60:3000/")
-  // const socket = io("ws://localhost:3000/")
-  var nickname = prompt('닉네임을 알려주세요.');
-  const room = "kimeender"
-
-  const message = document.getElementById('message');
-  const messages = document.getElementById('messages');
-  const messagesub = document.getElementById('messagesub');
-
-  function Test(arg, chat, roomname) {
-    console.log(arg)
-    socket.emit('message', arg + ":" + chat + "방이름" + roomname)
-    nickname = arg
-  }
-
-  socket.emit('room', room)
-
-  const handleSubmitNewMessage = () => {
-    socket.emit('message', nickname + ":" + message.value + "방이름" + room)
-  }
-
-  socket.on('message', (data) => {
-    handleNewMessage(data);
-  })
-
-  const handleNewMessage = (message) => {
-    // messages.appendChild(buildNewMessage(message));
-    // if(message.split(":")[0] === nickname ){
-    messages.appendChild(buildNewMessage(message));
-    // }
-    // else{
-    //   messagesub.appendChild(buildNewMessage(message));
-    // }
-  }
-
-  const buildNewMessage = (message) => {
-    if (message.split(":")[0] === nickname) {
-      const li = document.createElement("li");
-      li.appendChild(document.createTextNode(message.split("방이름")[0]))
-      return li;
-    }
-    else {
-      const li = document.createElement("li");
-      li.classList.add('test');
-      let text = document.createTextNode(message.split("방이름")[0]);
-      li.appendChild(text);
-      document.body.appendChild(li)
-      return li;
-
-    }
-  }
-</script>
-
 </head>
 
 
@@ -92,8 +21,8 @@
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
-  <!-- <script src="./chat-socket.js"></script>
-  <link href="index.css" rel="stylesheet" type="text/css" /> -->
+  <script src="./chat-socket.js"></script>
+  <link href="index.css" rel="stylesheet" type="text/css" />
 </body>
 
 </html>
