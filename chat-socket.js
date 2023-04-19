@@ -1,33 +1,19 @@
-const socket = io("ws://118.67.135.60:3000/")
+const socket = io("wss://port-0-chat-back-p8xrq2mlf0mbo1w.sel3.cloudtype.app/")
 // const socket = io("ws://localhost:3000/")
-<<<<<<< HEAD
 // var nickname = "운영자";
-// const room = "d67dc57d-14a3-488b-8f5f-dfeee417ed3c"
-=======
-const nickname = prompt('닉네임을 알려주세요.');
-const room = "kimeender"
->>>>>>> de17f79a6ff7db0d693ad9f3e2d22c3ba124b88c
+const room = "d67dc57d-14a3-488b-8f5f-dfeee417ed3c"
 
 const message = document.getElementById('message');
 const messages = document.getElementById('messages');
 const messagesub = document.getElementById('messagesub');
 
-<<<<<<< HEAD
-function Test(arg , chat , roomname){
- socket.emit('message', arg + ":" + chat +"방이름" + roomname)
- socket.emit('room', roomname)             
- nickname = arg
-=======
-function Test(arg){
- console.log(arg)
- socket.emit('message', "kimkimtjd" + ":" + arg +"방이름kimeender"
+function Room(roomname){
+  socket.emit('room', roomname)             
 }
-             
-socket.emit('room', room)             
-             
-const handleSubmitNewMessage = () => {
-  socket.emit('message', nickname + ":" + message.value +"방이름" + room )
->>>>>>> de17f79a6ff7db0d693ad9f3e2d22c3ba124b88c
+
+function Test(arg , chat , roomname){
+  nickname = arg
+  socket.emit('message', arg + ":" + chat +"방이름" + roomname)
 }
 
 socket.on('message', (data) => {
@@ -51,7 +37,7 @@ const buildNewMessage = (message) => {
   
     const div = document.createElement("div");
     div.classList.add('senderbox');
-    div.appendChild(sendMessage(message));
+    div.prepend(sendMessage(message));
 
   return div;
   }
@@ -61,13 +47,12 @@ const buildNewMessage = (message) => {
     let text = document.createTextNode(message.split("방이름")[0]);
     div.classList.add('receiverbox');
 
-    div.appendChild(text);
-    document.body.appendChild(div)
+    div.prepend(text);
+    document.body.prepend(div)
     return div;
  
   }
 }
-<<<<<<< HEAD
 
 const sendMessage = (message) => {
   const span = document.createElement("span");
@@ -86,5 +71,4 @@ const sendMessage = (message) => {
 // }
 
 
-=======
->>>>>>> de17f79a6ff7db0d693ad9f3e2d22c3ba124b88c
+
