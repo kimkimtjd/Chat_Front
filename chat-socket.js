@@ -8,7 +8,36 @@ const messages = document.getElementById('messages');
 const messagesub = document.getElementById('messagesub');
 
 function Room(roomname){
-  socket.emit('room', roomname)             
+  socket.emit('room', roomname)    
+  function Room(roomname , my , me){
+  socket.emit('room', roomname)   
+  fetch('https://www.scrapmk.com/api/chat/chatlist/' + "애완용꿀꿀이/" + "lee")
+  .then(response => response.json())
+  .then(data => {
+    for(var i=0; i<data.length; i++ ){
+      if(data[i].sender === 1){
+        const div = document.createElement("div");
+        div.classList.add('senderbox');
+        div.prepend(sendMessage(message)); 
+        
+        document.body.appendChild(div); // 생성된 div를 body에 추가
+        
+      }
+      else{
+        const div = document.createElement("div");
+        let text = document.createTextNode(message.split("방이름")[0]);
+        div.classList.add('receiverbox');
+        div.prepend(text);
+        
+        document.body.appendChild(div); // 생성된 div를 body에 추가
+      }
+    }
+  })
+  .catch(error => console.error(error));
+  
+
+}
+
 }
 
 function Test(arg , chat , roomname){
