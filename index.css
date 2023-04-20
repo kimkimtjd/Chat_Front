@@ -13,6 +13,7 @@ li{
   /* align-items: flex-end; */
   justify-content: flex-end;
   margin-top: 10px;
+  white-space: pre-line;
 }
 .sender{
   background-color: #F0FFF6;
@@ -25,6 +26,7 @@ li{
   padding: 8px;
   border-radius: 5px;
   margin-top: 10px;
+  white-space: pre-line;
 }
 
 
