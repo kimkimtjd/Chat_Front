@@ -23,6 +23,9 @@ function Room(roomname, pk , user , partner) {
       if(data.length > 20){
         document.getElementsByClassName('total').style.height="auto";
       }
+    else{
+      document.getElementsByClassName('total').style.height="1000px";
+    }
     
       for (var i = 0; i < data.length; i++) {
         if (data[i].sender === pk){
