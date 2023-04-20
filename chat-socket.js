@@ -19,6 +19,7 @@ function Room(roomname){
     console.log(data , data[0].sender , data.length)
     
     for(var i=0; i<data.length; i++ ){
+       messages.appendChild(
       if(data[i].sender === 1){
         const div = document.createElement("div");
         div.classList.add('senderbox');
@@ -36,7 +37,8 @@ function Room(roomname){
         document.body.appendChild(div); // 생성된 div를 body에 추가
          return div;
       }
-    }}
+    })
+  }
     
   )
   .catch(error => console.error(error));
