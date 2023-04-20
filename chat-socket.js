@@ -33,9 +33,9 @@ function Room(roomname){
         
         document.body.appendChild(div); // 생성된 div를 body에 추가
       }
-    }
+    }}
     */
-  })
+  )
   .catch(error => console.error(error));
   
 
