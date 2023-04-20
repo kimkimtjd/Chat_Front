@@ -7,7 +7,6 @@ const message = document.getElementById('message');
 const messages = document.getElementById('messages');
 const messagesub = document.getElementById('messagesub');
 
-Room()
 
 function Room(roomname){
   socket.emit('room', roomname)    
@@ -99,6 +98,7 @@ const sendMessage = (message) => {
              
  const handleSubmitNewMessage = () => {
       socket.emit('message', nickname + ":" + message.value +"방이름" + room )
+   Room()
  }
 
 
