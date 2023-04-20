@@ -20,12 +20,12 @@ function Room(roomname, pk , user , partner) {
     .then(response => response.json())
     .then(data => {
       // console.log(data, data[0].sender, data.length)
-      if(data.length > 20){
-        document.getElementsByClassName('total').style.height="auto";
-      }
-    else{
-      document.getElementsByClassName('total').style.height="1000px";
-    }
+//       if(data.length > 20){
+//         document.getElementsByClassName('total').style.height="auto";
+//       }
+//     else{
+//       document.getElementsByClassName('total').style.height="1000px";
+//     }
     
       for (var i = 0; i < data.length; i++) {
         if (data[i].sender === pk){
