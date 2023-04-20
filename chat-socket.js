@@ -14,7 +14,7 @@ function Room(roomname){
   .then(response => response.json())
   .then(data => 
         console.log(data , data[0].sender , data.length)
-        /*
+        
         {
     for(var i=0; i<data.length; i++ ){
       if(data[i].sender === 1){
@@ -34,7 +34,7 @@ function Room(roomname){
         document.body.appendChild(div); // 생성된 div를 body에 추가
       }
     }}
-    */
+    
   )
   .catch(error => console.error(error));
   
