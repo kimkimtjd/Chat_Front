@@ -1,27 +1,32 @@
 const socket = io("wss://port-0-chat-back-p8xrq2mlf0mbo1w.sel3.cloudtype.app/")
 // const socket = io("ws://localhost:3000/")
-var nickname = "애완용꿀꿀이";
-const room = "d67dc57d-14a3-488b-8f5f-dfeee417ed3c"
+
+//아래 주석
+// var nickname = "애완용꿀꿀이";
+// const room = "d67dc57d-14a3-488b-8f5f-dfeee417ed3c"
+
+
 
 const message = document.getElementById('message');
 const messages = document.getElementById('messages');
 const messagesub = document.getElementById('messagesub');
 
-// pk -> 1 , nickname
-function Room(roomname, pk , nickname) {
+// pk -> 유저 고유번호 , nickname -> 로그인한사람 닉네임 , partner -> 상대방 닉네임
+function Room(roomname, pk , nickname , partner) {
+  
   socket.emit('room', roomname)
-  fetch('https://www.scrapmk.com/api/chat/chatroom/' + "애완용꿀꿀이/" + "lee")
+
+  fetch('https://www.scrapmk.com/api/chat/chatroom/' + nickname + "/" + partner)
     .then(response => response.json())
     .then(data => {
-      console.log(data, data[0].sender, data.length)
+      // console.log(data, data[0].sender, data.length)
 
-      nickname = "애완용꿀꿀이"
       for (var i = 0; i < data.length; i++) {
-        if (data[i].sender === 1){
+        if (data[i].sender === pk){
           messages.appendChild(buildNewMessage(nickname + ":" + data[i].content.replace('<br/>' , '\n') + "방이름" + data[i].group));
         }
         else{
-          messages.appendChild(buildNewMessage(data[i].nickname + ":" + data[i].content.replace('<br/>' , '\n') + "방이름" + data[i].group)); 
+          messages.appendChild(buildNewMessage(data[i].nickname + ":" + data[i].content + "방이름" + data[i].group)); 
         }
       }
     }
@@ -48,13 +53,8 @@ function Room(roomname, pk , nickname) {
       //     })
       
     */
-   )
-      
+   ) 
     .catch(error => console.error(error));
-
-
-
-
 }
 
 function Test(arg, chat, roomname) {
@@ -113,8 +113,8 @@ const sendMessage = (message) => {
 socket.emit('room', room)
 
 const handleSubmitNewMessage = () => {
-  // socket.emit('message', nickname + ":" + message.value + "방이름" + room)
-  Room()
+  socket.emit('message', nickname + ":" + message.value + "방이름" + room)
+  // Room()
 }
 
 
