@@ -18,10 +18,10 @@ function Room(roomname, pk , nickname) {
       nickname = "애완용꿀꿀이"
       for (var i = 0; i < data.length; i++) {
         if (data[i].sender === 1){
-          messages.appendChild(buildNewMessage(nickname + ":" + data[i].content + "방이름" + data[i].group));
+          messages.appendChild(buildNewMessage(nickname + ":" + data[i].content.replace('<br/>' , '\n') + "방이름" + data[i].group));
         }
         else{
-          messages.appendChild(buildNewMessage(data[i].nickname + ":" + data[i].content + "방이름" + data[i].group)); 
+          messages.appendChild(buildNewMessage(data[i].nickname + ":" + data[i].content.replace('<br/>' , '\n') + "방이름" + data[i].group)); 
         }
       }
     }
