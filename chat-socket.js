@@ -20,7 +20,10 @@ function Room(roomname, pk , user , partner) {
     .then(response => response.json())
     .then(data => {
       // console.log(data, data[0].sender, data.length)
-
+      if(data.length > 20){
+        document.getElementsByClassName('total').style.height="auto";
+      }
+    
       for (var i = 0; i < data.length; i++) {
         if (data[i].sender === pk){
           messages.appendChild(buildNewMessage(user + ":" + data[i].content.replace('<br/>' , '\n') + "방이름" + data[i].group));
