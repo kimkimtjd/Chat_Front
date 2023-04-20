@@ -12,18 +12,18 @@ const messages = document.getElementById('messages');
 const messagesub = document.getElementById('messagesub');
 
 // pk -> 유저 고유번호 , nickname -> 로그인한사람 닉네임 , partner -> 상대방 닉네임
-function Room(roomname, pk , nickname , partner) {
+function Room(roomname, pk , user , partner) {
   
   socket.emit('room', roomname)
 
-  fetch('https://www.scrapmk.com/api/chat/chatroom/' + nickname + "/" + partner)
+  fetch('https://www.scrapmk.com/api/chat/chatroom/' + user + "/" + partner)
     .then(response => response.json())
     .then(data => {
       // console.log(data, data[0].sender, data.length)
 
       for (var i = 0; i < data.length; i++) {
         if (data[i].sender === pk){
-          messages.appendChild(buildNewMessage(nickname + ":" + data[i].content.replace('<br/>' , '\n') + "방이름" + data[i].group));
+          messages.appendChild(buildNewMessage(user + ":" + data[i].content.replace('<br/>' , '\n') + "방이름" + data[i].group));
         }
         else{
           messages.appendChild(buildNewMessage(data[i].nickname + ":" + data[i].content + "방이름" + data[i].group)); 
