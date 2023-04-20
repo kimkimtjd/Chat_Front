@@ -1,6 +1,6 @@
 const socket = io("wss://port-0-chat-back-p8xrq2mlf0mbo1w.sel3.cloudtype.app/")
 // const socket = io("ws://localhost:3000/")
-var nickname = 이애완용꿀꿀이";
+var nickname = "애완용꿀꿀이";
 const room = "d67dc57d-14a3-488b-8f5f-dfeee417ed3c"
 
 const message = document.getElementById('message');
