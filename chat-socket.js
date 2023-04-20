@@ -9,9 +9,7 @@ const messagesub = document.getElementById('messagesub');
 
 
 function Room(roomname){
-  socket.emit('room', roomname)    
-  function Room(roomname , my , me){
-  socket.emit('room', roomname)   
+  socket.emit('room', roomname)       
   fetch('https://www.scrapmk.com/api/chat/chatlist/' + "애완용꿀꿀이/" + "lee")
   .then(response => response.json())
   .then(data => {
@@ -37,7 +35,7 @@ function Room(roomname){
   .catch(error => console.error(error));
   
 
-}
+
 
 }
 
