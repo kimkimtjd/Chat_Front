@@ -17,7 +17,9 @@ function Room(roomname){
         
         {
     console.log(data , data[0].sender , data.length)
+     for(var i=0; i<data.length; i++ ){
     messages.appendChild(buildNewMessage("애완용꿀꿀이" + ":" + data[i].content +"방이름" + data[i].group));
+     }
 //     for(var i=0; i<data.length; i++ ){
 //        messages.appendChild(
 //       if(data[i].sender === 1){
