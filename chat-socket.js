@@ -13,6 +13,7 @@ function Room(roomname){
   fetch('https://www.scrapmk.com/api/chat/chatroom/' + "애완용꿀꿀이/" + "lee")
   .then(response => response.json())
   .then(data => {
+    console.log(data)
     for(var i=0; i<data.length; i++ ){
       if(data[i].sender === 1){
         const div = document.createElement("div");
