@@ -1,6 +1,6 @@
 const socket = io("wss://port-0-chat-back-p8xrq2mlf0mbo1w.sel3.cloudtype.app/")
 // const socket = io("ws://localhost:3000/")
-var nickname = "운영자";
+var nickname = 이애완용꿀꿀이";
 const room = "d67dc57d-14a3-488b-8f5f-dfeee417ed3c"
 
 const message = document.getElementById('message');
@@ -17,27 +17,27 @@ function Room(roomname){
         
         {
     console.log(data , data[0].sender , data.length)
-    
-    for(var i=0; i<data.length; i++ ){
-       messages.appendChild(
-      if(data[i].sender === 1){
-        const div = document.createElement("div");
-        div.classList.add('senderbox');
-        div.prepend(sendMessage("애완용꿀꿀이" + ":" + data[i].content +"방이름" + data[i].group)); 
+    messages.appendChild(buildNewMessage("애완용꿀꿀이" + ":" + data[i].content +"방이름" + data[i].group));
+//     for(var i=0; i<data.length; i++ ){
+//        messages.appendChild(
+//       if(data[i].sender === 1){
+//         const div = document.createElement("div");
+//         div.classList.add('senderbox');
+//         div.prepend(sendMessage("애완용꿀꿀이" + ":" + data[i].content +"방이름" + data[i].group)); 
         
-         return div;
+//          return div;
         
-      }
-      else{
-        const div = document.createElement("div");
-        let text = document.createTextNode( data[i].nickname + ":" + data[i].content +"방이름" + data[i].group.split("방이름")[0] );
-        div.classList.add('receiverbox');
-        div.prepend(text);
+//       }
+//       else{
+//         const div = document.createElement("div");
+//         let text = document.createTextNode( data[i].nickname + ":" + data[i].content +"방이름" + data[i].group.split("방이름")[0] );
+//         div.classList.add('receiverbox');
+//         div.prepend(text);
         
-        document.body.appendChild(div); // 생성된 div를 body에 추가
-         return div;
-      }
-    })
+//         document.body.appendChild(div); // 생성된 div를 body에 추가
+//          return div;
+//       }
+//     })
   }
     
   )
