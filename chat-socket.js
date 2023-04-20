@@ -7,6 +7,8 @@ const message = document.getElementById('message');
 const messages = document.getElementById('messages');
 const messagesub = document.getElementById('messagesub');
 
+Room()
+
 function Room(roomname){
   socket.emit('room', roomname)    
   function Room(roomname , my , me){
