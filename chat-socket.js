@@ -10,9 +10,7 @@ const messagesub = document.getElementById('messagesub');
 
 function Room(roomname){
   socket.emit('room', roomname)       
-  fetch('https://www.scrapmk.com/api/chat/chatroom/' + "애완용꿀꿀이/" + "lee"), {
-        method: "GET",
-      }
+  fetch('https://www.scrapmk.com/api/chat/chatroom/' + "애완용꿀꿀이/" + "lee")
   .then(response => response.json())
   .then(data => {
     for(var i=0; i<data.length; i++ ){
