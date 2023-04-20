@@ -24,7 +24,7 @@ function Room(roomname){
         div.classList.add('senderbox');
         div.prepend(sendMessage("애완용꿀꿀이" + ":" + data[i].content +"방이름" + data[i].group)); 
         
-        document.body.appendChild(div); // 생성된 div를 body에 추가
+         return div;
         
       }
       else{
@@ -34,6 +34,7 @@ function Room(roomname){
         div.prepend(text);
         
         document.body.appendChild(div); // 생성된 div를 body에 추가
+         return div;
       }
     }}
     
