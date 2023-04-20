@@ -20,14 +20,14 @@ function Room(roomname){
       if(data[i].sender === 1){
         const div = document.createElement("div");
         div.classList.add('senderbox');
-        div.prepend(sendMessage(message)); 
+        div.prepend(sendMessage("애완용꿀꿀이" + ":" + data[i].content +"방이름" + data[i].group)); 
         
         document.body.appendChild(div); // 생성된 div를 body에 추가
         
       }
       else{
         const div = document.createElement("div");
-        let text = document.createTextNode(message.split("방이름")[0]);
+        let text = document.createTextNode( data[i].nickname + ":" + data[i].content +"방이름" + data[i].group.split("방이름")[0] );
         div.classList.add('receiverbox');
         div.prepend(text);
         
