@@ -26,7 +26,7 @@ function Room(roomname, pk , user , partner) {
           messages.appendChild(buildNewMessage(user + ":" + data[i].content.replace('<br/>' , '\n') + "방이름" + data[i].group));
         }
         else{
-          messages.appendChild(buildNewMessage(data[i].nickname + ":" + data[i].content + "방이름" + data[i].group)); 
+          messages.appendChild(buildNewMessage(data[i].nickname + ":" + data[i].content.replace('<br/>' , '\n') + "방이름" + data[i].group)); 
         }
       }
     }
