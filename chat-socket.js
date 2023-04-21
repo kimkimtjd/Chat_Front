@@ -133,7 +133,7 @@ const sendMessage = (message ,datesecond) => {
   
   spantime.appendChild(document.createTextNode(second))
 
-  return span
+  return span,spantime
 }
 
 /****************************** 아래 코드는 웹용  위 부분은 공용******************************/
