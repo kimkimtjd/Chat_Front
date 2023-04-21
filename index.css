@@ -27,6 +27,10 @@ li{
   border-radius: 5px;
 }
 .receiverbox{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   width: fit-content;
   background: white;
   padding: 8px;
@@ -37,6 +41,7 @@ li{
 .receiverimgae{
   width: 36px;
   height: 36px;
+  margin-right: 10px;
 }
 
 /* .test {
