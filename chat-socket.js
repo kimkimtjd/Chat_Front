@@ -115,7 +115,6 @@ const buildNewMessage = (message , logo_image , date) => {
 
     div.prepend(logo);
     div.appendChild(receivebox(text , date));
-    div.appendChild(receivesecondMessage(date));
     
     document.body.prepend(div)
     return div;
@@ -172,7 +171,7 @@ const receivebox = (text , date) => {
   div.prepend(receiveMessage(text));
   div.appendChild(receivesecondMessage(date));
   // div.appendChild(receivesecondMessage(date));
-  return span
+  return div
 }
 
 
