@@ -44,6 +44,7 @@ function Room(roomname, pk , user , partner) {
 
     //messagesub.scrollTop = messagesub.scrollHeight;
  window.scrollTo(0,document.body.scrollHeight);
+  window.scrollBy(0, 30);
 }
 
 function Test(arg, chat, roomname) {
@@ -51,6 +52,7 @@ function Test(arg, chat, roomname) {
   socket.emit('message', arg + ":" + chat + "방이름" + roomname)
   //messagesub.scrollTop = messagesub.scrollHeight;
   window.scrollTo(0,document.body.scrollHeight);
+  window.scrollBy(0, 30);
   //post -> nickname , partner , content , group , imageurl -> 이미지를 보낼경우 [ content -> 공백 ] , 텍스트를 보낼경우 [ imageurl -> 공백 ] 
 
 }
@@ -59,6 +61,7 @@ socket.on('message', (data) => {
   handleNewMessage(data);
   //messagesub.scrollTop = messagesub.scrollHeight;
  window.scrollTo(0,document.body.scrollHeight);
+  window.scrollBy(0, 30);
 })
 
 const handleNewMessage = (message) => {
