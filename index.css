@@ -19,11 +19,7 @@ li{
   flex-direction: column;
 }
 .total{
-  width: 100%; 
-  height:800px; 
-  background: #E7EAEF;
-  display: flex;
-  flex-direction: column;
+  
 }
 .sender{
   width: fit-content;
