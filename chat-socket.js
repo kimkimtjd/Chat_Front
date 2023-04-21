@@ -83,7 +83,7 @@ const buildNewMessage = (message , logo_image , date) => {
 
     logo.setAttribute('src', logo_image);
  
-    let text = document.createTextNode(message.split("방이름")[0] + date);
+    let text = document.createTextNode(message.split("방이름")[0] + "<br/>" + date);
     
 
     div.classList.add('receiverbox');
@@ -102,7 +102,7 @@ const sendMessage = (message ,datesecond) => {
   const span = document.createElement("span");
   span.classList.add('sender');
 
-  span.appendChild(document.createTextNode(message.split("방이름")[0] + datesecond))
+  span.appendChild(document.createTextNode(message.split("방이름")[0] + "<br/>" + datesecond))
 
   return span
 }
