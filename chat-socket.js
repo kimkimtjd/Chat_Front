@@ -12,7 +12,6 @@ const messages = document.getElementById('messages');
 const messagesub = document.getElementById('messagesub');
 var data = "" 
 
-// pk -> 유저 고유번호 , nickname -> 로그인한사람 닉네임 , partner -> 상대방 닉네임
 function Room(roomname, pk , user , partner) {
   
   socket.emit('room', roomname)
@@ -40,11 +39,15 @@ function Room(roomname, pk , user , partner) {
       }
     }) 
     .catch(error => console.error(error));
+
+    window.scrollTo(0,document.body.scrollHeight);
+
 }
 
 function Test(arg, chat, roomname) {
   nickname = arg
   socket.emit('message', arg + ":" + chat + "방이름" + roomname)
+  window.scrollTo(0,document.body.scrollHeight);
 
   //post -> nickname , partner , content , group , imageurl -> 이미지를 보낼경우 [ content -> 공백 ] , 텍스트를 보낼경우 [ imageurl -> 공백 ] 
 
@@ -55,13 +58,8 @@ socket.on('message', (data) => {
 })
 
 const handleNewMessage = (message) => {
-  // messages.appendChild(buildNewMessage(message));
-  // if(message.split(":")[0] === nickname ){
   messages.appendChild(serverMessage(message));
-  // }
-  // else{
-  //   messagesub.appendChild(buildNewMessage(message));
-  // }
+  window.scrollTo(0,document.body.scrollHeight);
 }
 
 const serverMessage = (message) => {
@@ -86,7 +84,6 @@ const serverMessage = (message) => {
  
   }
 }
-
 
 const buildNewMessage = (message , logo_image , date) => {
   // console.log(nickname)
@@ -173,7 +170,6 @@ const receivebox = (text , date) => {
   div.appendChild(receivesecondMessage(date));
   return div
 }
-
 
 const receiveMessage = (message) => {
   const span = document.createElement("span");
