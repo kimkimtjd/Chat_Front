@@ -42,7 +42,7 @@ function Room(roomname, pk , user , partner) {
   }) 
     .catch(error => console.error(error));
 
-    var divElement = document.getElementsByClassName("total"); // 스크롤을 조정할 div 요소 선택하기
+    var divElement = document.getElementsByClassName("total")[0]; // 스크롤을 조정할 div 요소 선택하기
     divElement.scrollTop = divElement.scrollHeight;
 
 }
@@ -50,7 +50,7 @@ function Room(roomname, pk , user , partner) {
 function Test(arg, chat, roomname) {
   nickname = arg
   socket.emit('message', arg + ":" + chat + "방이름" + roomname)
-  var divElement = document.getElementsByClassName("total"); // 스크롤을 조정할 div 요소 선택하기
+  var divElement = document.getElementsByClassName("total")[0]; // 스크롤을 조정할 div 요소 선택하기
     divElement.scrollTop = divElement.scrollHeight;
 
   //post -> nickname , partner , content , group , imageurl -> 이미지를 보낼경우 [ content -> 공백 ] , 텍스트를 보낼경우 [ imageurl -> 공백 ] 
@@ -59,7 +59,7 @@ function Test(arg, chat, roomname) {
 
 socket.on('message', (data) => {
   handleNewMessage(data);
-  var divElement = document.getElementsByClassName("total"); // 스크롤을 조정할 div 요소 선택하기
+  var divElement = document.getElementsByClassName("total")[0]; // 스크롤을 조정할 div 요소 선택하기
   divElement.scrollTop = divElement.scrollHeight;
 })
 
