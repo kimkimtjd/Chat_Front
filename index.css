@@ -40,16 +40,17 @@ li{
   flex-direction: row;
   padding: 8px;
   margin-top: 10px;
-  white-space: pre-line;
 }
 .receiversecond{
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
   width: fit-content;
   margin-top: 10px;
-  white-space: pre-line;
 }
 .receivetext{
+  background-color: white;
   padding: 8px;
   border-radius: 5px;
 }
