@@ -56,11 +56,12 @@ function Test(arg, chat, roomname) {
 
 socket.on('message', (data) => {
   handleNewMessage(data);
+    window.scrollTo(0,document.body.scrollHeight);
+
 })
 
 const handleNewMessage = (message) => {
   messages.appendChild(serverMessage(message));
-  window.scrollTo(0,document.body.scrollHeight);
 }
 
 const serverMessage = (message) => {
