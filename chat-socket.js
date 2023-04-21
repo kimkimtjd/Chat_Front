@@ -37,9 +37,11 @@ function Room(roomname, pk , user , partner) {
           messages.appendChild(buildNewMessage(data[i].nickname + ":" + data[i].content.replace('<br/>' , '\n') + "방이름" + data[i].group , data[i].biz_logo , data[i].created)); 
         }
       }
-      window.scrollTo(0,document.body.scrollHeight);
 
-    }) 
+    var divElement = document.getElementById("messages"); // 스크롤을 조정할 div 요소 선택하기
+    divElement.scrollTop = divElement.scrollHeight;
+    
+  }) 
     .catch(error => console.error(error));
 
 
@@ -48,19 +50,17 @@ function Room(roomname, pk , user , partner) {
 function Test(arg, chat, roomname) {
   nickname = arg
   socket.emit('message', arg + ":" + chat + "방이름" + roomname)
-  window.scrollTo(0,document.body.scrollHeight);
+  var divElement = document.getElementById("messages"); // 스크롤을 조정할 div 요소 선택하기
+    divElement.scrollTop = divElement.scrollHeight;
 
   //post -> nickname , partner , content , group , imageurl -> 이미지를 보낼경우 [ content -> 공백 ] , 텍스트를 보낼경우 [ imageurl -> 공백 ] 
 
 }
 
-setInterval(function() {
-  Test('argument', 'chat', 'roomname');
-}, 1000); // 1초마다 Test 함수 호출하기
-
 socket.on('message', (data) => {
   handleNewMessage(data);
-  window.scrollTo(0,document.body.scrollHeight);
+  var divElement = document.getElementById("messages"); // 스크롤을 조정할 div 요소 선택하기
+  divElement.scrollTop = divElement.scrollHeight;
 })
 
 const handleNewMessage = (message) => {
