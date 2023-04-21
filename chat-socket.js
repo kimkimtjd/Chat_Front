@@ -90,7 +90,7 @@ const buildNewMessage = (message , logo_image , date) => {
     logo.classList.add('receiverimgae');
 
     div.prepend(logo);
-    div.appendChild(date);
+    div.appendChild(text);
     
     document.body.prepend(div)
     return div;
