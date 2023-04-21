@@ -87,23 +87,23 @@ const buildNewMessage = (message , logo_image , date) => {
       if ( parseInt(date.slice(12,13)) === 0){
         data = "오전 10"  + d.slice(13,16)
         let text = document.createTextNode(message.split("방이름")[0] + '\n' +  data);
-        div.appendChild(text + '\n' + data );    
+        div.appendChild(text);    
       }
       else{
         data = "오전 " + d.slice(12,13).replace("0","1") + d.slice(13,16)
         let text = document.createTextNode(message.split("방이름")[0] + '\n' +  data);
-        div.appendChild(text + '\n' + data );      
+        div.appendChild(text);      
       }
     }
     else if ( parseInt(date.slice(11,12)) === 2 ){
       data = "오후 " + parseInt(date.slice(11,12)) - 12 + d.slice(13,16)
       let text = document.createTextNode(message.split("방이름")[0] + '\n' +  data);
-      div.appendChild(text + '\n' + data );    
+      div.appendChild(text);    
     }
     else {
       data = "오후 " + parseInt(date.slice(11,12)) - 12 + d.slice(13,16)
       let text = document.createTextNode(message.split("방이름")[0] + '\n' +  data);
-      div.appendChild(text + '\n' + data );    
+      div.appendChild(text);    
     }
 
     
