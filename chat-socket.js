@@ -219,10 +219,10 @@ const receivesecondMessage = (datesecond) => {
 
 
 /****************************** 아래 코드는 웹용  위 부분은 공용******************************/
-// socket.emit('room', room)
+socket.emit('room', room)
 
-// const handleSubmitNewMessage = () => {
-//   socket.emit('message', nickname + ":" + message.value + "방이름" + room)
-//   // Room()
-// }
+const handleSubmitNewMessage = () => {
+  socket.emit('message', nickname + ":" + message.value + "방이름" + room)
+  Room()
+}
 
