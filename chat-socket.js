@@ -15,7 +15,9 @@ const messagesub = document.getElementById('messagesub');
 function Room(roomname, pk , user , partner) {
   
   socket.emit('room', roomname)
+  
   nickname = user
+  
   fetch('https://www.scrapmk.com/api/chat/chatroom/' + user + "/" + partner)
     .then(response => response.json())
     .then(data => {
@@ -29,43 +31,22 @@ function Room(roomname, pk , user , partner) {
     
       for (var i = 0; i < data.length; i++) {
         if (data[i].sender === pk){
-          messages.appendChild(buildNewMessage(user + ":" + data[i].content.replace('<br/>' , '\n') + "방이름" + data[i].group));
+          messages.appendChild(buildNewMessage(user + ":" + data[i].content.replace('<br/>' , '\n') + "방이름" + data[i].group) );
         }
         else{
-          messages.appendChild(buildNewMessage(data[i].nickname + ":" + data[i].content.replace('<br/>' , '\n') + "방이름" + data[i].group)); 
+          messages.appendChild(buildNewMessage(data[i].nickname + ":" + data[i].content.replace('<br/>' , '\n') + "방이름" + data[i].group , data[i].biz_logo)); 
         }
       }
-    }
-    /*
-      //     for(var i=0; i<data.length; i++ ){
-      //        messages.appendChild(
-      //       if(data[i].sender === 1){
-      //         const div = document.createElement("div");
-      //         div.classList.add('senderbox');
-      //         div.prepend(sendMessage("애완용꿀꿀이" + ":" + data[i].content +"방이름" + data[i].group)); 
-
-      //          return div;
-
-      //       }
-      //       else{
-      //         const div = document.createElement("div");
-      //         let text = document.createTextNode( data[i].nickname + ":" + data[i].content +"방이름" + data[i].group.split("방이름")[0] );
-      //         div.classList.add('receiverbox');
-      //         div.prepend(text);
-
-      //         document.body.appendChild(div); // 생성된 div를 body에 추가
-      //          return div;
-      //       }
-      //     })
-      
-    */
-   ) 
+    }) 
     .catch(error => console.error(error));
 }
 
 function Test(arg, chat, roomname) {
   nickname = arg
   socket.emit('message', arg + ":" + chat + "방이름" + roomname)
+
+  //post -> nickname , partner , content , group , imageurl -> 이미지를 보낼경우 [ content -> 공백 ] , 텍스트를 보낼경우 [ imageurl -> 공백 ] 
+
 }
 
 socket.on('message', (data) => {
@@ -83,7 +64,7 @@ const handleNewMessage = (message) => {
 }
 
 
-const buildNewMessage = (message) => {
+const buildNewMessage = (message , logo_image) => {
   // console.log(nickname)
   if (message.split(":")[0] === nickname) {
 
@@ -98,7 +79,7 @@ const buildNewMessage = (message) => {
     const div = document.createElement("div");
     const logo = document.createElement("img");
 
-    logo.setAttribute('src', 'https://mblogthumb-phinf.pstatic.net/MjAxOTEwMTFfNjEg/MDAxNTcwNzg1ODM3Nzc0.zxDXm20VlPdQv8GQi9LWOdPwkqoBdiEmf8aBTWTsPF8g.FqMQTiF6ufydkQxrLBgET3kNYAyyKGJTWTyi1qd1-_Ag.PNG.kkson50/sample_images_01.png?type=w800');
+    logo.setAttribute('src', logo_image);
     let text = document.createTextNode(message.split("방이름")[0]);
     
     div.classList.add('receiverbox');
@@ -109,7 +90,6 @@ const buildNewMessage = (message) => {
     
     document.body.prepend(div)
     return div;
-
 
   }
 }
@@ -130,6 +110,5 @@ const sendMessage = (message) => {
 //   socket.emit('message', nickname + ":" + message.value + "방이름" + room)
 //   // Room()
 // }
-
 
 
