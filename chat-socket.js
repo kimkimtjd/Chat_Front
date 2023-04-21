@@ -3,7 +3,7 @@ const socket = io("wss://port-0-chat-back-p8xrq2mlf0mbo1w.sel3.cloudtype.app/")
 
 //아래 주석
 var nickname = "";
-// const room = "d67dc57d-14a3-488b-8f5f-dfeee417ed3c"
+const room = "d67dc57d-14a3-488b-8f5f-dfeee417ed3c"
 
 
 
@@ -14,7 +14,7 @@ var data = ""
 
 function Room(roomname, pk , user , partner) {
   
-  socket.emit('room', roomname)
+  socket.emit('room', room) // roomname
   
   nickname = user
   
