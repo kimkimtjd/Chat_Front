@@ -37,10 +37,11 @@ function Room(roomname, pk , user , partner) {
           messages.appendChild(buildNewMessage(data[i].nickname + ":" + data[i].content.replace('<br/>' , '\n') + "방이름" + data[i].group , data[i].biz_logo , data[i].created)); 
         }
       }
+      window.scrollTo(0,document.body.scrollHeight);
+
     }) 
     .catch(error => console.error(error));
 
-    window.scrollTo(0,document.body.scrollHeight);
 
 }
 
