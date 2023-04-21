@@ -83,7 +83,7 @@ const buildNewMessage = (message , logo_image , date) => {
 
     logo.setAttribute('src', logo_image);
  
-    let text = document.createTextNode(message.split("방이름")[0]  + \n + data);
+    let text = document.createTextNode(message.split("방이름")[0]  + \n + date);
     
 
     div.classList.add('receiverbox');
