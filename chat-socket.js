@@ -57,11 +57,34 @@ socket.on('message', (data) => {
 const handleNewMessage = (message) => {
   // messages.appendChild(buildNewMessage(message));
   // if(message.split(":")[0] === nickname ){
-  messages.appendChild(buildNewMessage(message));
+  messages.appendChild(serverMessage(message));
   // }
   // else{
   //   messagesub.appendChild(buildNewMessage(message));
   // }
+}
+
+const serverMessage = (message) => {
+  console.log(nickname)
+  if(message.split(":")[0] === nickname){
+  
+    const div = document.createElement("div");
+    div.classList.add('senderbox');
+    div.prepend(sendMessage(message));
+
+  return div;
+  }
+  else{
+
+    const div = document.createElement("div");
+    let text = document.createTextNode(message.split("방이름")[0]);
+    div.classList.add('receiverbox');
+
+    div.prepend(text);
+    document.body.prepend(div)
+    return div;
+ 
+  }
 }
 
 
@@ -133,7 +156,7 @@ const sendsecondMessage = (datesecond) => {
   //20 ~24
   else if(datesecond.slice(11,12) === "2"){
   
-    second  = "오후" + String(Number(datesecond.slice(11,13))) + ":" + datesecond.slice(14,16)
+    second  = "오후" + Number(datesecond.slice(11,13)) - 12 + ":" + datesecond.slice(14,16)
     
   }
   
