@@ -23,6 +23,7 @@ li{
   background: #E7EAEF;
 }
 .sender{
+  width:fit-content;
   background-color: #F0FFF6;
   padding: 8px;
   border-radius: 5px;  
