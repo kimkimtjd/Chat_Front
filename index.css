@@ -7,7 +7,7 @@ li{
 #messages{
   display: flex;
   flex-direction: column;
-  overflow-y: scroll;
+  overflow: scroll;
 }
 .senderbox{
   display: flex;
