@@ -72,7 +72,8 @@ const buildNewMessage = (message , logo_image , date) => {
     const div = document.createElement("div");
     div.classList.add('senderbox');
     
-    div.prepend(sendMessage(message , date));
+    div.prepend(sendMessage(message.split("방이름")[0]));
+    div.appendChild(sendsecondMessage(date));
 
     return div;
   }
@@ -98,18 +99,23 @@ const buildNewMessage = (message , logo_image , date) => {
   }
 }
 
-const sendMessage = (message ,datesecond) => {
+const sendMessage = (message) => {
   const span = document.createElement("span");
   span.classList.add('sender');
-  const spantime = document.createElement("span");
-  spantime.classList.add('sendertime');
-
 
   span.prepend(document.createTextNode(message.split("방이름")[0]))
+  
+  return span
+}
+
+const sendsecondMessage = (datesecond) => {
+  const span = document.createElement("span");
+  span.classList.add('sendertime');
+  
   var second = ""
 
   if(datesecond.slice(11,12) === "0"){
-    second  = datesecond.slice(11,16)
+    second  = "오전" + datesecond.slice(11,16)
   }
   
   //10 ~12
@@ -117,24 +123,25 @@ const sendMessage = (message ,datesecond) => {
   
     //10 ~12 
     if(datesecond.slice(12,13) === "0" || datesecond.slice(12,13) === "1" || datesecond.slice(12,13) === "2"){
-      second  =  datesecond.slice(11,16)
+      second  =  "오전" + datesecond.slice(11,16)
     }
     //13 ~ 19
     else {
-      second  = Number(datesecond.slice(11,13)) - 12 + datesecond.slice(14,16)
+      second  = "오후" + Number(datesecond.slice(11,13)) - 12 + ":" +  datesecond.slice(14,16)
     }
   }
   //20 ~24
   else if(datesecond.slice(11,12) === "2"){
   
-    second  = Number(datesecond.slice(11,13)) - 12 + datesecond.slice(14,16)
+    second  = "오후" + Number(datesecond.slice(11,13)) - 12 + ":" + datesecond.slice(14,16)
     
   }
   
-  spantime.appendChild(document.createTextNode(second))
+  span.prepend(document.createTextNode(second))
 
-  return span,spantime
+  return span
 }
+
 
 /****************************** 아래 코드는 웹용  위 부분은 공용******************************/
 // socket.emit('room', room)
