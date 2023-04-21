@@ -54,10 +54,13 @@ function Test(arg, chat, roomname) {
 
 }
 
+setInterval(function() {
+  Test('argument', 'chat', 'roomname');
+}, 1000); // 1초마다 Test 함수 호출하기
+
 socket.on('message', (data) => {
   handleNewMessage(data);
-    window.scrollTo(0,document.body.scrollHeight);
-
+  window.scrollTo(0,document.body.scrollHeight);
 })
 
 const handleNewMessage = (message) => {
