@@ -107,14 +107,15 @@ const buildNewMessage = (message , logo_image , date) => {
 
     logo.setAttribute('src', logo_image);
  
-    let text = document.createTextNode(message.split("방이름")[0] + "\n" + date);
+    let text = document.createTextNode(message.split("방이름")[0]);
     
 
     div.classList.add('receiverbox');
     logo.classList.add('receiverimgae');
 
     div.prepend(logo);
-    div.appendChild(text);
+    div.appendChild(receivebox(text , date));
+    div.appendChild(receivesecondMessage(date));
     
     document.body.prepend(div)
     return div;
@@ -162,6 +163,34 @@ const sendsecondMessage = (datesecond) => {
   
   span.prepend(document.createTextNode(second))
 
+  return span
+}
+
+const receivebox = (text , date) => {
+  const div = document.createElement("div");
+  div.classList.add('receiversecond');
+  div.prepend(receiveMessage(text));
+  div.appendChild(receivesecondMessage(date));
+  // div.appendChild(receivesecondMessage(date));
+  return span
+}
+
+
+const receiveMessage = (message) => {
+  const span = document.createElement("span");
+  span.classList.add('receivetext');
+
+  span.prepend(document.createTextNode(message.split("방이름")[0]))
+  
+  return span
+}
+
+const receivesecondMessage = (date) => {
+  const span = document.createElement("span");
+  span.classList.add('receivetime');
+
+  span.prepend(document.createTextNode(date))
+  
   return span
 }
 
