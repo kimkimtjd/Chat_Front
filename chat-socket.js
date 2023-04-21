@@ -9,7 +9,7 @@ const room = "d67dc57d-14a3-488b-8f5f-dfeee417ed3c"
 
 const message = document.getElementById('message');
 const messages = document.getElementById('messages');
-const messagesub = document.getElementById('messagesub');
+const messagesub = document.getElementsByClassName('total');
 var data = "" 
 
 function Room(roomname, pk , user , partner) {
@@ -42,14 +42,14 @@ function Room(roomname, pk , user , partner) {
   }) 
     .catch(error => console.error(error));
 
-    messages.scrollTop = messages.scrollHeight;
+    messagesub.scrollTop = messagesub.scrollHeight;
 
 }
 
 function Test(arg, chat, roomname) {
   nickname = arg
   socket.emit('message', arg + ":" + chat + "방이름" + roomname)
-  messages.scrollTop = messages.scrollHeight;
+  messagesub.scrollTop = messagesub.scrollHeight;
 
   //post -> nickname , partner , content , group , imageurl -> 이미지를 보낼경우 [ content -> 공백 ] , 텍스트를 보낼경우 [ imageurl -> 공백 ] 
 
@@ -57,7 +57,7 @@ function Test(arg, chat, roomname) {
 
 socket.on('message', (data) => {
   handleNewMessage(data);
-  messages.scrollTop = messages.scrollHeight;
+  messagesub.scrollTop = messagesub.scrollHeight;
 })
 
 const handleNewMessage = (message) => {
