@@ -101,8 +101,37 @@ const buildNewMessage = (message , logo_image , date) => {
 const sendMessage = (message ,datesecond) => {
   const span = document.createElement("span");
   span.classList.add('sender');
+  const spantime = document.createElement("span");
+  spantime.classList.add('sendertime');
 
-  span.appendChild(document.createTextNode(message.split("방이름")[0] + "\n" + datesecond))
+
+  span.prepend(document.createTextNode(message.split("방이름")[0]))
+  var second = ""
+
+  if(datesecond.slice(11,12) === "0"){
+    second  = datesecond.slice(11,16)
+  }
+  
+  //10 ~12
+  else if(datesecond.slice(11,12) === "1"){
+  
+    //10 ~12 
+    if(datesecond.slice(12,13) === "0" || datesecond.slice(12,13) === "1" || datesecond.slice(12,13) === "2"){
+      second  =  datesecond.slice(11,16)
+    }
+    //13 ~ 19
+    else {
+      second  = Number(datesecond.slice(11,13)) - 12 + datesecond.slice(14,16)
+    }
+  }
+  //20 ~24
+  else if(datesecond.slice(11,12) === "2"){
+  
+    second  = Number(datesecond.slice(11,13)) - 12 + datesecond.slice(14,16)
+    
+  }
+  
+  spantime.appendChild(document.createTextNode(second))
 
   return span
 }
@@ -114,5 +143,4 @@ const sendMessage = (message ,datesecond) => {
 //   socket.emit('message', nickname + ":" + message.value + "방이름" + room)
 //   // Room()
 // }
-
 
