@@ -72,7 +72,7 @@ const buildNewMessage = (message , logo_image , date) => {
     const div = document.createElement("div");
     div.classList.add('senderbox');
     
-    div.prepend(sendMessage(message , date));
+    div.prepend(sendMessage(message));
 
     return div;
   }
@@ -82,36 +82,15 @@ const buildNewMessage = (message , logo_image , date) => {
     const logo = document.createElement("img");
 
     logo.setAttribute('src', logo_image);
-    
-    if(parseInt(date.slice(11,13)) < 13){
-      if ( parseInt(date.slice(12,13)) === 0){
-        data = "오전 10"  + d.slice(13,16)
-        let text = document.createTextNode(message.split("방이름")[0] + '\n' +  data);
-        div.appendChild(text);    
-      }
-      else{
-        data = "오전 " + d.slice(12,13).replace("0","1") + d.slice(13,16)
-        let text = document.createTextNode(message.split("방이름")[0] + '\n' +  data);
-        div.appendChild(text);      
-      }
-    }
-    else if ( parseInt(date.slice(11,12)) === 2 ){
-      data = "오후 " + parseInt(date.slice(11,12)) - 12 + d.slice(13,16)
-      let text = document.createTextNode(message.split("방이름")[0] + '\n' +  data);
-      div.appendChild(text);    
-    }
-    else {
-      data = "오후 " + parseInt(date.slice(11,12)) - 12 + d.slice(13,16)
-      let text = document.createTextNode(message.split("방이름")[0] + '\n' +  data);
-      div.appendChild(text);    
-    }
-
+ 
+    let text = document.createTextNode( message.split("방이름")[0] + '\n' +  date);
     
 
     div.classList.add('receiverbox');
     logo.classList.add('receiverimgae');
 
     div.prepend(logo);
+    div.appendChild(text + '\n' + data );
     
     document.body.prepend(div)
     return div;
@@ -119,30 +98,11 @@ const buildNewMessage = (message , logo_image , date) => {
   }
 }
 
-const sendMessage = (message , date) => {
+const sendMessage = (message) => {
   const span = document.createElement("span");
   span.classList.add('sender');
 
-  if(parseInt(date.slice(11,13)) < 13){
-    if ( parseInt(date.slice(12,13)) === 0){
-      data = "오전 10"  + d.slice(13,16)
-      span.appendChild(document.createTextNode(message.split("방이름")[0] + '\n' +  data))      
-    }
-    else{
-      data = "오전 " + d.slice(12,13).replace("0","1") + d.slice(13,16)
-      span.appendChild(document.createTextNode(message.split("방이름")[0] + '\n' +  data))
-    }
-  }
-  else if ( parseInt(date.slice(11,12)) === 2 ){
-    data = "오후 " + parseInt(date.slice(11,12)) - 12 + d.slice(13,16)
-    span.appendChild(document.createTextNode(message.split("방이름")[0] + '\n' +  data))
-  }
-  else {
-    data = "오후 " + parseInt(date.slice(11,12)) - 12 + d.slice(13,16)
-    span.appendChild(document.createTextNode(message.split("방이름")[0] + '\n' +  data))
-  }
-
-  
+  span.appendChild(document.createTextNode(message.split("방이름")[0]))
 
   return span
 }
