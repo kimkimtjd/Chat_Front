@@ -96,12 +96,20 @@ const buildNewMessage = (message) => {
   else {
 
     const div = document.createElement("div");
-    let text = document.createTextNode(message.split("방이름")[0]);
-    div.classList.add('receiverbox');
+    const logo = document.createElement("img");
 
-    div.prepend(text);
+    logo.setAttribute('src', 'https://mblogthumb-phinf.pstatic.net/MjAxOTEwMTFfNjEg/MDAxNTcwNzg1ODM3Nzc0.zxDXm20VlPdQv8GQi9LWOdPwkqoBdiEmf8aBTWTsPF8g.FqMQTiF6ufydkQxrLBgET3kNYAyyKGJTWTyi1qd1-_Ag.PNG.kkson50/sample_images_01.png?type=w800');
+    let text = document.createTextNode(message.split("방이름")[0]);
+    
+    div.classList.add('receiverbox');
+    logo.classList.add('receiverimgae');
+
+    div.prepend(logo);
+    div.appendChild(text);
+    
     document.body.prepend(div)
     return div;
+
 
   }
 }
