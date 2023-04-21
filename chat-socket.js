@@ -10,6 +10,7 @@ var nickname = "";
 const message = document.getElementById('message');
 const messages = document.getElementById('messages');
 const messagesub = document.getElementById('messagesub');
+var data = "" 
 
 // pk -> 유저 고유번호 , nickname -> 로그인한사람 닉네임 , partner -> 상대방 닉네임
 function Room(roomname, pk , user , partner) {
@@ -31,10 +32,10 @@ function Room(roomname, pk , user , partner) {
     
       for (var i = 0; i < data.length; i++) {
         if (data[i].sender === pk){
-          messages.appendChild(buildNewMessage(user + ":" + data[i].content.replace('<br/>' , '\n') + "방이름" + data[i].group) );
+          messages.appendChild(buildNewMessage(user + ":" + data[i].content.replace('<br/>' , '\n') + "방이름" + data[i].group , data[i].biz_logo , data[i].created ) );
         }
         else{
-          messages.appendChild(buildNewMessage(data[i].nickname + ":" + data[i].content.replace('<br/>' , '\n') + "방이름" + data[i].group , data[i].biz_logo)); 
+          messages.appendChild(buildNewMessage(data[i].nickname + ":" + data[i].content.replace('<br/>' , '\n') + "방이름" + data[i].group , data[i].biz_logo , data[i].created)); 
         }
       }
     }) 
@@ -64,13 +65,14 @@ const handleNewMessage = (message) => {
 }
 
 
-const buildNewMessage = (message , logo_image) => {
+const buildNewMessage = (message , logo_image , date) => {
   // console.log(nickname)
   if (message.split(":")[0] === nickname) {
 
     const div = document.createElement("div");
     div.classList.add('senderbox');
-    div.prepend(sendMessage(message));
+    
+    div.prepend(sendMessage(message , date));
 
     return div;
   }
@@ -80,13 +82,30 @@ const buildNewMessage = (message , logo_image) => {
     const logo = document.createElement("img");
 
     logo.setAttribute('src', logo_image);
-    let text = document.createTextNode(message.split("방이름")[0]);
     
+    if(parseInt(date.slice(11,13)) < 13){
+      if ( parseInt(date.slice(12,13)) === 0){
+        data = "오전 10"  + d.slice(13,16)
+      }
+      else{
+        data = "오전 " + d.slice(12,13).replace("0","1") + d.slice(13,16)
+      }
+    }
+    else if ( parseInt(date.slice(11,12)) === 2 ){
+      data = "오후 " + parseInt(date.slice(11,12)) - 12 + d.slice(13,16)
+    }
+    else {
+      data = "오후 " + parseInt(date.slice(11,12)) - 12 + d.slice(13,16)
+    }
+
+    let text = document.createTextNode(message.split("방이름")[0] + '\n' +  data);
+    
+
     div.classList.add('receiverbox');
     logo.classList.add('receiverimgae');
 
     div.prepend(logo);
-    div.appendChild(text);
+    div.appendChild(text + '\n' + data );
     
     document.body.prepend(div)
     return div;
@@ -94,11 +113,27 @@ const buildNewMessage = (message , logo_image) => {
   }
 }
 
-const sendMessage = (message) => {
+const sendMessage = (message , date) => {
   const span = document.createElement("span");
   span.classList.add('sender');
 
-  span.appendChild(document.createTextNode(message.split("방이름")[0]))
+  if(parseInt(date.slice(11,13)) < 13){
+    if ( parseInt(date.slice(12,13)) === 0){
+      data = "오전 10"  + d.slice(13,16)
+    }
+    else{
+      data = "오전 " + d.slice(12,13).replace("0","1") + d.slice(13,16)
+    }
+  }
+  else if ( parseInt(date.slice(11,12)) === 2 ){
+    data = "오후 " + parseInt(date.slice(11,12)) - 12 + d.slice(13,16)
+  }
+  else {
+    data = "오후 " + parseInt(date.slice(11,12)) - 12 + d.slice(13,16)
+  }
+
+  
+  span.appendChild(document.createTextNode(message.split("방이름")[0] + '\n' +  data))
 
   return span
 }
