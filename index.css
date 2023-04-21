@@ -34,7 +34,10 @@ li{
   margin-top: 10px;
   white-space: pre-line;
 }
-
+.receiverimgae{
+  width: 36px;
+  height: 36px;
+}
 
 /* .test {
   background: #F0FFF6;
