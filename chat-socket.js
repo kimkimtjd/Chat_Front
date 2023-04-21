@@ -110,7 +110,7 @@ const buildNewMessage = (message , logo_image , date) => {
     const div = document.createElement("div");
     const logo = document.createElement("img");
 
-    if(logo_image === ""){
+    if(logo_image === null || logo_image === "" ){
       logo.setAttribute('src', "https://komon.netlify.app/img/logo.jpeg");
     }
     else{
