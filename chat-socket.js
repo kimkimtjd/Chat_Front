@@ -184,7 +184,7 @@ const receiveMessage = (message) => {
   return span
 }
 
-const receivesecondMessage = (date) => {
+const receivesecondMessage = (datesecond) => {
   const span = document.createElement("span");
   span.classList.add('receivetime');
 
