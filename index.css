@@ -24,12 +24,13 @@ li{
   background: #E7EAEF;
 }
 .sender{
-  width:fit-content;
+  width: fit-content;
   background-color: #F0FFF6;
   padding: 8px;
-  border-radius: 5px;  
+  border-radius: 5px;
 }
 .sendertime{
+  margin-top: 6px;
   color: black;
   font-size: 12px;
 }
@@ -39,12 +40,25 @@ li{
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  padding: 8px;
+  margin-top: 10px;
+  white-space: pre-line;
+}
+.receiversecond{
+  display: flex;
+  flex-direction: column;
   width: fit-content;
   background: white;
   padding: 8px;
   border-radius: 5px;
   margin-top: 10px;
   white-space: pre-line;
+}
+.receivetext{
+  color: blue;
+}
+.receivetime{
+  color: red;
 }
 .receiverimgae{
   width: 36px;
