@@ -50,7 +50,7 @@ function Test(arg, chat, roomname) {
   nickname = arg
   socket.emit('message', arg + ":" + chat + "방이름" + roomname)
   //messagesub.scrollTop = messagesub.scrollHeight;
-  //window.scrollTo(0,document.body.scrollHeight);
+  window.scrollTo(0,document.body.scrollHeight);
   //post -> nickname , partner , content , group , imageurl -> 이미지를 보낼경우 [ content -> 공백 ] , 텍스트를 보낼경우 [ imageurl -> 공백 ] 
 
 }
