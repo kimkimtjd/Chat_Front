@@ -114,9 +114,10 @@ const buildNewMessage = (message , logo_image , date) => {
     logo.classList.add('receiverimgae');
 
     div.prepend(logo);
-    div.appendChild(receivebox(text , date));
+    div.appendChild(receivebox(message.split("방이름")[0] , date));
     
     document.body.prepend(div)
+
     return div;
 
   }
@@ -170,7 +171,6 @@ const receivebox = (text , date) => {
   div.classList.add('receiversecond');
   div.prepend(receiveMessage(text));
   div.appendChild(receivesecondMessage(date));
-  // div.appendChild(receivesecondMessage(date));
   return div
 }
 
