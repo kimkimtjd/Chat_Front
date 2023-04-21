@@ -22,7 +22,6 @@ li{
   width: 100%; 
   height:800px; 
   background: #E7EAEF;
-  overflow: auto;
 }
 .sender{
   width: fit-content;
