@@ -72,7 +72,7 @@ const buildNewMessage = (message , logo_image , date) => {
     const div = document.createElement("div");
     div.classList.add('senderbox');
     
-    div.prepend(sendMessage(message));
+    div.prepend(sendMessage(message , date));
 
     return div;
   }
@@ -98,11 +98,11 @@ const buildNewMessage = (message , logo_image , date) => {
   }
 }
 
-const sendMessage = (message) => {
+const sendMessage = (message ,datesecond) => {
   const span = document.createElement("span");
   span.classList.add('sender');
 
-  span.appendChild(document.createTextNode(message.split("방이름")[0]))
+  span.appendChild(document.createTextNode(message.split("방이름")[0] + datesecond))
 
   return span
 }
