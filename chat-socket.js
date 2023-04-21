@@ -188,7 +188,33 @@ const receivesecondMessage = (date) => {
   const span = document.createElement("span");
   span.classList.add('receivetime');
 
-  span.prepend(document.createTextNode(date))
+  var second = ""
+
+  if(datesecond.slice(11,12) === "0"){
+    second  = "오전" + datesecond.slice(11,16)
+  }
+  
+  //10 ~12
+  else if(datesecond.slice(11,12) === "1"){
+  
+    //10 ~12 
+    if(datesecond.slice(12,13) === "0" || datesecond.slice(12,13) === "1" || datesecond.slice(12,13) === "2"){
+      second  =  "오전" + datesecond.slice(11,16)
+    }
+    //13 ~ 19
+    else {
+      second  = "오후" + String(Number(datesecond.slice(11,13))) + ":" +  datesecond.slice(14,16)
+    }
+  }
+  //20 ~24
+  else if(datesecond.slice(11,12) === "2"){
+  
+    second  = "오후" + Number(datesecond.slice(11,13)) - 12 + ":" + datesecond.slice(14,16)
+    
+  }
+  
+
+  span.prepend(document.createTextNode(second))
   
   return span
 }
