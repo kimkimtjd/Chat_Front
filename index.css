@@ -38,8 +38,6 @@ li{
 .receiverbox{
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
   padding: 8px;
   margin-top: 10px;
   white-space: pre-line;
@@ -48,17 +46,17 @@ li{
   display: flex;
   flex-direction: column;
   width: fit-content;
-  background: white;
-  padding: 8px;
-  border-radius: 5px;
   margin-top: 10px;
   white-space: pre-line;
 }
 .receivetext{
-  color: blue;
+  padding: 8px;
+  border-radius: 5px;
 }
 .receivetime{
-  color: red;
+  margin-top: 6px;
+  color: black;
+  font-size: 12px;
 }
 .receiverimgae{
   width: 36px;
