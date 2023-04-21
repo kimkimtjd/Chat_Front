@@ -3,18 +3,18 @@ const socket = io("wss://port-0-chat-back-p8xrq2mlf0mbo1w.sel3.cloudtype.app/")
 
 //아래 주석
 var nickname = "";
-//const room = "d67dc57d-14a3-488b-8f5f-dfeee417ed3c"
+// const room = "d67dc57d-14a3-488b-8f5f-dfeee417ed3c"
 
 
 
 const message = document.getElementById('message');
 const messages = document.getElementById('messages');
-const messagesub = document.getElementsByClassName('total');
+const messagesub = document.getElementById('messagesub');
 var data = "" 
 
 function Room(roomname, pk , user , partner) {
   
-  socket.emit('room', roomname) // roomname
+  socket.emit('room', roomname)
   
   nickname = user
   
@@ -42,24 +42,28 @@ function Room(roomname, pk , user , partner) {
   }) 
     .catch(error => console.error(error));
 
-    //messagesub.scrollTop = messagesub.scrollHeight;
- window.scrollTo(0,document.body.scrollHeight + 30);
- 
+    messages.scrollTop = messages.scrollHeight;
+
 }
 
 function Test(arg, chat, roomname) {
   nickname = arg
   socket.emit('message', arg + ":" + chat + "방이름" + roomname)
-  //messagesub.scrollTop = messagesub.scrollHeight;
-  window.scrollTo(0,document.body.scrollHeight + 30);
-  //post -> nickname , partner , content , group , imageurl -> 이미지를 보낼경우 [ content -> 공백 ] , 텍스트를 보낼경우 [ imageurl -> 공백 ] 
+  messages.scrollTop = messages.scrollHeight;
 
+  //post -> nickname , partner , content , group , imageurl -> 이미지를 보낼경우 [ content -> 공백 ] , 텍스트를 보낼경우 [ imageurl -> 공백 ] 
+  /*
+    nickname = data['nickname']
+    partner_nickname = data['partner_nickname']
+    content = data['content']
+    group = data['group']
+    image_url = data['image_url']
+  */ 
 }
 
 socket.on('message', (data) => {
   handleNewMessage(data);
-  //messagesub.scrollTop = messagesub.scrollHeight;
- window.scrollTo(0,document.body.scrollHeight + 30);
+  messages.scrollTop = messages.scrollHeight;
 })
 
 const handleNewMessage = (message) => {
@@ -106,7 +110,12 @@ const buildNewMessage = (message , logo_image , date) => {
     const div = document.createElement("div");
     const logo = document.createElement("img");
 
-    logo.setAttribute('src', logo_image);
+    if(logo_image === ""){
+      logo.setAttribute('src', "https://komon.netlify.app/img/logo.jpeg");
+    }
+    else{
+      logo.setAttribute('src', logo_image);
+    }
  
     let text = document.createTextNode(message.split("방이름")[0]);
     
@@ -221,10 +230,10 @@ const receivesecondMessage = (datesecond) => {
 
 
 /****************************** 아래 코드는 웹용  위 부분은 공용******************************/
-socket.emit('room', room)
+// socket.emit('room', room)
 
-const handleSubmitNewMessage = () => {
-  socket.emit('message', nickname + ":" + message.value + "방이름" + room)
-  Room()
-}
+// const handleSubmitNewMessage = () => {
+//   socket.emit('message', nickname + ":" + message.value + "방이름" + room)
+//   // Room()
+// }
 
