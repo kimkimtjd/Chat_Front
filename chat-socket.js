@@ -111,7 +111,7 @@ const buildNewMessage = (message , logo_image , date) => {
     const logo = document.createElement("img");
 
     if(logo_image === null || logo_image === "" ){
-      logo.setAttribute('src', "https://komon.netlify.app/img/logo.jpeg");
+      logo.setAttribute('src', "https://scrapmarket.s3.ap-northeast-2.amazonaws.com/App/chat_profile.png");
     }
     else{
       logo.setAttribute('src', logo_image);
