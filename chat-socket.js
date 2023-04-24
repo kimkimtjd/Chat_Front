@@ -7,6 +7,31 @@ var nickname = "";
 var biz_logo = ""
 var uuid_room = ""
 
+const now = new Date();
+const options = {
+  year: "numeric",
+  month: "2-digit",
+  day: "2-digit",
+  hour: "2-digit",
+  minute: "2-digit",
+  second: "2-digit",
+  fractionalSecondDigits: 3
+};
+const formattedfirst = now.toLocaleString("en-US", options).replace(/[/:\s]/g, "-");
+if(formattedfirst.includes("PM")){
+  var second = Number(formattedfirst.split(',')[1].split('-')[1]) + 12
+}
+else {
+  var second = Number(formattedfirst.split(',')[1].split('-')[1])
+}
+
+var totaltime = formattedfirst.split(',')[0].split('-')[2] + "-" + formattedfirst.split(',')[0].split('-')[0] + "-" + formattedfirst.split(',')[0].split('-')[1] + " " + 
+second  + ":" + formattedfirst.split(',')[1].split('-')[2]
+
+console.log(totaltime)
+// 2022-11-16 17:40:40.018263
+
+
 
 const message = document.getElementById('message');
 const messages = document.getElementById('messages');
@@ -29,7 +54,7 @@ function Room(roomname, pk , user , partner) {
 //     else{
 //       document.getElementsByClassName('total').style.height="1000px";
 //     }
-     biz_logo = data[i].biz_logo
+      biz_logo = data[i].biz_logo
       uuid_room = data[i].group
 
       for (var i = 0; i < data.length; i++) {
@@ -74,7 +99,6 @@ const handleNewMessage = (message) => {
 }
 
 const serverMessage = (message) => {
-  const now = new Date();
   if(message.split(":")[0] === nickname){
   
     const div = document.createElement("div");
@@ -102,7 +126,7 @@ const serverMessage = (message) => {
     logo.classList.add('receiverimgae');
 
     div.prepend(logo);
-    div.appendChild(receivebox(message.split("방이름")[0] , now));
+    div.appendChild(receivebox(message.split("방이름")[0] , totaltime));
     
     document.body.prepend(div)
 
