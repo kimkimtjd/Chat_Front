@@ -4,7 +4,8 @@ const socket = io("wss://port-0-chat-back-p8xrq2mlf0mbo1w.sel3.cloudtype.app/")
 //아래 주석
 var nickname = "";
 // const room = "d67dc57d-14a3-488b-8f5f-dfeee417ed3c"
-
+var biz_logo = ""
+var uuid_room = ""
 
 
 const message = document.getElementById('message');
@@ -17,7 +18,7 @@ function Room(roomname, pk , user , partner) {
   socket.emit('room', roomname)
   
   nickname = user
-  
+
   fetch('https://www.scrapmk.com/api/chat/chatroom/' + user + "/" + partner)
     .then(response => response.json())
     .then(data => {
@@ -28,7 +29,9 @@ function Room(roomname, pk , user , partner) {
 //     else{
 //       document.getElementsByClassName('total').style.height="1000px";
 //     }
-    
+     biz_logo = data[i].biz_logo
+      uuid_room = data[i].group
+
       for (var i = 0; i < data.length; i++) {
         if (data[i].sender === pk){
           messages.appendChild(buildNewMessage(user + ":" + data[i].content.replace('<br/>' , '\n') + "방이름" + data[i].group , data[i].biz_logo , data[i].created ) );
@@ -71,7 +74,7 @@ const handleNewMessage = (message) => {
 }
 
 const serverMessage = (message) => {
-  console.log(nickname)
+  const now = new Date();
   if(message.split(":")[0] === nickname){
   
     const div = document.createElement("div");
@@ -83,11 +86,26 @@ const serverMessage = (message) => {
   else{
 
     const div = document.createElement("div");
-    let text = document.createTextNode(message.split("방이름")[0]);
-    div.classList.add('receiverbox');
+    const logo = document.createElement("img");
 
-    div.prepend(text);
+    if(biz_logo === null || biz_logo === "" ){
+      logo.setAttribute('src', "https://scrapmarket.s3.ap-northeast-2.amazonaws.com/App/chat_profile.png");
+    }
+    else{
+      logo.setAttribute('src', biz_logo);
+    }
+ 
+    let text = document.createTextNode(message.split("방이름")[0]);
+    
+
+    div.classList.add('receiverbox');
+    logo.classList.add('receiverimgae');
+
+    div.prepend(logo);
+    div.appendChild(receivebox(message.split("방이름")[0] , now));
+    
     document.body.prepend(div)
+
     return div;
  
   }
@@ -236,4 +254,3 @@ const receivesecondMessage = (datesecond) => {
 //   socket.emit('message', nickname + ":" + message.value + "방이름" + room)
 //   // Room()
 // }
-
