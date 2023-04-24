@@ -95,7 +95,7 @@ socket.on('message', (data) => {
 })
 
 const handleNewMessage = (message) => {
-  messages.appendChild(serverMessage(message));
+  messages.appendChild(buildNewMessage(message , biz_logo , totaltime ));
 }
 
 const serverMessage = (message) => {
