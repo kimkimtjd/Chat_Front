@@ -41,7 +41,7 @@ function Room(roomname, pk , user , partner) {
   
   nickname = user
   
-  fetch('https://www.scrapmk.com/api/chat/chatroom/' + user + "/" + partner)
+  fetch('https://www.scrapmk.com/api/chat/chatroom/' + "애완용꿀꿀이" + "/" + "lee")
     .then(response => response.json())
     .then(data => {
       // console.log(data, data[0].sender, data.length)
@@ -256,8 +256,8 @@ const receivesecondMessage = (datesecond) => {
 /****************************** 아래 코드는 웹용  위 부분은 공용******************************/
 // socket.emit('room', room)
 
-// const handleSubmitNewMessage = () => {
+const handleSubmitNewMessage = () => {
 //   socket.emit('message', nickname + ":" + message.value + "방이름" + room)
-//   // Room()
-// }
+   Room()
+}
 
