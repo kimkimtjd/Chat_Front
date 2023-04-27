@@ -25,8 +25,8 @@ const socket = io("wss://port-0-chat-back-p8xrq2mlf0mbo1w.sel3.cloudtype.app/")
 
 //아래 주석
 var nickname = "";
-const room = "d67dc57d-14a3-488b-8f5f-dfeee417ed3c"
-var biz_logo = "https://scrapmarket.s3.ap-northeast-2.amazonaws.com/ProfileCard/logo.png13%3A1015";
+// const room = "d67dc57d-14a3-488b-8f5f-dfeee417ed3c"
+var biz_logo = "";
 
 
 
@@ -35,13 +35,14 @@ const messages = document.getElementById('messages');
 const messagesub = document.getElementById('messagesub');
 var data = "" 
 
-function Room(roomname, pk , user , partner) {
+function Room(roomname, pk , user , partner , logo_image) {
   
-  socket.emit('room', room)
+  socket.emit('room', roomname)
   
   nickname = user
-  
-  fetch('https://www.scrapmk.com/api/chat/chatroom/' + "애완용꿀꿀이" + "/" + "lee")
+  biz_logo = logo_image
+
+  fetch('https://www.scrapmk.com/api/chat/chatroom/' + user + "/" + partner)
     .then(response => response.json())
     .then(data => {
       // console.log(data, data[0].sender, data.length)
@@ -51,7 +52,7 @@ function Room(roomname, pk , user , partner) {
 //     else{
 //       document.getElementsByClassName('total').style.height="1000px";
 //     }
-// biz_logo = data[i].biz_logo
+//biz_logo = data[i].biz_logo
     
       for (var i = 0; i < data.length; i++) {
         if (data[i].sender === pk){
@@ -72,7 +73,7 @@ function Room(roomname, pk , user , partner) {
 
 function Test(arg, chat, roomname) {
   nickname = arg
-  socket.emit('message', arg + ":" + chat + "방이름" + room)
+  socket.emit('message', arg + ":" + chat + "방이름" + roomname)
   messages.scrollTop = messages.scrollHeight;
 
   //post -> nickname , partner , content , group , imageurl -> 이미지를 보낼경우 [ content -> 공백 ] , 텍스트를 보낼경우 [ imageurl -> 공백 ] 
@@ -254,10 +255,10 @@ const receivesecondMessage = (datesecond) => {
 
 
 /****************************** 아래 코드는 웹용  위 부분은 공용******************************/
-socket.emit('room', room)
+// socket.emit('room', room)
 
-const handleSubmitNewMessage = () => {
-  socket.emit('message', nickname + ":" + message.value + "방이름" + room)
-   Room()
-}
+// const handleSubmitNewMessage = () => {
+//   socket.emit('message', nickname + ":" + message.value + "방이름" + room)
+//   // Room()
+// }
 
