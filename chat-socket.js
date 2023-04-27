@@ -25,7 +25,7 @@ const socket = io("wss://port-0-chat-back-p8xrq2mlf0mbo1w.sel3.cloudtype.app/")
 
 //아래 주석
 var nickname = "";
-// const room = "d67dc57d-14a3-488b-8f5f-dfeee417ed3c"
+const room = "d67dc57d-14a3-488b-8f5f-dfeee417ed3c"
 var biz_logo = "https://scrapmarket.s3.ap-northeast-2.amazonaws.com/ProfileCard/logo.png13%3A1015";
 
 
@@ -37,7 +37,7 @@ var data = ""
 
 function Room(roomname, pk , user , partner) {
   
-  socket.emit('room', roomname)
+  socket.emit('room', room)
   
   nickname = user
   
@@ -72,7 +72,7 @@ function Room(roomname, pk , user , partner) {
 
 function Test(arg, chat, roomname) {
   nickname = arg
-  socket.emit('message', arg + ":" + chat + "방이름" + roomname)
+  socket.emit('message', arg + ":" + chat + "방이름" + room)
   messages.scrollTop = messages.scrollHeight;
 
   //post -> nickname , partner , content , group , imageurl -> 이미지를 보낼경우 [ content -> 공백 ] , 텍스트를 보낼경우 [ imageurl -> 공백 ] 
@@ -254,10 +254,10 @@ const receivesecondMessage = (datesecond) => {
 
 
 /****************************** 아래 코드는 웹용  위 부분은 공용******************************/
-// socket.emit('room', room)
+socket.emit('room', room)
 
 const handleSubmitNewMessage = () => {
-//   socket.emit('message', nickname + ":" + message.value + "방이름" + room)
+  socket.emit('message', nickname + ":" + message.value + "방이름" + room)
    Room()
 }
 
