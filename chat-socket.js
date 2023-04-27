@@ -1,23 +1,24 @@
-// const now = new Date();
-// const options = {
-//   year: "numeric",
-//   month: "2-digit",
-//   day: "2-digit",
-//   hour: "2-digit",
-//   minute: "2-digit",
-//   second: "2-digit",
-//   fractionalSecondDigits: 3
-// };
-// const formattedfirst = now.toLocaleString("en-US", options).replace(/[/:\s]/g, "-");
-// if(formattedfirst.includes("PM")){
-//   var second = Number(formattedfirst.split(',')[1].split('-')[1]) + 12
-// }
-// else {
-//   var second = Number(formattedfirst.split(',')[1].split('-')[1])
-// }
+const now = new Date();
+const options = {
+  year: "numeric",
+  month: "2-digit",
+  day: "2-digit",
+  hour: "2-digit",
+  minute: "2-digit",
+  second: "2-digit",
+  fractionalSecondDigits: 3
+};
+const formattedfirst = now.toLocaleString("en-US", options).replace(/[/:\s]/g, "-");
+if(formattedfirst.includes("PM")){
+  var second = Number(formattedfirst.split(',')[1].split('-')[1]) + 12
+}
+else {
+  var second = Number(formattedfirst.split(',')[1].split('-')[1])
+}
 
-// var totaltime = formattedfirst.split(',')[0].split('-')[2] + "-" + formattedfirst.split(',')[0].split('-')[0] + "-" + formattedfirst.split(',')[0].split('-')[1] + " " + 
-// second  + ":" + formattedfirst.split(',')[1].split('-')[2]
+var totaltime = formattedfirst.split(',')[0].split('-')[2] + "-" + formattedfirst.split(',')[0].split('-')[0] + "-" + formattedfirst.split(',')[0].split('-')[1] + " " + 
+second  + ":" + formattedfirst.split(',')[1].split('-')[2]
+
 
 const socket = io("wss://port-0-chat-back-p8xrq2mlf0mbo1w.sel3.cloudtype.app/")
 // const socket = io("ws://localhost:3000/")
@@ -25,6 +26,7 @@ const socket = io("wss://port-0-chat-back-p8xrq2mlf0mbo1w.sel3.cloudtype.app/")
 //아래 주석
 var nickname = "";
 const room = "d67dc57d-14a3-488b-8f5f-dfeee417ed3c"
+var biz_logo = "";
 
 
 
@@ -49,6 +51,7 @@ function Room(roomname, pk , user , partner) {
 //     else{
 //       document.getElementsByClassName('total').style.height="1000px";
 //     }
+biz_logo = data[i].biz_logo
     
       for (var i = 0; i < data.length; i++) {
         if (data[i].sender === pk){
@@ -88,7 +91,7 @@ socket.on('message', (data) => {
 })
 
 const handleNewMessage = (message) => {
-  messages.appendChild(serverMessage(message));
+  messages.appendChild(buildNewMessage(message , biz_logo , totaltime));
 }
 
 const serverMessage = (message) => {
