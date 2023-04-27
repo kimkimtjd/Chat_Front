@@ -171,6 +171,8 @@ const todayMessage = (first_today) => {
   const span = document.createElement("span");
   span.prepend(document.createTextNode(first_today));
   console.log(first_today)
+    return span
+
 }
 
 const sendMessage = (message) => {
