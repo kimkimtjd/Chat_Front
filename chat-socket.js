@@ -56,10 +56,10 @@ function Room(roomname, pk , user , partner , logo_image) {
     
       for (var i = 0; i < data.length; i++) {
         if (data[i].sender === pk){
-          messages.appendChild(buildNewMessage(user + ":" + data[i].content.replace('<br/>' , '\n') + "방이름" + data[i].group , data[i].biz_logo , data[i].created ) );
+          messages.appendChild(buildNewMessage(user + ":" + data[i].content.replace('<br/>' , '\n') + "방이름" + data[i].group , data[i].biz_logo , data[i].created , String(data[i].today) ) );
         }
         else{
-          messages.appendChild(buildNewMessage(data[i].nickname + ":" + data[i].content.replace('<br/>' , '\n') + "방이름" + data[i].group , data[i].biz_logo , data[i].created)); 
+          messages.appendChild(buildNewMessage(data[i].nickname + ":" + data[i].content.replace('<br/>' , '\n') + "방이름" + data[i].group , data[i].biz_logo , data[i].created , String(data[i].today) )); 
         }
       }
 
@@ -118,15 +118,24 @@ const serverMessage = (message) => {
   }
 }
 
-const buildNewMessage = (message , logo_image , date) => {
+const buildNewMessage = (message , logo_image , date , first_today ) => {
   // console.log(nickname)
   if (message.split(":")[0] === nickname) {
 
     const div = document.createElement("div");
-    div.classList.add('senderbox');
     
-    div.prepend(sendMessage(message.split("방이름")[0]));
-    div.appendChild(sendsecondMessage(date));
+    if(first_today === "null"){
+      div.classList.add('senderbox');
+      div.prepend(sendMessage(message.split("방이름")[0]));
+      div.appendChild(sendsecondMessage(date));  
+    }
+    else {
+      div.classList.add('sendertoday');
+      div.prepend(todayMessage(first_today));
+      div.appendChild(sendMessage(message.split("방이름")[0]));
+      div.appendChild(sendsecondMessage(date));  
+      // 
+    }
 
     return div;
   }
@@ -156,6 +165,12 @@ const buildNewMessage = (message , logo_image , date) => {
     return div;
 
   }
+}
+
+const todayMessage = (message) => {
+  const div = document.createElement("div"); 
+  div.prepend(document.createTextNode(message));
+  console.log(message)
 }
 
 const sendMessage = (message) => {
