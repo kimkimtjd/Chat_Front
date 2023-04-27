@@ -167,10 +167,10 @@ const buildNewMessage = (message , logo_image , date , first_today ) => {
   }
 }
 
-const todayMessage = (message) => {
-  const div = document.createElement("div"); 
-  div.prepend(document.createTextNode(message));
-  console.log(message)
+const todayMessage = (first_today) => {
+  const span = document.createElement("span");
+  span.prepend(document.createTextNode(first_today));
+  console.log(first_today)
 }
 
 const sendMessage = (message) => {
