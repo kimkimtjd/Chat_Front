@@ -51,7 +51,7 @@ function Room(roomname, pk , user , partner) {
 //     else{
 //       document.getElementsByClassName('total').style.height="1000px";
 //     }
-biz_logo = data[i].biz_logo
+// biz_logo = data[i].biz_logo
     
       for (var i = 0; i < data.length; i++) {
         if (data[i].sender === pk){
