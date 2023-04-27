@@ -132,9 +132,8 @@ const buildNewMessage = (message , logo_image , date , first_today ) => {
     else {
       div.classList.add('sendertoday');
       div.prepend(todayMessage(first_today));
-      div.appendChild(sendMessage(message.split("방이름")[0]));
-      div.appendChild(sendsecondMessage(date));  
-      // 
+      div.appendChild(todaysecondMessage(message.split("방이름")[0] , date));
+           
     }
 
     return div;
@@ -170,10 +169,21 @@ const buildNewMessage = (message , logo_image , date , first_today ) => {
 const todayMessage = (first_today) => {
   const span = document.createElement("span");
   span.prepend(document.createTextNode(first_today));
-  console.log(first_today)
-    return span
-
+  
+  return span
 }
+
+
+const todaysecondMessage = (first , second ) => {
+  const div = document.createElement("div");
+  div.classList.add('today_total_box');
+
+  div.appendChild(sendMessage(first.split("방이름")[0]));
+  div.appendChild(sendsecondMessage(second));  
+  
+  return div
+} 
+
 
 const sendMessage = (message) => {
   const span = document.createElement("span");
