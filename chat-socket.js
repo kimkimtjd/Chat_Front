@@ -26,7 +26,7 @@ const socket = io("wss://port-0-chat-back-p8xrq2mlf0mbo1w.sel3.cloudtype.app/")
 //아래 주석
 var nickname = "";
 // const room = "d67dc57d-14a3-488b-8f5f-dfeee417ed3c"
-var biz_logo = "";
+var biz_logo = "https://scrapmarket.s3.ap-northeast-2.amazonaws.com/ProfileCard/logo.png13%3A1015";
 
 
 
