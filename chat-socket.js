@@ -3,7 +3,7 @@ const socket = io("wss://port-0-chat-back-p8xrq2mlf0mbo1w.sel3.cloudtype.app/")
 
 //아래 주석
 var nickname = "";
-const room = "d67dc57d-14a3-488b-8f5f-dfeee417ed3c"
+//const room = "d67dc57d-14a3-488b-8f5f-dfeee417ed3c"
 var biz_logo = ""
 var uuid_room = ""
 
@@ -28,7 +28,6 @@ else {
 var totaltime = formattedfirst.split(',')[0].split('-')[2] + "-" + formattedfirst.split(',')[0].split('-')[0] + "-" + formattedfirst.split(',')[0].split('-')[1] + " " + 
 second  + ":" + formattedfirst.split(',')[1].split('-')[2]
 
-console.log(totaltime)
 // 2022-11-16 17:40:40.018263
 
 
@@ -40,7 +39,7 @@ var data = ""
 
 function Room(roomname, pk , user , partner) {
   
-  socket.emit('room', room)
+  socket.emit('room', roomname)
   
   nickname = user
 
@@ -76,7 +75,7 @@ function Room(roomname, pk , user , partner) {
 
 function Test(arg, chat, roomname) {
   nickname = arg
-  socket.emit('message', arg + ":" + chat + "방이름" + room)
+  socket.emit('message', arg + ":" + chat + "방이름" + roomname)
   messages.scrollTop = messages.scrollHeight;
 
   //post -> nickname , partner , content , group , imageurl -> 이미지를 보낼경우 [ content -> 공백 ] , 텍스트를 보낼경우 [ imageurl -> 공백 ] 
@@ -95,7 +94,7 @@ socket.on('message', (data) => {
 })
 
 const handleNewMessage = (message) => {
-  messages.appendChild(buildNewMessage(message , biz_logo , totaltime ));
+  messages.appendChild(buildNewMessage(message));
 }
 
 const serverMessage = (message) => {
@@ -272,9 +271,9 @@ const receivesecondMessage = (datesecond) => {
 
 
 /****************************** 아래 코드는 웹용  위 부분은 공용******************************/
-socket.emit('room', room)
+// socket.emit('room', room)
 
-const handleSubmitNewMessage = () => {
-  socket.emit('message', nickname + ":" + message.value + "방이름" + room)
-  Room()
-}
+// const handleSubmitNewMessage = () => {
+//   socket.emit('message', nickname + ":" + message.value + "방이름" + room)
+//   Room()
+// }
