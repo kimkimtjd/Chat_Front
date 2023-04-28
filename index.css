@@ -9,7 +9,7 @@ li{
   flex-direction: column;
   flex-grow: 1;
   overflow-y: scroll;
-  overflow-x: hidden;	
+  overflow-x: hidden;
 }
 .senderbox{
   display: flex;
@@ -42,6 +42,7 @@ li{
   padding-bottom: 3px;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 .today_active::before{
 	content:"";
