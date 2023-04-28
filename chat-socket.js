@@ -173,24 +173,30 @@ const buildNewMessage = (message , logo_image , date , first_today ) => {
 
 const todayMessage = (first_today) => {
   const div = document.createElement("div");
-  const logo = document.createElement("img");
-  logo.setAttribute('src', "https://scrapmarket.s3.ap-northeast-2.amazonaws.com/calendar_month(1).svg");
+  
 
   div.classList.add('today_active');  
 
-  div.prepend(logo);
+  //div.prepend(logo);
   div.appendChild(todaybox(first_today));
   
   return div
 }
 
 const todaybox = (first_today) => {
+  const logo = document.createElement("img");
+  logo.setAttribute('src', "https://scrapmarket.s3.ap-northeast-2.amazonaws.com/calendar_month(1).svg");
+
   const span = document.createElement("span");
-  span.classList.add('today_text');
+  const div = document.createElement("div");
 
-  span.prepend(document.createTextNode(first_today))
 
-  return span
+  div.classList.add('today_text');
+  div.prepend(logo)
+  div.appendChild(span)
+  span.appendChild(document.createTextNode(first_today))
+
+  return div
 }
 
 
