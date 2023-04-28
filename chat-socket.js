@@ -145,10 +145,11 @@ const buildNewMessage = (message , logo_image , date , first_today ) => {
     else{
       logo.setAttribute('src', logo_image);
     }
- 
+
+    div.classList.add('receiverbox');
+    logo.classList.add('receiverimgae');
+
     if(first_today === "null"){
-      div.classList.add('receiverbox');
-      logo.classList.add('receiverimgae');
       div.prepend(logo);
       div.appendChild(receivebox(message.split("방이름")[0] , date));
       
