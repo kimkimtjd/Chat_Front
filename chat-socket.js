@@ -87,7 +87,12 @@ function Room(roomname, pk , user , partner , logo_image) {
 function Test(arg, chat, roomname) {
   nickname = arg
   socket.emit('message', arg + ":" + chat + "방이름" + roomname)
-  messages.scrollTop = messages.scrollHeight; 
+  const scrollTop = messages.scrollTop;
+      const scrollHeight = messages.scrollHeight;
+      if (scrollTop !== scrollHeight) {
+        messages.scrollTop = scrollHeight;
+        window.scrollBy(0, window.innerHeight);
+      }
 }
 
 socket.on('message', (data) => {
@@ -99,28 +104,6 @@ const handleNewMessage = (message) => {
   messages.appendChild(buildNewMessage(message , biz_logo , totaltime));
 }
 
-const serverMessage = (message) => {
-
-  if(message.split(":")[0] === nickname){
-  
-    const div = document.createElement("div");
-    div.classList.add('senderbox');
-    div.prepend(sendMessage(message));
-
-  return div;
-  }
-  else{
-
-    const div = document.createElement("div");
-    let text = document.createTextNode(message.split("방이름")[0]);
-    div.classList.add('receiverbox');
-
-    div.prepend(text);
-    document.body.prepend(div)
-    return div;
- 
-  }
-}
 
 const buildNewMessage = (message , logo_image , date , first_today ) => {
   // console.log(nickname)
@@ -179,7 +162,7 @@ const buildNewMessage = (message , logo_image , date , first_today ) => {
   }
 }
 
-
+/* 이미지 전송X 문자만 주고받는 부분  */
 const todayreceive_secondMessage = (first , second , third ) => {
   const div = document.createElement("div");
   const logo = document.createElement("img");
@@ -346,9 +329,9 @@ const receivesecondMessage = (datesecond) => {
 /****************************** 아래 코드는 웹용  위 부분은 공용******************************/
 // socket.emit('room', room)
 
-window.onload = function() {
-    Room()
- };
+// window.onload = function() {
+//     Room()
+//  };
 
 // const handleSubmitNewMessage = () => {
 //   // socket.emit('message', nickname + ":" + message.value + "방이름" + room)
