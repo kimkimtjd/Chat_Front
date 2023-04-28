@@ -25,7 +25,7 @@ const socket = io("wss://port-0-chat-back-p8xrq2mlf0mbo1w.sel3.cloudtype.app/")
 
 //아래 주석
 var nickname = "";
-// const room = "d67dc57d-14a3-488b-8f5f-dfeee417ed3c"
+const room = "e7e3bb53-2e6c-4900-a537-45e8b03fbc99"
 var biz_logo = "";
 var todaysdads = "";
 // const room = 5
@@ -38,7 +38,6 @@ var data = ""
 
 function Room(roomname, pk , user , partner , logo_image) {
   
-  socket.emit('room', roomname)
   
   // nickname = user
 
@@ -48,6 +47,8 @@ function Room(roomname, pk , user , partner , logo_image) {
   pk = 1
   partner = "kmskms"
   roomname = "e7e3bb53-2e6c-4900-a537-45e8b03fbc99"
+
+  socket.emit('room', roomname)
 
   biz_logo = logo_image
 
@@ -338,7 +339,7 @@ const receivesecondMessage = (datesecond) => {
 
 
 /****************************** 아래 코드는 웹용  위 부분은 공용******************************/
-// socket.emit('room', room)
+socket.emit('room', room)
 
 window.onload = function() {
     Room()
