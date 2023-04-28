@@ -39,7 +39,7 @@ function Room(roomname, pk , user , partner , logo_image) {
   
   socket.emit('room', roomname)
   
-  // nickname = user//user
+  nickname = user//user
 
   // 아래 2개는 삭제 , 상단 애완용 꿀꿀이는 user 로 변경예정
   nickname = "애완용꿀꿀이"
