@@ -25,7 +25,7 @@ const socket = io("wss://port-0-chat-back-p8xrq2mlf0mbo1w.sel3.cloudtype.app/")
 
 //아래 주석
 var nickname = "애완용꿀꿀이";
-// const room = "d67dc57d-14a3-488b-8f5f-dfeee417ed3c"
+const room = "d67dc57d-14a3-488b-8f5f-dfeee417ed3c"
 var biz_logo = "";
 
 
@@ -42,9 +42,8 @@ function Room(roomname, pk , user , partner , logo_image) {
   nickname = "애완용꿀꿀이"//user
 
   // 아래 2개는 삭제 , 상단 애완용 꿀꿀이는 user 로 변경예정
-//   user = "애완용꿀꿀이"
-//   pk = 1
-//   partner = "lee"
+  pk = 1
+  partner = "lee"
 
   biz_logo = logo_image
 
@@ -147,10 +146,10 @@ const buildNewMessage = (message , logo_image , date , first_today ) => {
       logo.setAttribute('src', logo_image);
     }
 
-    div.classList.add('receiverbox');
-    logo.classList.add('receiverimgae');
 
     if(first_today === "null"){
+      div.classList.add('receiverbox');
+      logo.classList.add('receiverimgae');
       div.prepend(logo);
       div.appendChild(receivebox(message.split("방이름")[0] , date));
       
