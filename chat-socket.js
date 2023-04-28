@@ -185,7 +185,7 @@ const todayMessage = (first_today) => {
 
 const todaybox = (first_today) => {
   const span = document.createElement("span");
-  // span.classList.add('sender');
+  span.classList.add('today_text');
 
   span.prepend(document.createTextNode(first_today))
 
