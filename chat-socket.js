@@ -173,11 +173,23 @@ const buildNewMessage = (message , logo_image , date , first_today ) => {
 
 const todayMessage = (first_today) => {
   const div = document.createElement("div");
+  const hr = document.createElement("hr");
+
   div.classList.add('today_active');  
-  
-  div.prepend(document.createTextNode(first_today));
+
+  div.prepend(hr);
+  div.appendChild(todaybox(first_today));
   
   return div
+}
+
+const todaybox = (first_today) => {
+  const span = document.createElement("span");
+  // span.classList.add('sender');
+
+  span.prepend(document.createTextNode(first_today))
+
+  return span
 }
 
 
