@@ -24,7 +24,7 @@ const socket = io("wss://port-0-chat-back-p8xrq2mlf0mbo1w.sel3.cloudtype.app/")
 // const socket = io("ws://localhost:3000/")
 
 //아래 주석
-var nickname = "애완용꿀꿀이";
+var nickname = "";
 // const room = "d67dc57d-14a3-488b-8f5f-dfeee417ed3c"
 var biz_logo = "";
 
@@ -42,8 +42,8 @@ function Room(roomname, pk , user , partner , logo_image) {
   nickname = user//user
 
   // 아래 2개는 삭제 , 상단 애완용 꿀꿀이는 user 로 변경예정
-//   pk = 1
-//   partner = "lee"
+  // pk = 1
+  // partner = "lee"
 
   biz_logo = logo_image
 
