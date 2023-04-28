@@ -42,10 +42,10 @@ function Room(roomname, pk , user , partner , logo_image) {
   // nickname = user
 
   // 아래 2개는 삭제 , 상단 애완용 꿀꿀이는 user 로 변경예정
-  nickname = "애완용꿀꿀이"
+  nickname = "kmskms"
   user = nickname
-  pk = 1
-  partner = "kmskms"
+  pk = 3
+  partner = "애완용꿀꿀이"
   roomname = "e7e3bb53-2e6c-4900-a537-45e8b03fbc99"
 
   socket.emit('room', roomname)
@@ -88,7 +88,7 @@ function Room(roomname, pk , user , partner , logo_image) {
 
 function Test(arg, chat, roomname , today) {
   nickname = arg
-  todaysdads = today
+  todaysdads = today // 값출력 X
   socket.emit('message', arg + ":" + chat + "방이름" + roomname)
 
   const scrollTop = messages.scrollTop;
@@ -105,7 +105,7 @@ socket.on('message', (data) => {
 })
 
 const handleNewMessage = (message) => {
-  messages.appendChild(buildNewMessage(message , biz_logo , totaltime , todaysdads));
+  messages.appendChild(buildNewMessage(message , biz_logo , totaltime , "2023-04-28"));
   console.log(todaysdads)
   // }
   // if(today === "null"){
