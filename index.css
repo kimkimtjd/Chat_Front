@@ -102,6 +102,12 @@ li{
   padding: 8px;
   margin-top: 10px;
 }
+.receive_sendertoday{
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  margin-top: 10px;
+}
 .receiversecond{
   display: flex;
   flex-direction: column;
@@ -109,6 +115,15 @@ li{
   align-items: flex-start;
   width: fit-content;
   margin-top: 10px;
+}
+.receiversecond_today{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: fit-content;
+  margin-top: -37px;
+  margin-left: 50px;
 }
 .receivetext{
   background-color: white;
