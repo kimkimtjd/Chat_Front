@@ -146,10 +146,10 @@ const buildNewMessage = (message , logo_image , date , first_today ) => {
       logo.setAttribute('src', logo_image);
     }
 
+    div.classList.add('receiverbox');
+    logo.classList.add('receiverimgae');
 
     if(first_today === "null"){
-      div.classList.add('receiverbox');
-      logo.classList.add('receiverimgae');
       div.prepend(logo);
       div.appendChild(receivebox(message.split("방이름")[0] , date));
       
@@ -158,7 +158,8 @@ const buildNewMessage = (message , logo_image , date , first_today ) => {
     else {
       div.classList.add('sendertoday');
       div.prepend(todayMessage(first_today));
-      div.appendChild(todayreceive_secondMessage( logo , message.split("방이름")[0] , date))
+      div.appendChild(logo)
+      div.appendChild(receivebox(message.split("방이름")[0] , date));
       // // div.appendChild(logo);
       // div.appendChild(receivebox(message.split("방이름")[0] , date));
 
