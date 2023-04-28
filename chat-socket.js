@@ -104,12 +104,14 @@ socket.on('message', (data) => {
 })
 
 const handleNewMessage = (message) => {
-  if(today === "null"){
-    messages.appendChild(buildNewMessage(message , biz_logo , totaltime , today));
-  }
-  else{
-    messages.appendChild(buildNewMessage(message , biz_logo , totaltime , today));
-  }
+  messages.appendChild(buildNewMessage(message , biz_logo , totaltime , today));
+  // }
+  // if(today === "null"){
+  //   messages.appendChild(buildNewMessage(message , biz_logo , totaltime , today));
+  // }
+  // else{
+  //   messages.appendChild(buildNewMessage(message , biz_logo , totaltime , today));
+  // }
 }
 
 
