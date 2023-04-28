@@ -121,7 +121,7 @@ const buildNewMessage = (message , logo_image , date , first_today ) => {
 
     const div = document.createElement("div");
     
-    if(first_today === "null"){
+    if(first_today === "sdfgjkhd"){
       div.classList.add('senderbox');
       div.prepend(sendMessage(message.split("방이름")[0]));
       div.appendChild(sendsecondMessage(date));  
