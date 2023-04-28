@@ -157,7 +157,6 @@ const buildNewMessage = (message , logo_image , date , first_today ) => {
     }
     else {
       div.classList.add('sendertoday');
-      logo.classList.add('receiverimgae');
       div.prepend(todayMessage(first_today));
       div.appendChild(todayreceive_secondMessage( logo , message.split("방이름")[0] , date))
       // // div.appendChild(logo);
@@ -180,13 +179,14 @@ const todayreceive_secondMessage = (first , second , third ) => {
     logo.setAttribute('src', "https://scrapmarket.s3.ap-northeast-2.amazonaws.com/App/chat_profile.png");
   }
   else{
-    logo.setAttribute('src', logo_image);
+    logo.setAttribute('src', first);
   }
 
   div.classList.add('today_second_box');
+  logo.classList.add('receiverimgae');
 
   div.prepend(logo);
-  div.appendChild(receivebox(second.split("방이름")[0] , third));
+  div.appendChild(receivebox(second, third));
 
 }
 
