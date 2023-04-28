@@ -40,14 +40,14 @@ function Room(roomname, pk , user , partner , logo_image) {
   
   socket.emit('room', roomname)
   
-  nickname = user
+  // nickname = user
 
   // 아래 2개는 삭제 , 상단 애완용 꿀꿀이는 user 로 변경예정
-//   nickname = "애완용꿀꿀이"
-//   user = nickname
-//   pk = 1
-//   partner = "lee"
-//   roomname = "d67dc57d-14a3-488b-8f5f-dfeee417ed3c"
+  nickname = "애완용꿀꿀이"
+  user = nickname
+  pk = 1
+  partner = "kmskms"
+  roomname = "e7e3bb53-2e6c-4900-a537-45e8b03fbc99"
 
   biz_logo = logo_image
 
@@ -85,9 +85,9 @@ function Room(roomname, pk , user , partner , logo_image) {
 
 }
 
-function Test(arg, chat, roomname , first_today) {
+function Test(arg, chat, roomname , today) {
   nickname = arg
-  todaysdads = first_today
+  todaysdads = today
   socket.emit('message', arg + ":" + chat + "방이름" + roomname)
 
   const scrollTop = messages.scrollTop;
@@ -104,7 +104,8 @@ socket.on('message', (data) => {
 })
 
 const handleNewMessage = (message) => {
-  messages.appendChild(buildNewMessage(message , biz_logo , totaltime , String(todaysdads)));
+  messages.appendChild(buildNewMessage(message , biz_logo , totaltime , todaysdads));
+  console.log(todaysdads)
   // }
   // if(today === "null"){
   //   messages.appendChild(buildNewMessage(message , biz_logo , totaltime , today));
@@ -339,9 +340,9 @@ const receivesecondMessage = (datesecond) => {
 /****************************** 아래 코드는 웹용  위 부분은 공용******************************/
 // socket.emit('room', room)
 
-// window.onload = function() {
-//     Room()
-//  };
+window.onload = function() {
+    Room()
+ };
 
 // const handleSubmitNewMessage = () => {
 //   // socket.emit('message', nickname + ":" + message.value + "방이름" + room)
