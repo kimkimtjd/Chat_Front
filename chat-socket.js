@@ -177,7 +177,6 @@ const todayMessage = (first_today) => {
 
   div.classList.add('today_active');  
 
-  div.prepend(hr);
   div.appendChild(todaybox(first_today));
   
   return div
