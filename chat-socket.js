@@ -85,9 +85,9 @@ function Room(roomname, pk , user , partner , logo_image) {
 
 }
 
-function Test(arg, chat, roomname , today) {
+function Test(arg, chat, roomname , first_today) {
   nickname = arg
-  todaysdads = today
+  todaysdads = first_today
   socket.emit('message', arg + ":" + chat + "방이름" + roomname)
 
   const scrollTop = messages.scrollTop;
