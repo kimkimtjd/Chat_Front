@@ -27,7 +27,7 @@ const socket = io("wss://port-0-chat-back-p8xrq2mlf0mbo1w.sel3.cloudtype.app/")
 var nickname = "";
 // const room = "d67dc57d-14a3-488b-8f5f-dfeee417ed3c"
 var biz_logo = "";
-const room = 5
+// const room = 5
 
 
 const message = document.getElementById('message');
@@ -42,11 +42,11 @@ function Room(roomname, pk , user , partner , logo_image) {
   nickname = user
 
   // 아래 2개는 삭제 , 상단 애완용 꿀꿀이는 user 로 변경예정
-  nickname = "애완용꿀꿀이"
-  user = nickname
-  pk = 1
-  partner = "lee"
-  roomname = "d67dc57d-14a3-488b-8f5f-dfeee417ed3c"
+//   nickname = "애완용꿀꿀이"
+//   user = nickname
+//   pk = 1
+//   partner = "lee"
+//   roomname = "d67dc57d-14a3-488b-8f5f-dfeee417ed3c"
 
   biz_logo = logo_image
 
@@ -341,9 +341,9 @@ const receivesecondMessage = (datesecond) => {
 /****************************** 아래 코드는 웹용  위 부분은 공용******************************/
 socket.emit('room', room)
 
-window.onload = function() {
-     Room()   
- };
+// window.onload = function() {
+//      Room()   
+//  };
 
 // const handleSubmitNewMessage = () => {
 //   // socket.emit('message', nickname + ":" + message.value + "방이름" + room)
