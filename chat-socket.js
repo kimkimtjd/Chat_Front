@@ -159,8 +159,9 @@ const buildNewMessage = (message , logo_image , date , first_today ) => {
       div.classList.add('sendertoday');
       logo.classList.add('receiverimgae');
       div.prepend(todayMessage(first_today));
-      div.appendChild(logo);
-      div.appendChild(receivebox(message.split("방이름")[0] , date));
+      div.appendChild(todayreceive_secondMessage( logo , message.split("방이름")[0] , date))
+      // // div.appendChild(logo);
+      // div.appendChild(receivebox(message.split("방이름")[0] , date));
 
       document.body.prepend(div)  
     }
@@ -170,8 +171,22 @@ const buildNewMessage = (message , logo_image , date , first_today ) => {
   }
 }
 
-const todaysecond_receiveMessage = (first , second , third , four) => {
 
+const todayreceive_secondMessage = (first , second , third ) => {
+  const div = document.createElement("div");
+  const logo = document.createElement("img");
+
+  if(first === null || first === "" ){
+    logo.setAttribute('src', "https://scrapmarket.s3.ap-northeast-2.amazonaws.com/App/chat_profile.png");
+  }
+  else{
+    logo.setAttribute('src', logo_image);
+  }
+
+  div.classList.add('today_second_box');
+
+  div.prepend(logo);
+  div.appendChild(receivebox(second.split("방이름")[0] , third));
 
 }
 
