@@ -173,10 +173,12 @@ const buildNewMessage = (message , logo_image , date , first_today ) => {
 
 const todayMessage = (first_today) => {
   const div = document.createElement("div");
-  const hr = document.createElement("hr");
+  const logo = document.createElement("img");
+  logo.setAttribute('src', "https://scrapmarket.s3.ap-northeast-2.amazonaws.com/calendar_month(1).svg");
 
   div.classList.add('today_active');  
 
+  div.prepend(logo);
   div.appendChild(todaybox(first_today));
   
   return div
