@@ -76,7 +76,7 @@ function Room(roomname, pk , user , partner , logo_image) {
     .catch(error => console.error(error));
 
     messages.scrollTop = messages.scrollHeight;
-
+window.scrollBy(0, window.innerHeight);
 }
 
 function Test(arg, chat, roomname) {
