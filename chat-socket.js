@@ -60,8 +60,8 @@ function Room(roomname, pk , user , partner , logo_image) {
 //biz_logo = data[i].biz_logo
     
       for (var i = 0; i < data.length; i++) {
-        if (data[i].sender === pk){
-          messages.appendChild(buildNewMessage(user + ":" + data[i].content.replace('<br/>' , '\n') + "방이름" + data[i].group , data[i].biz_logo , data[i].created , String(data[i].today) ) );
+        if (data[i].sender === pk){ // [nickname -> user로 변경예정]
+          messages.appendChild(buildNewMessage(nickname + ":" + data[i].content.replace('<br/>' , '\n') + "방이름" + data[i].group , data[i].biz_logo , data[i].created , String(data[i].today) ) );
         }
         else{
           messages.appendChild(buildNewMessage(data[i].nickname + ":" + data[i].content.replace('<br/>' , '\n') + "방이름" + data[i].group , data[i].biz_logo , data[i].created , String(data[i].today) )); 
