@@ -25,7 +25,7 @@ const socket = io("wss://port-0-chat-back-p8xrq2mlf0mbo1w.sel3.cloudtype.app/")
 
 //아래 주석
 var nickname = "애완용꿀꿀이";
-// const room = "d67dc57d-14a3-488b-8f5f-dfeee417ed3c"
+const room = "d67dc57d-14a3-488b-8f5f-dfeee417ed3c"
 var biz_logo = "";
 
 
@@ -37,7 +37,7 @@ var data = ""
 
 function Room(roomname, pk , user , partner , logo_image) {
   
-  socket.emit('room', roomname)
+  socket.emit('room', room)
   
   nickname = user
   biz_logo = logo_image
