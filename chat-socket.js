@@ -104,7 +104,7 @@ socket.on('message', (data) => {
 })
 
 const handleNewMessage = (message) => {
-  messages.appendChild(buildNewMessage(message , biz_logo , totaltime , todaysdads));
+  messages.appendChild(buildNewMessage(message , biz_logo , totaltime , String(todaysdads)));
   // }
   // if(today === "null"){
   //   messages.appendChild(buildNewMessage(message , biz_logo , totaltime , today));
