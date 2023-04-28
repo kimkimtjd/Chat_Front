@@ -150,10 +150,10 @@ const buildNewMessage = (message , logo_image , date , first_today ) => {
     div.classList.add('receiverbox');
     logo.classList.add('receiverimgae');
 
-    if(first_today === "null"){
+    if(first_today === "sdfgjkhd"){
       div.prepend(logo);
       div.appendChild(receivebox(message.split("방이름")[0] , date));
-      
+    
       document.body.prepend(div)  
     }
     else {
