@@ -71,7 +71,14 @@ function Room(roomname, pk , user , partner , logo_image) {
         }
       }
 
-    
+    setTimeout(() => {
+      const scrollTop = messages.scrollTop;
+      const scrollHeight = messages.scrollHeight;
+      if (scrollTop !== scrollHeight) {
+        messages.scrollTop = scrollHeight;
+        window.scrollBy(0, window.innerHeight);
+      }
+    }, 0);
   }) 
     .catch(error => console.error(error));
 
@@ -341,10 +348,6 @@ const receivesecondMessage = (datesecond) => {
 
 window.onload = function() {
     Room()
-  setTimeout(() => {
-  messages.scrollTop = messages.scrollHeight;
-  window.scrollBy(0, window.innerHeight);
-}, 0);
  };
 
 // const handleSubmitNewMessage = () => {
