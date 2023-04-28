@@ -42,11 +42,11 @@ function Room(roomname, pk , user , partner , logo_image) {
   nickname = user
 
   // 아래 2개는 삭제 , 상단 애완용 꿀꿀이는 user 로 변경예정
-  // nickname = "애완용꿀꿀이"
-  // user = nickname
-  // pk = 1
-  // partner = "우리자원55"
-  // roomname = 5
+  nickname = "애완용꿀꿀이"
+  user = nickname
+  pk = 1
+  partner = "lee"
+  roomname = "d67dc57d-14a3-488b-8f5f-dfeee417ed3c"
 
   biz_logo = logo_image
 
