@@ -24,7 +24,7 @@ const socket = io("wss://port-0-chat-back-p8xrq2mlf0mbo1w.sel3.cloudtype.app/")
 // const socket = io("ws://localhost:3000/")
 
 //아래 주석
-var nickname = "";
+var nickname = "애완용꿀꿀이";
 // const room = "d67dc57d-14a3-488b-8f5f-dfeee417ed3c"
 var biz_logo = "";
 
@@ -42,7 +42,7 @@ function Room(roomname, pk , user , partner , logo_image) {
   nickname = user
   biz_logo = logo_image
 
-  fetch('https://www.scrapmk.com/api/chat/chatroom/' + user + "/" + partner)
+  fetch('https://www.scrapmk.com/api/chat/chatroom/' + "애완용꿀꿀이" + "/" + "lee")
     .then(response => response.json())
     .then(data => {
       // console.log(data, data[0].sender, data.length)
@@ -282,10 +282,10 @@ const receivesecondMessage = (datesecond) => {
 
 
 /****************************** 아래 코드는 웹용  위 부분은 공용******************************/
-// socket.emit('room', room)
+socket.emit('room', room)
 
-// const handleSubmitNewMessage = () => {
-//   socket.emit('message', nickname + ":" + message.value + "방이름" + room)
-//   // Room()
-// }
+const handleSubmitNewMessage = () => {
+  // socket.emit('message', nickname + ":" + message.value + "방이름" + room)
+  Room()
+}
 
