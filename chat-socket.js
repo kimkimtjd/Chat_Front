@@ -157,6 +157,7 @@ const buildNewMessage = (message , logo_image , date , first_today ) => {
     }
     else {
       div.classList.add('sendertoday');
+      logo.classList.add('receiverimgae');
       div.prepend(todayMessage(first_today));
       div.appendChild(logo);
       div.appendChild(receivebox(message.split("방이름")[0] , date));
