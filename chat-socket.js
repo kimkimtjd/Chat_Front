@@ -39,7 +39,7 @@ function Room(roomname, pk , user , partner , logo_image) {
   
   socket.emit('room', roomname)
   
-  //nickname = user//user
+  // nickname = user//user
 
   // 아래 2개는 삭제 , 상단 애완용 꿀꿀이는 user 로 변경예정
   nickname = "애완용꿀꿀이"
@@ -159,10 +159,10 @@ const buildNewMessage = (message , logo_image , date , first_today ) => {
       document.body.prepend(div)  
     }
     else {
-      div.classList.add('sendertoday');
+      div.classList.add('receive_sendertoday');
       div.prepend(todayMessage(first_today));
       div.appendChild(logo)
-      div.appendChild(receivebox(message.split("방이름")[0] , date));
+      div.appendChild(receivesecondbox(message.split("방이름")[0] , date));
       // // div.appendChild(logo);
       // div.appendChild(receivebox(message.split("방이름")[0] , date));
 
@@ -280,6 +280,14 @@ const sendsecondMessage = (datesecond) => {
 const receivebox = (text , date) => {
   const div = document.createElement("div");
   div.classList.add('receiversecond');
+  div.prepend(receiveMessage(text));
+  div.appendChild(receivesecondMessage(date));
+  return div
+}
+
+const receivesecondbox = (text , date) => {
+  const div = document.createElement("div");
+  div.classList.add('receiversecond_today');
   div.prepend(receiveMessage(text));
   div.appendChild(receivesecondMessage(date));
   return div
