@@ -105,8 +105,12 @@ socket.on('message', (data) => {
 })
 
 const handleNewMessage = (message) => {
-  messages.appendChild(buildNewMessage(message , biz_logo , totaltime , "2023-04-28"));
-  console.log(todaysdads)
+
+  //Test 함수가 실행되지않아 todaysdads값이 공백으로 인해 에러 발생 
+   //[2중출력 - 여기서 받을경우 아래 first] , 함수를 1개 더 생성해서 관리 필요
+  messages.appendChild(buildNewMessage(message , biz_logo , totaltime , todaysdads));
+  
+
   // }
   // if(today === "null"){
   //   messages.appendChild(buildNewMessage(message , biz_logo , totaltime , today));
