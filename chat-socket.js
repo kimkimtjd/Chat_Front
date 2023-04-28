@@ -172,10 +172,12 @@ const buildNewMessage = (message , logo_image , date , first_today ) => {
 }
 
 const todayMessage = (first_today) => {
-  const span = document.createElement("span");
-  span.prepend(document.createTextNode(first_today));
+  const div = document.createElement("div");
+  div.classList.add('today_active');  
   
-  return span
+  div.prepend(document.createTextNode(first_today));
+  
+  return div
 }
 
 
