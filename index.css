@@ -37,6 +37,10 @@ li{
   padding-right: 5px;
   border-radius: 50px;
   background: white;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  display: flex;
+  justify-content: center;
 }
 .today_active::before{
 	content:"";
