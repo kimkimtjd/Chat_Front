@@ -39,7 +39,10 @@ function Room(roomname, pk , user , partner , logo_image) {
   
   socket.emit('room', room)
   
-  nickname = user
+  nickname = "애완용꿀꿀이"//user
+  pk = 1
+  partner = "lee"
+
   biz_logo = logo_image
 
   fetch('https://www.scrapmk.com/api/chat/chatroom/' + "애완용꿀꿀이" + "/" + "lee")
@@ -288,4 +291,3 @@ const handleSubmitNewMessage = () => {
   // socket.emit('message', nickname + ":" + message.value + "방이름" + room)
   Room()
 }
-
