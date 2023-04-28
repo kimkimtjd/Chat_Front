@@ -27,6 +27,7 @@ const socket = io("wss://port-0-chat-back-p8xrq2mlf0mbo1w.sel3.cloudtype.app/")
 var nickname = "";
 // const room = "d67dc57d-14a3-488b-8f5f-dfeee417ed3c"
 var biz_logo = "";
+var today = "";
 // const room = 5
 
 
@@ -84,9 +85,11 @@ function Room(roomname, pk , user , partner , logo_image) {
 
 }
 
-function Test(arg, chat, roomname) {
+function Test(arg, chat, roomname , today) {
   nickname = arg
+  today = today
   socket.emit('message', arg + ":" + chat + "방이름" + roomname)
+
   const scrollTop = messages.scrollTop;
       const scrollHeight = messages.scrollHeight;
       if (scrollTop !== scrollHeight) {
@@ -101,7 +104,12 @@ socket.on('message', (data) => {
 })
 
 const handleNewMessage = (message) => {
-  messages.appendChild(buildNewMessage(message , biz_logo , totaltime));
+  if(today === "null"){
+    messages.appendChild(buildNewMessage(message , biz_logo , totaltime , "null"));
+  }
+  else{
+    messages.appendChild(buildNewMessage(message , biz_logo , totaltime , today));
+  }
 }
 
 
