@@ -27,7 +27,7 @@ const socket = io("wss://port-0-chat-back-p8xrq2mlf0mbo1w.sel3.cloudtype.app/")
 var nickname = "";
 // const room = "d67dc57d-14a3-488b-8f5f-dfeee417ed3c"
 var biz_logo = "";
-
+const room = 5
 
 
 const message = document.getElementById('message');
@@ -39,11 +39,13 @@ function Room(roomname, pk , user , partner , logo_image) {
   
   socket.emit('room', roomname)
   
-  nickname = user//user
+  // nickname = user//user
 
   // 아래 2개는 삭제 , 상단 애완용 꿀꿀이는 user 로 변경예정
-  // pk = 1
-  // partner = "lee"
+  nickname = "애완용꿀꿀이"
+  pk = 1
+  partner = "우리자원55"
+  roomname = 5
 
   biz_logo = logo_image
 
