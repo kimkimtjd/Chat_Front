@@ -9,6 +9,8 @@ const options = {
   fractionalSecondDigits: 3
 };
 const formattedfirst = now.toLocaleString("en-US", options).replace(/[/:\s]/g, "-");
+const formattedfirst_receive = now.toLocaleString("en-US", options).replace(/[/:\s]/g, "-").match(/^\d{4}-\d{2}-\d{2}/)[0];
+
 if(formattedfirst.includes("PM")){
   var second = Number(formattedfirst.split(',')[1].split('-')[1]) + 12
 }
@@ -115,7 +117,7 @@ const handleNewMessage = (message) => {
    else{
     // 날짜는 console.log 값 확인후 수정예정
     console.log(message)
-    messages.appendChild(buildNewMessage(message.replace("2022-05-22","") , biz_logo , totaltime , "2022-05-22"));
+    messages.appendChild(buildNewMessage(message.replace(String(formattedfirst_receive),"") , biz_logo , totaltime , String(formattedfirst_receive)));
    }
   
 
