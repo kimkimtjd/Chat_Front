@@ -88,8 +88,11 @@ function Room(roomname, pk , user , partner , logo_image) {
 
 function Test(arg, chat, roomname , today) {
   nickname = arg
+  // 1번쨰는 송신용
   todaysdads = today // 값출력 X
-  socket.emit('message', arg + ":" + chat + "방이름" + roomname)
+
+  //2번쨰는 수신용  
+  socket.emit('message', arg + ":" + chat + today + "방이름" + roomname)
 
   const scrollTop = messages.scrollTop;
       const scrollHeight = messages.scrollHeight;
@@ -106,9 +109,14 @@ socket.on('message', (data) => {
 
 const handleNewMessage = (message) => {
 
-  //Test 함수가 실행되지않아 todaysdads값이 공백으로 인해 에러 발생 
-   //[2중출력 - 여기서 받을경우 아래 first] , 함수를 1개 더 생성해서 관리 필요
-  messages.appendChild(buildNewMessage(message , biz_logo , totaltime , todaysdads));
+  if(message.includes("null")){
+    messages.appendChild(buildNewMessage(message.replace("null","") , biz_logo , totaltime , "null"));
+   }
+   else{
+    // 날짜는 console.log 값 확인후 수정예정
+    console.log(message)
+    messages.appendChild(buildNewMessage(message.replace("2022-05-22","") , biz_logo , totaltime , "2022-05-22"));
+   }
   
 
   // }
