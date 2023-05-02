@@ -70,7 +70,7 @@ function Room(roomname, pk , user , partner , logo_image) {
       for (var i = 0; i < data.length; i++) {
         if (data[i].sender === pk){
           if(data[i].created.slice(12,16) === data[i+1].created.slice(12,16)){
-            messages.appendChild(buildNewMessage(nickname + ":" + data[i].content.replace('<br/>' , '\n') + "방이름" + data[i].group , data[i].biz_logo , data[i].created , String(data[i].today , "시간동일")) );
+            messages.appendChild(buildNewMessage(nickname + ":" + data[i].content.replace('<br/>' , '\n') + "방이름" + data[i].group , data[i].biz_logo , data[i].created , String(data[i].today), "시간동일") );
           }
           else{
             messages.appendChild(buildNewMessage(nickname + ":" + data[i].content.replace('<br/>' , '\n') + "방이름" + data[i].group , data[i].biz_logo , data[i].created , String(data[i].today), "시간다름") );
