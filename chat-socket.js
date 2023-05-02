@@ -36,7 +36,11 @@ var todaysdads = "";
 
 const message = document.getElementById('message');
 const messages = document.getElementById('messages');
-const messagesub = document.getElementById('messagesub');
+const senderbox = document.getElementsByClassName('senderbox');
+const sendertoday = document.getElementsByClassName('sendertoday');
+const receiverbox = document.getElementsByClassName('receiverbox');
+const receive_sendertoday = document.getElementsByClassName('receive_sendertoday');
+
 var data = ""
 
 function Room(roomname, pk, user, partner, logo_image) {
@@ -102,7 +106,10 @@ function Test(arg, chat, roomname, today) {
     window.scrollBy(0, window.innerHeight);
   }
 
-  messages.remove();
+  senderbox.remove();
+  sendertoday.remove();
+  receiverbox.remove();
+  receive_sendertoday.remove();
   Room();
 
 }
