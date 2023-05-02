@@ -20,7 +20,6 @@ else {
 
 var totaltime = formattedfirst.split(',')[0].split('-')[2] + "-" + formattedfirst.split(',')[0].split('-')[0] + "-" + formattedfirst.split(',')[0].split('-')[1] + " " + 
 second  + ":" + formattedfirst.split(',')[1].split('-')[2]
-console.log(totaltime.slice(0,10))
 
 
 const socket = io("wss://port-0-chat-back-p8xrq2mlf0mbo1w.sel3.cloudtype.app/")
@@ -46,11 +45,11 @@ function Room(roomname, pk , user , partner , logo_image) {
   nickname = user
   partner_user = partner
   // 아래 2개는 삭제 , 상단 애완용 꿀꿀이는 user 로 변경예정
-  // nickname = "kmskms"
+  // nickname = "lee"
   // user = nickname
-  // pk = 3
+  // pk = 2
   // partner = "애완용꿀꿀이"
-  // roomname = "e7e3bb53-2e6c-4900-a537-45e8b03fbc99"
+  // roomname = "d67dc57d-14a3-488b-8f5f-dfeee417ed3c"
 
   socket.emit('room', roomname)
 
@@ -69,8 +68,13 @@ function Room(roomname, pk , user , partner , logo_image) {
 //biz_logo = data[i].biz_logo
     
       for (var i = 0; i < data.length; i++) {
-        if (data[i].sender === pk){ // [nickname -> user로 변경예정]
-          messages.appendChild(buildNewMessage(nickname + ":" + data[i].content.replace('<br/>' , '\n') + "방이름" + data[i].group , data[i].biz_logo , data[i].created , String(data[i].today) ) );
+        if (data[i].sender === pk){
+          if(data[i].created.slice(12,16) === data[i+1].created.slice(12,16)){
+            messages.appendChild(buildNewMessage(nickname + ":" + data[i].content.replace('<br/>' , '\n') + "방이름" + data[i].group , data[i].biz_logo , data[i].created , "") );
+          }
+          else{
+            messages.appendChild(buildNewMessage(nickname + ":" + data[i].content.replace('<br/>' , '\n') + "방이름" + data[i].group , data[i].biz_logo , data[i].created , String(data[i].today)) );
+          }
         }
         else{
           messages.appendChild(buildNewMessage(data[i].nickname + ":" + data[i].content.replace('<br/>' , '\n') + "방이름" + data[i].group , data[i].biz_logo , data[i].created , String(data[i].today) )); 
@@ -90,6 +94,7 @@ function Room(roomname, pk , user , partner , logo_image) {
 
 }
 
+// 채팅 보내기 앱에서 
 function Test(arg, chat, roomname , today) {
   nickname = arg
   // 1번쨰는 송신용
@@ -106,6 +111,7 @@ function Test(arg, chat, roomname , today) {
       }
 }
 
+// 소켓 열기 
 socket.on('message', (data) => {
   handleNewMessage(data);
   messages.scrollTop = messages.scrollHeight;
@@ -132,26 +138,31 @@ const handleNewMessage = (message) => {
 }
 
 
+// 채팅 전체 적인 함수
 const buildNewMessage = (message , logo_image , date , first_today ) => {
-  // console.log(nickname)
+  
+  // 보낸경우
   if (message.split(":")[0] === nickname) {
 
     const div = document.createElement("div");
     
+    // 1번째가 아닌경우
     if(first_today === "null"){
       div.classList.add('senderbox');
       div.prepend(sendMessage(message.split("방이름")[0]));
       div.appendChild(sendsecondMessage(date));  
     }
+    // 1번째인경우
     else {
       div.classList.add('sendertoday');
       div.prepend(todayMessage(first_today));
       div.appendChild(todaysecondMessage(message.split("방이름")[0] , date));
-           
     }
 
     return div;
   }
+
+  // 받은경우
   else {
 
     const div = document.createElement("div");
@@ -178,8 +189,6 @@ const buildNewMessage = (message , logo_image , date , first_today ) => {
       div.prepend(todayMessage(first_today));
       div.appendChild(logo)
       div.appendChild(receivesecondbox(message.split("방이름")[0] , date));
-      // // div.appendChild(logo);
-      // div.appendChild(receivebox(message.split("방이름")[0] , date));
 
       document.body.prepend(div)  
     }
@@ -189,27 +198,7 @@ const buildNewMessage = (message , logo_image , date , first_today ) => {
   }
 }
 
-/* 이미지 전송X 문자만 주고받는 부분  */
-const todayreceive_secondMessage = (first , second , third ) => {
-  const div = document.createElement("div");
-  const logo = document.createElement("img");
-
-  if(first === null || first === "" ){
-    logo.setAttribute('src', "https://scrapmarket.s3.ap-northeast-2.amazonaws.com/App/chat_profile.png");
-  }
-  else{
-    logo.setAttribute('src', first);
-  }
-
-  div.classList.add('today_second_box');
-  logo.classList.add('receiverimgae');
-
-  div.prepend(logo);
-  div.appendChild(receivebox(second, third));
-
-}
-
-
+/* 금일 1번쨰 메세지일경우 [송,수신] */
 const todayMessage = (first_today) => {
   const div = document.createElement("div");
   
@@ -237,7 +226,8 @@ const todaybox = (first_today) => {
   return div
 }
 
-// 보냈을경우
+
+/* 금일 1번쨰 메세지 보내는 경우 시간 */
 const todaysecondMessage = (first , second ) => {
   const div = document.createElement("div");
   div.classList.add('today_total_box');
@@ -248,7 +238,7 @@ const todaysecondMessage = (first , second ) => {
   return div
 } 
 
-
+/* 메세지 보내는경우 내용 */
 const sendMessage = (message) => {
   const span = document.createElement("span");
   span.classList.add('sender');
@@ -258,6 +248,7 @@ const sendMessage = (message) => {
   return span
 }
 
+/* 메세지 보내는경우 시간 */
 const sendsecondMessage = (datesecond) => {
   const span = document.createElement("span");
   span.classList.add('sendertime');
@@ -292,6 +283,7 @@ const sendsecondMessage = (datesecond) => {
   return span
 }
 
+/* 메세지 받은경우 내용 */
 const receivebox = (text , date) => {
   const div = document.createElement("div");
   div.classList.add('receiversecond');
@@ -300,6 +292,7 @@ const receivebox = (text , date) => {
   return div
 }
 
+/* 금일 1번쨰  메세지 받은경우 내용 */
 const receivesecondbox = (text , date) => {
   const div = document.createElement("div");
   div.classList.add('receiversecond_today');
@@ -317,6 +310,9 @@ const receiveMessage = (message) => {
   return span
 }
 
+
+
+/* 메세지 받은경우 시간 */
 const receivesecondMessage = (datesecond) => {
   const span = document.createElement("span");
   span.classList.add('receivetime');
