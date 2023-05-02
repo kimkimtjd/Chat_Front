@@ -20,7 +20,7 @@ else {
 
 var totaltime = formattedfirst.split(',')[0].split('-')[2] + "-" + formattedfirst.split(',')[0].split('-')[0] + "-" + formattedfirst.split(',')[0].split('-')[1] + " " +
   second + ":" + formattedfirst.split(',')[1].split('-')[2]
-
+console.log(totaltime.slice(0, 10))
 
 const socket = io("wss://port-0-chat-back-p8xrq2mlf0mbo1w.sel3.cloudtype.app/")
 // const socket = io("ws://localhost:3000/")
@@ -73,10 +73,10 @@ function Room(roomname, pk, user, partner, logo_image) {
 
       for (var i = 0; i < data.length; i++) {
         if (data[i].sender === pk) { // [nickname -> user로 변경예정]
-          messages.appendChild(buildNewMessage(nickname + ":" + data[i].content.replace('<br/>', '\n') + "방이름" + data[i].group, data[i].biz_logo, data[i].created, String(data[i].today)));
+          messages.appendChild(buildNewMessage(nickname + ":" + data[i].content.replace('<br/>', '\n') + "방이름" + data[i].group, data[i].biz_logo, data[i].created, String(data[i].today) , data[i].minute ));
         }
         else {
-          messages.appendChild(buildNewMessage(data[i].nickname + ":" + data[i].content.replace('<br/>', '\n') + "방이름" + data[i].group, data[i].biz_logo, data[i].created, String(data[i].today)));
+          messages.appendChild(buildNewMessage(data[i].nickname + ":" + data[i].content.replace('<br/>', '\n') + "방이름" + data[i].group, data[i].biz_logo, data[i].created, String(data[i].today), data[i].minute ));
         }
       }
 
@@ -140,7 +140,7 @@ const handleNewMessage = (message) => {
 }
 
 
-const buildNewMessage = (message, logo_image, date, first_today) => {
+const buildNewMessage = (message, logo_image, date, first_today , minute) => {
   // console.log(nickname)
   if (message.split(":")[0] === nickname) {
 
@@ -149,12 +149,12 @@ const buildNewMessage = (message, logo_image, date, first_today) => {
     if (first_today === "null") {
       div.classList.add('senderbox');
       div.prepend(sendMessage(message.split("방이름")[0]));
-      div.appendChild(sendsecondMessage(date));
+      div.appendChild(sendsecondMessage(date , minute));
     }
     else {
       div.classList.add('sendertoday');
       div.prepend(todayMessage(first_today));
-      div.appendChild(todaysecondMessage(message.split("방이름")[0], date));
+      div.appendChild(todaysecondMessage(message.split("방이름")[0], date , minute));
 
     }
 
@@ -177,15 +177,14 @@ const buildNewMessage = (message, logo_image, date, first_today) => {
 
     if (first_today === "null") {
       div.prepend(logo);
-      div.appendChild(receivebox(message.split("방이름")[0], date));
-
+      div.appendChild(receivebox(message.split("방이름")[0], date , minute));
       document.body.prepend(div)
     }
     else {
       div.classList.add('receive_sendertoday');
       div.prepend(todayMessage(first_today));
       div.appendChild(logo)
-      div.appendChild(receivesecondbox(message.split("방이름")[0], date));
+      div.appendChild(receivesecondbox(message.split("방이름")[0], date , minute));
       // // div.appendChild(logo);
       // div.appendChild(receivebox(message.split("방이름")[0] , date));
 
@@ -246,12 +245,12 @@ const todaybox = (first_today) => {
 }
 
 // 보냈을경우
-const todaysecondMessage = (first, second) => {
+const todaysecondMessage = (first, second , minute) => {
   const div = document.createElement("div");
   div.classList.add('today_total_box');
 
   div.appendChild(sendMessage(first.split("방이름")[0]));
-  div.appendChild(sendsecondMessage(second));
+  div.appendChild(sendsecondMessage(second , minute));
 
   return div
 }
@@ -266,7 +265,7 @@ const sendMessage = (message) => {
   return span
 }
 
-const sendsecondMessage = (datesecond) => {
+const sendsecondMessage = (datesecond , minute) => {
   const span = document.createElement("span");
   span.classList.add('sendertime');
 
@@ -295,20 +294,25 @@ const sendsecondMessage = (datesecond) => {
 
   }
 
-  span.prepend(document.createTextNode(second))
+  if(String(minute) === "null"){
+    span.prepend(document.createTextNode(""))
+  }
+  else{
+    span.prepend(document.createTextNode(second))
+  }
 
   return span
 }
 
-const receivebox = (text, date) => {
+const receivebox = (text, date ,minute) => {
   const div = document.createElement("div");
   div.classList.add('receiversecond');
   div.prepend(receiveMessage(text));
-  div.appendChild(receivesecondMessage(date));
+  div.appendChild(receivesecondMessage(date , minute));
   return div
 }
 
-const receivesecondbox = (text, date) => {
+const receivesecondbox = (text, date , minute ) => {
   const div = document.createElement("div");
   div.classList.add('receiversecond_today');
   div.prepend(receiveMessage(text));
@@ -325,7 +329,7 @@ const receiveMessage = (message) => {
   return span
 }
 
-const receivesecondMessage = (datesecond) => {
+const receivesecondMessage = (datesecond , minute) => {
   const span = document.createElement("span");
   span.classList.add('receivetime');
 
@@ -354,8 +358,12 @@ const receivesecondMessage = (datesecond) => {
 
   }
 
-
-  span.prepend(document.createTextNode(second))
+  if(String(minute) === "null" ){ 
+    span.prepend(document.createTextNode(""))
+  }
+  else{
+    span.prepend(document.createTextNode(second))
+  }
 
   return span
 }
