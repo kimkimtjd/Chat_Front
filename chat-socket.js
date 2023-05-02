@@ -126,7 +126,7 @@ const handleNewMessage = (message) => {
   }
   else {
     // 날짜는 console.log 값 확인후 수정예정
-    messages.appendChild(buildNewMessage(message.replace(totaltime.split(0, 10), ""), biz_logo, totaltime, totaltime.split(0, 10)));
+    messages.appendChild(buildNewMessage(message.replace(totaltime.slice(0, 10), ""), biz_logo, totaltime, totaltime.slice(0, 10)));
   }
 
 
