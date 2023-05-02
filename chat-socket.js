@@ -117,7 +117,7 @@ const handleNewMessage = (message) => {
    else{
     // 날짜는 console.log 값 확인후 수정예정
     console.log(message)
-    messages.appendChild(buildNewMessage(message.replace(String(formattedfirst_receive),"") , biz_logo , totaltime , String(formattedfirst_receive)));
+    messages.appendChild(buildNewMessage(message.replace("2022-05-02","") , biz_logo , totaltime , "2022-05-02"));
    }
   
 
