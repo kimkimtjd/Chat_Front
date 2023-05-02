@@ -92,7 +92,7 @@ function Room(roomname, pk, user, partner, logo_image) {
 function Test(arg, chat, roomname, today) {
   nickname = arg
   // 1번쨰는 송신용
-  todaysdads = today // 값출력 X
+   // 값출력 X
 
   if(todaysdads === "" || todaysdads !== totaltime.slice(11,16)){
     todaysdads = totaltime.slice(11,16)
