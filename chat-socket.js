@@ -31,7 +31,7 @@ var partner_user = "";
 // const room = "e7e3bb53-2e6c-4900-a537-45e8b03fbc99"
 var biz_logo = "";
 var todaysdads = "";
-const room = "541d30c4-37a2-41df-b2b7-8e9cc234f3a8"
+// const room = "541d30c4-37a2-41df-b2b7-8e9cc234f3a8"
 
 
 const message = document.getElementById('message');
@@ -46,10 +46,10 @@ function Room(roomname, pk , user , partner , logo_image) {
   partner_user = partner
   
   // 아래 2개는 삭제 , 상단 애완용 꿀꿀이는 user 로 변경예정
-  nickname = "애완용꿀꿀이"
+  nickname = "sososo"
   user = nickname
-  pk = 1
-  partner = "sososo"
+  pk = 4
+  partner = "애완용꿀꿀이"
   roomname = "541d30c4-37a2-41df-b2b7-8e9cc234f3a8"
 
   socket.emit('room', roomname)
@@ -94,7 +94,7 @@ function Room(roomname, pk , user , partner , logo_image) {
 function Test(arg, chat, roomname , today) {
   nickname = arg
   // 1번쨰는 송신용
-  
+   
   if(todaysdads === "" || todaysdads !== totaltime.slice(11,16)){
     todaysdads = totaltime.slice(11,16)
     socket.emit('message', arg + ":" + chat + today + "방이름" + roomname + "시간다름")
@@ -381,13 +381,13 @@ const receivesecondMessage = (datesecond) => {
 
 
 /****************************** 아래 코드는 웹용  위 부분은 공용******************************/
-socket.emit('room', room)
+// socket.emit('room', room)
 
 window.onload = function() {
     Room()
  };
 
-// const handleSubmitNewMessage = () => {
-//   // socket.emit('message', nickname + ":" + message.value + "방이름" + room)
-//   Room()
-// }
+const handleSubmitNewMessage = () => {
+  // socket.emit('message', nickname + ":" + message.value + "방이름" + room)
+  Test()
+}
