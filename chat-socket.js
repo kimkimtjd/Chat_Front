@@ -285,7 +285,7 @@ const sendsecondMessage = (datesecond) => {
     }
     //13 ~ 19
     else {
-      second = "오후" + String(Number(datesecond.slice(11, 13))) + ":" + datesecond.slice(14, 16)
+      second = "오후" + String(Number(datesecond.slice(11, 13)) - 12) + ":" + datesecond.slice(14, 16)
     }
   }
   //20 ~24
@@ -344,7 +344,7 @@ const receivesecondMessage = (datesecond) => {
     }
     //13 ~ 19
     else {
-      second = "오후" + String(Number(datesecond.slice(11, 13))) + ":" + datesecond.slice(14, 16)
+      second = "오후" + String(Number(datesecond.slice(11, 13)) - 12) + ":" + datesecond.slice(14, 16)
     }
   }
   //20 ~24
