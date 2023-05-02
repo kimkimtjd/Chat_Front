@@ -21,14 +21,13 @@ else {
 var totaltime = formattedfirst.split(',')[0].split('-')[2] + "-" + formattedfirst.split(',')[0].split('-')[0] + "-" + formattedfirst.split(',')[0].split('-')[1] + " " + 
 second  + ":" + formattedfirst.split(',')[1].split('-')[2]
 
-console.log(totaltime.slice(0,10))
-
 
 const socket = io("wss://port-0-chat-back-p8xrq2mlf0mbo1w.sel3.cloudtype.app/")
 // const socket = io("ws://localhost:3000/")
 
 //아래 주석
 var nickname = "";
+var partner_user = "";
 // const room = "e7e3bb53-2e6c-4900-a537-45e8b03fbc99"
 var biz_logo = "";
 var todaysdads = "";
@@ -44,7 +43,7 @@ function Room(roomname, pk , user , partner , logo_image) {
   
   
   nickname = user
-
+  partner_user = partner
   // 아래 2개는 삭제 , 상단 애완용 꿀꿀이는 user 로 변경예정
   // nickname = "kmskms"
   // user = nickname
@@ -70,10 +69,10 @@ function Room(roomname, pk , user , partner , logo_image) {
     
       for (var i = 0; i < data.length; i++) {
         if (data[i].sender === pk){ // [nickname -> user로 변경예정]
-          messages.appendChild(buildNewMessage(data[i].content.replace('<br/>' , '\n') + "방이름" + data[i].group , data[i].biz_logo , data[i].created , String(data[i].today) ) );
+          messages.appendChild(buildNewMessage(nickname + ":" + data[i].content.replace('<br/>' , '\n') + "방이름" + data[i].group , data[i].biz_logo , data[i].created , String(data[i].today) ) );
         }
         else{
-          messages.appendChild(buildNewMessage(data[i].content.replace('<br/>' , '\n') + "방이름" + data[i].group , data[i].biz_logo , data[i].created , String(data[i].today) )); 
+          messages.appendChild(buildNewMessage(data[i].nickname + ":" + data[i].content.replace('<br/>' , '\n') + "방이름" + data[i].group , data[i].biz_logo , data[i].created , String(data[i].today) )); 
         }
       }
 
@@ -96,7 +95,7 @@ function Test(arg, chat, roomname , today) {
   todaysdads = today // 값출력 X
 
   //2번쨰는 수신용  
-  socket.emit('message', chat + today + "방이름" + roomname)
+  socket.emit('message', arg + ":" + chat + today + "방이름" + roomname)
 
   const scrollTop = messages.scrollTop;
       const scrollHeight = messages.scrollHeight;
@@ -118,8 +117,7 @@ const handleNewMessage = (message) => {
    }
    else{
     // 날짜는 console.log 값 확인후 수정예정
-    console.log(message)
-    messages.appendChild(buildNewMessage(message.replace(totaltime.slice(0,10),"") , biz_logo , totaltime , totaltime.slice(0,10)));
+    messages.appendChild(buildNewMessage(message.replace(totaltime.split(0,10),"") , biz_logo , totaltime , totaltime.split(0,10)));
    }
   
 
@@ -238,7 +236,7 @@ const todaybox = (first_today) => {
   return div
 }
 
-
+// 보냈을경우
 const todaysecondMessage = (first , second ) => {
   const div = document.createElement("div");
   div.classList.add('today_total_box');
