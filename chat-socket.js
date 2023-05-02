@@ -20,6 +20,7 @@ else {
 
 var totaltime = formattedfirst.split(',')[0].split('-')[2] + "-" + formattedfirst.split(',')[0].split('-')[0] + "-" + formattedfirst.split(',')[0].split('-')[1] + " " +
   second + ":" + formattedfirst.split(',')[1].split('-')[2]
+  console.log(totaltime.slice(11,16))
 
 
 const socket = io("wss://port-0-chat-back-p8xrq2mlf0mbo1w.sel3.cloudtype.app/")
@@ -293,7 +294,7 @@ const sendsecondMessage = (datesecond , timeset) => {
 
   }
 
-  if(timeset === "시간동일"){
+  if(timeset.includes("시간동일")){
     span.prepend(document.createTextNode(""))
   }
   else{
