@@ -20,6 +20,7 @@ else {
 
 var totaltime = formattedfirst.split(',')[0].split('-')[2] + "-" + formattedfirst.split(',')[0].split('-')[0] + "-" + formattedfirst.split(',')[0].split('-')[1] + " " + 
 second  + ":" + formattedfirst.split(',')[1].split('-')[2]
+console.log(totaltime.slice(0,10))
 
 
 const socket = io("wss://port-0-chat-back-p8xrq2mlf0mbo1w.sel3.cloudtype.app/")
@@ -117,7 +118,7 @@ const handleNewMessage = (message) => {
    }
    else{
     // 날짜는 console.log 값 확인후 수정예정
-    messages.appendChild(buildNewMessage(message.replace(totaltime.split(0,10),"") , biz_logo , totaltime , totaltime.split(0,10)));
+    messages.appendChild(buildNewMessage(message.replace(totaltime.slice(0,10),"") , biz_logo , totaltime , totaltime.slice(0,10)));
    }
   
 
