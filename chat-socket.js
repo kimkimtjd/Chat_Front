@@ -20,7 +20,7 @@ else {
 
 var totaltime = formattedfirst.split(',')[0].split('-')[2] + "-" + formattedfirst.split(',')[0].split('-')[0] + "-" + formattedfirst.split(',')[0].split('-')[1] + " " + 
 second  + ":" + formattedfirst.split(',')[1].split('-')[2]
-
+console.log(totaltime.slice(11,16))
 
 const socket = io("wss://port-0-chat-back-p8xrq2mlf0mbo1w.sel3.cloudtype.app/")
 // const socket = io("ws://localhost:3000/")
@@ -94,16 +94,17 @@ function Room(roomname, pk , user , partner , logo_image) {
 function Test(arg, chat, roomname , today) {
   nickname = arg
   // 1번쨰는 송신용
-   // 값출력 X
-
-  //2번쨰는 수신용  
-  if(todaysdads === today){
-    socket.emit('message', arg + ":" + chat + today + "방이름" + roomname + "시간동일")
-  }
-  else{
-    todaysdads = today
+  
+  if(todaysdads === "" || todaysdads !== totaltime.slice(11,16)){
+    todaysdads = totaltime.slice(11,16)
     socket.emit('message', arg + ":" + chat + today + "방이름" + roomname + "시간다름")
   }
+  else{
+    socket.emit('message', arg + ":" + chat + today + "방이름" + roomname + "시간동일")
+  }
+
+  // totaltime.slice(11,16)
+  //2번쨰는 수신용  
 
   const scrollTop = messages.scrollTop;
       const scrollHeight = messages.scrollHeight;
@@ -164,10 +165,10 @@ const buildNewMessage = (message , logo_image , date , first_today ) => {
       div.classList.add('sendertoday');
       div.prepend(todayMessage(first_today));
       if(message.includes("시간동일")){
-        div.appendChild(todaysecondMessage(message.split("방이름")[0] , date , "시간동일"));      
+        div.appendChild(todaysecondMessage(message.split("방이름")[0] , date));
       }
       else{
-        div.appendChild(todaysecondMessage(message.split("방이름")[0] , date, "시간다름"));
+        div.appendChild(todaysecondMessage(message.split("방이름")[0] , ""));
       }
     }
 
@@ -192,17 +193,27 @@ const buildNewMessage = (message , logo_image , date , first_today ) => {
 
     if(first_today === "null"){
       div.prepend(logo);
-      div.appendChild(receivebox(message.split("방이름")[0] , date));
-      
-      document.body.prepend(div)  
+      if(message.includes("시간동일")){
+        div.appendChild(receivebox(message.split("방이름")[0] , ""));
+        document.body.prepend(div)  
+      }
+      else{
+        div.appendChild(receivebox(message.split("방이름")[0] , date));
+        document.body.prepend(div)  
+      }
     }
     else {
       div.classList.add('receive_sendertoday');
       div.prepend(todayMessage(first_today));
       div.appendChild(logo)
-      div.appendChild(receivesecondbox(message.split("방이름")[0] , date));
-
-      document.body.prepend(div)  
+      if(message.includes("시간동일")){ 
+        div.appendChild(receivesecondbox(message.split("방이름")[0] , ""));
+        document.body.prepend(div)  
+      }
+      else{
+        div.appendChild(receivesecondbox(message.split("방이름")[0] , date));
+        document.body.prepend(div)  
+      }
     }
 
     return div;
@@ -240,17 +251,13 @@ const todaybox = (first_today) => {
 
 
 /* 금일 1번쨰 메세지 보내는 경우 시간 */
-const todaysecondMessage = (first , second , third) => {
+const todaysecondMessage = (first , second ) => {
   const div = document.createElement("div");
   div.classList.add('today_total_box');
 
   div.appendChild(sendMessage(first.split("방이름")[0]));
-  if(third === "시간동일"){
-    div.appendChild(sendsecondMessage(second , "시간동일"));  
-  }
-  else{
-    div.appendChild(sendsecondMessage(second , "시간다름"));  
-  }
+  div.appendChild(sendsecondMessage(second));  
+  
   return div
 } 
 
@@ -265,7 +272,7 @@ const sendMessage = (message) => {
 }
 
 /* 메세지 보내는경우 시간 */
-const sendsecondMessage = (datesecond , timeset) => {
+const sendsecondMessage = (datesecond) => {
   const span = document.createElement("span");
   span.classList.add('sendertime');
   
@@ -294,12 +301,7 @@ const sendsecondMessage = (datesecond , timeset) => {
     
   }
   
-  if(timeset === "시간동일"){
-    span.prepend(document.createTextNode(""))
-  }
-  else{
-    span.prepend(document.createTextNode(second))
-  }
+  span.prepend(document.createTextNode(second))
 
   return span
 }
