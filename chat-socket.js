@@ -252,7 +252,7 @@ const sendMessage = (message) => {
   const span = document.createElement("span");
   span.classList.add('sender');
 
-  span.prepend(document.createTextNode(message.split("방이름")[0]))
+  span.prepend(document.createTextNode(message.split("방이름")[0].split(":")[1]))
   
   return span
 }
@@ -311,7 +311,7 @@ const receiveMessage = (message) => {
   const span = document.createElement("span");
   span.classList.add('receivetext');
 
-  span.prepend(document.createTextNode(message.split("방이름")[0]))
+  span.prepend(document.createTextNode(message.split("방이름")[0].split(":")[1]))
   
   return span
 }
