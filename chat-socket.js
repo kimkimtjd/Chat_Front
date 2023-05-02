@@ -9,7 +9,7 @@ const options = {
   fractionalSecondDigits: 3
 };
 const formattedfirst = now.toLocaleString("en-US", options).replace(/[/:\s]/g, "-");
-const formattedfirst_receive = now.toLocaleString("en-US", options).replace(/[/:\s]/g, "-").match(/^\d{4}-\d{2}-\d{2}/)[0];
+const formattedfirst_receive = formattedfirst.match(/^\d{4}-\d{2}-\d{2}/)?.[0];
 
 if(formattedfirst.includes("PM")){
   var second = Number(formattedfirst.split(',')[1].split('-')[1]) + 12
