@@ -94,8 +94,17 @@ function Test(arg, chat, roomname, today) {
   // 1번쨰는 송신용
   todaysdads = today // 값출력 X
 
-  //2번쨰는 수신용  
-  socket.emit('message', arg + ":" + chat + today + "방이름" + roomname + "시간동일")
+  if(todaysdads === "" || todaysdads !== totaltime.slice(11,16)){
+    todaysdads = totaltime.slice(11,16)
+    socket.emit('message', arg + ":" + chat + today + "방이름" + roomname + "시간다름")
+    console.log("test1")
+  }
+  else{
+    socket.emit('message', arg + ":" + chat + today + "방이름" + roomname + "시간동일")
+    console.log("test2")
+  }
+  
+  // socket.emit('message', arg + ":" + chat + today + "방이름" + roomname)
 
   const scrollTop = messages.scrollTop;
   const scrollHeight = messages.scrollHeight;
@@ -107,6 +116,7 @@ function Test(arg, chat, roomname, today) {
 
 socket.on('message', (data) => {
   handleNewMessage(data);
+  
   messages.scrollTop = messages.scrollHeight;
 })
 
@@ -252,7 +262,7 @@ const sendMessage = (message) => {
   const span = document.createElement("span");
   span.classList.add('sender');
 
-  span.prepend(document.createTextNode(message.split("방이름")[0].split(":")[0]))
+  span.prepend(document.createTextNode(message.split("방이름")[0].split(":")[1]))
 
   return span
 }
@@ -311,7 +321,7 @@ const receiveMessage = (message) => {
   const span = document.createElement("span");
   span.classList.add('receivetext');
 
-  span.prepend(document.createTextNode(message.split("방이름")[0].split(":")[0]))
+  span.prepend(document.createTextNode(message.split("방이름")[0].split(":")[1]))
 
   return span
 }
