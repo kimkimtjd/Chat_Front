@@ -69,7 +69,12 @@ function Room(roomname, pk , user , partner , logo_image) {
     
       for (var i = 0; i < data.length; i++) {
         if (data[i].sender === pk){
-            messages.appendChild(buildNewMessage(nickname + ":" + data[i].content.replace('<br/>' , '\n') + "방이름" + data[i].group , data[i].biz_logo , data[i].created , String(data[i].today)) );
+          if(data[i].created.slice(12,16) === data[i+1].created.slice(12,16)){
+            messages.appendChild(buildNewMessage(nickname + ":" + data[i].content.replace('<br/>' , '\n') + "방이름" + data[i].group , data[i].biz_logo , data[i].created , String(data[i].today , "시간동일")) );
+          }
+          else{
+            messages.appendChild(buildNewMessage(nickname + ":" + data[i].content.replace('<br/>' , '\n') + "방이름" + data[i].group , data[i].biz_logo , data[i].created , String(data[i].today), "시간다름") );
+          }
         }
         else{
           messages.appendChild(buildNewMessage(data[i].nickname + ":" + data[i].content.replace('<br/>' , '\n') + "방이름" + data[i].group , data[i].biz_logo , data[i].created , String(data[i].today) )); 
@@ -134,7 +139,7 @@ const handleNewMessage = (message) => {
 
 
 // 채팅 전체 적인 함수
-const buildNewMessage = (message , logo_image , date , first_today ) => {
+const buildNewMessage = (message , logo_image , date , first_today , timer) => {
   
   // 보낸경우
   if (message.split(":")[0] === nickname) {
@@ -143,15 +148,29 @@ const buildNewMessage = (message , logo_image , date , first_today ) => {
     
     // 1번째가 아닌경우
     if(first_today === "null"){
-      div.classList.add('senderbox');
-      div.prepend(sendMessage(message.split("방이름")[0]));
-      div.appendChild(sendsecondMessage(date));  
+      if(timer === "시간동일"){
+        div.classList.add('senderbox');
+        div.prepend(sendMessage(message.split("방이름")[0]));
+        div.appendChild(sendsecondMessage(""));  
+      }  
+      else{
+        div.classList.add('senderbox');
+        div.prepend(sendMessage(message.split("방이름")[0]));
+        div.appendChild(sendsecondMessage(date));  
+      }
     }
     // 1번째인경우
     else {
-      div.classList.add('sendertoday');
-      div.prepend(todayMessage(first_today));
-      div.appendChild(todaysecondMessage(message.split("방이름")[0] , date));
+      if(timer === "시간동일"){
+        div.classList.add('sendertoday');
+        div.prepend(todayMessage(first_today));
+        div.appendChild(todaysecondMessage(message.split("방이름")[0] , ""));      
+      }
+      else{
+        div.classList.add('sendertoday');
+        div.prepend(todayMessage(first_today));
+        div.appendChild(todaysecondMessage(message.split("방이름")[0] , date));
+      }
     }
 
     return div;
