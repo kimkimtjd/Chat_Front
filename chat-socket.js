@@ -46,11 +46,11 @@ function Room(roomname, pk , user , partner , logo_image) {
   partner_user = partner
   
   // 아래 2개는 삭제 , 상단 애완용 꿀꿀이는 user 로 변경예정
-  // nickname = "lee"
-  // user = nickname
-  // pk = 2
-  // partner = "애완용꿀꿀이"
-  // roomname = "d67dc57d-14a3-488b-8f5f-dfeee417ed3c"
+  nickname = "애완용꿀꿀이"
+  user = nickname
+  pk = 1
+  partner = "sososo"
+  roomname = "541d30c4-37a2-41df-b2b7-8e9cc234f3a8"
 
   socket.emit('room', roomname)
 
@@ -98,11 +98,12 @@ function Test(arg, chat, roomname , today) {
   if(todaysdads === "" || todaysdads !== totaltime.slice(11,16)){
     todaysdads = totaltime.slice(11,16)
     socket.emit('message', arg + ":" + chat + today + "방이름" + roomname + "시간다름")
+    console.log("test")
   }
   else{
     socket.emit('message', arg + ":" + chat + today + "방이름" + roomname + "시간동일")
+    console.log("test2")
   }
-
   // totaltime.slice(11,16)
   //2번쨰는 수신용  
 
@@ -154,10 +155,10 @@ const buildNewMessage = (message , logo_image , date , first_today ) => {
       div.classList.add('senderbox');
       div.prepend(sendMessage(message.split("방이름")[0]));
       if(message.includes("시간동일")){
-        div.appendChild(sendsecondMessage(""));  
+        div.appendChild(sendsecondMessage(date,"시간동일"));  
       }
       else{
-        div.appendChild(sendsecondMessage(date));  
+        div.appendChild(sendsecondMessage(date,"시간다름"));  
       }
     }
     // 1번째인경우
@@ -165,10 +166,10 @@ const buildNewMessage = (message , logo_image , date , first_today ) => {
       div.classList.add('sendertoday');
       div.prepend(todayMessage(first_today));
       if(message.includes("시간동일")){
-        div.appendChild(todaysecondMessage(message.split("방이름")[0] , date));
+        div.appendChild(todaysecondMessage(message.split("방이름")[0] , date , "시간동일"));
       }
       else{
-        div.appendChild(todaysecondMessage(message.split("방이름")[0] , ""));
+        div.appendChild(todaysecondMessage(message.split("방이름")[0] , date , "시간다름"));
       }
     }
 
@@ -251,12 +252,12 @@ const todaybox = (first_today) => {
 
 
 /* 금일 1번쨰 메세지 보내는 경우 시간 */
-const todaysecondMessage = (first , second ) => {
+const todaysecondMessage = (first , second , third ) => {
   const div = document.createElement("div");
   div.classList.add('today_total_box');
 
   div.appendChild(sendMessage(first.split("방이름")[0]));
-  div.appendChild(sendsecondMessage(second));  
+  div.appendChild(sendsecondMessage(second , third));  
   
   return div
 } 
@@ -272,7 +273,7 @@ const sendMessage = (message) => {
 }
 
 /* 메세지 보내는경우 시간 */
-const sendsecondMessage = (datesecond) => {
+const sendsecondMessage = (datesecond , timeset) => {
   const span = document.createElement("span");
   span.classList.add('sendertime');
   
@@ -301,7 +302,12 @@ const sendsecondMessage = (datesecond) => {
     
   }
   
-  span.prepend(document.createTextNode(second))
+  if(timeset === "시간동일"){
+    span.prepend(document.createTextNode(""))
+  }
+  else{
+    span.prepend(document.createTextNode(second))
+  }
 
   return span
 }
