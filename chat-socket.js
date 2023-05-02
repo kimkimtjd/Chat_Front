@@ -20,7 +20,6 @@ else {
 
 var totaltime = formattedfirst.split(',')[0].split('-')[2] + "-" + formattedfirst.split(',')[0].split('-')[0] + "-" + formattedfirst.split(',')[0].split('-')[1] + " " +
   second + ":" + formattedfirst.split(',')[1].split('-')[2]
-  console.log(totaltime.slice(11,16))
 
 
 const socket = io("wss://port-0-chat-back-p8xrq2mlf0mbo1w.sel3.cloudtype.app/")
@@ -92,18 +91,9 @@ function Room(roomname, pk, user, partner, logo_image) {
 
 function Test(arg, chat, roomname, today) {
   nickname = arg
-  // 1번쨰는 송신용
-   // 값출력 X
+  todaysdads = today // 값출력 X
 
-  if(todaysdads === "" || todaysdads !== totaltime.slice(11,16)){
-    todaysdads = totaltime.slice(11,16)
-    socket.emit('message', arg + ":" + chat + today  + "시간다름" + "방이름" + roomname)
-  }
-  else{
-    socket.emit('message', arg + ":" + chat + today + "시간동일" + "방이름" + roomname )
-  }
-  
-  // socket.emit('message', arg + ":" + chat + today + "방이름" + roomname)
+  socket.emit('message', arg + ":" + chat + today + "방이름" + roomname)
 
   const scrollTop = messages.scrollTop;
   const scrollHeight = messages.scrollHeight;
@@ -111,10 +101,14 @@ function Test(arg, chat, roomname, today) {
     messages.scrollTop = scrollHeight;
     window.scrollBy(0, window.innerHeight);
   }
+
+  messages.remove();
+  Room();
+
 }
 
 socket.on('message', (data) => {
-  handleNewMessage(data);  
+  handleNewMessage(data);
   messages.scrollTop = messages.scrollHeight;
 })
 
@@ -148,7 +142,7 @@ const buildNewMessage = (message, logo_image, date, first_today) => {
     if (first_today === "null") {
       div.classList.add('senderbox');
       div.prepend(sendMessage(message.split("방이름")[0]));
-      div.appendChild(sendsecondMessage(date , message.split("방이름")[0]));
+      div.appendChild(sendsecondMessage(date));
     }
     else {
       div.classList.add('sendertoday');
@@ -250,7 +244,7 @@ const todaysecondMessage = (first, second) => {
   div.classList.add('today_total_box');
 
   div.appendChild(sendMessage(first.split("방이름")[0]));
-  div.appendChild(sendsecondMessage(second,first));
+  div.appendChild(sendsecondMessage(second));
 
   return div
 }
@@ -260,12 +254,12 @@ const sendMessage = (message) => {
   const span = document.createElement("span");
   span.classList.add('sender');
 
-  span.prepend(document.createTextNode(message.split("방이름")[0].split(":")[1].replace("시간다름","").replace("시간동일","")))
+  span.prepend(document.createTextNode(message.split("방이름")[0].split(":")[1]))
 
   return span
 }
 
-const sendsecondMessage = (datesecond , timeset) => {
+const sendsecondMessage = (datesecond) => {
   const span = document.createElement("span");
   span.classList.add('sendertime');
 
@@ -294,12 +288,7 @@ const sendsecondMessage = (datesecond , timeset) => {
 
   }
 
-  if(timeset.includes("시간동일")){
-    span.prepend(document.createTextNode(""))
-  }
-  else{
-    span.prepend(document.createTextNode(second))
-  }
+  span.prepend(document.createTextNode(second))
 
   return span
 }
