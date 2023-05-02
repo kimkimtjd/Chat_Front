@@ -164,12 +164,12 @@ const buildNewMessage = (message , logo_image , date , first_today , timer) => {
       if(timer === "시간동일"){
         div.classList.add('sendertoday');
         div.prepend(todayMessage(first_today));
-        div.appendChild(todaysecondMessage(message.split("방이름")[0] , ""));      
+        div.appendChild(todaysecondMessage(message.split("방이름")[0] , date , "시간동일"));      
       }
       else{
         div.classList.add('sendertoday');
         div.prepend(todayMessage(first_today));
-        div.appendChild(todaysecondMessage(message.split("방이름")[0] , date));
+        div.appendChild(todaysecondMessage(message.split("방이름")[0] , date , "시간다름"));
       }
     }
 
@@ -242,12 +242,12 @@ const todaybox = (first_today) => {
 
 
 /* 금일 1번쨰 메세지 보내는 경우 시간 */
-const todaysecondMessage = (first , second ) => {
+const todaysecondMessage = (first , second , third) => {
   const div = document.createElement("div");
   div.classList.add('today_total_box');
 
   div.appendChild(sendMessage(first.split("방이름")[0]));
-  div.appendChild(sendsecondMessage(second));  
+  div.appendChild(sendsecondMessage(second , third));  
   
   return div
 } 
@@ -263,7 +263,7 @@ const sendMessage = (message) => {
 }
 
 /* 메세지 보내는경우 시간 */
-const sendsecondMessage = (datesecond) => {
+const sendsecondMessage = (datesecond , timeset) => {
   const span = document.createElement("span");
   span.classList.add('sendertime');
   
@@ -292,7 +292,12 @@ const sendsecondMessage = (datesecond) => {
     
   }
   
-  span.prepend(document.createTextNode(second))
+  if(timeset === "시간다름"){
+    span.prepend(document.createTextNode(second))
+  }
+  else{
+    span.prepend(document.createTextNode(""))
+  }
 
   return span
 }
