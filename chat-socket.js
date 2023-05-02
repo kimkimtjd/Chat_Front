@@ -98,7 +98,6 @@ function Test(arg, chat, roomname , today) {
   if(todaysdads === "" || todaysdads !== totaltime.slice(11,16)){
     todaysdads = totaltime.slice(11,16)
     socket.emit('message', arg + ":" + chat + today + "방이름" + roomname + "시간다름")
-    console.log("test")
   }
   else{
     socket.emit('message', arg + ":" + chat + today + "방이름" + roomname + "시간동일")
@@ -122,6 +121,7 @@ socket.on('message', (data) => {
 })
 
 const handleNewMessage = (message) => {
+  console.log(message)
 
   if(message.includes("null")){
     messages.appendChild(buildNewMessage(message.replace("null","") , biz_logo , totaltime , "null"));
