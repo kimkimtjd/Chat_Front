@@ -96,12 +96,10 @@ function Test(arg, chat, roomname, today) {
 
   if(todaysdads === "" || todaysdads !== totaltime.slice(11,16)){
     todaysdads = totaltime.slice(11,16)
-    socket.emit('message', arg + ":" + chat + today + "방이름" + roomname + "시간다름")
-    console.log("test1")
+    socket.emit('message', arg + ":" + chat + today  + "시간다름" + "방이름" + roomname)
   }
   else{
-    socket.emit('message', arg + ":" + chat + today + "방이름" + roomname + "시간동일")
-    console.log("test2")
+    socket.emit('message', arg + ":" + chat + today + "시간동일" + "방이름" + roomname )
   }
   
   // socket.emit('message', arg + ":" + chat + today + "방이름" + roomname)
@@ -115,8 +113,7 @@ function Test(arg, chat, roomname, today) {
 }
 
 socket.on('message', (data) => {
-  handleNewMessage(data);
-  
+  handleNewMessage(data);  
   messages.scrollTop = messages.scrollHeight;
 })
 
