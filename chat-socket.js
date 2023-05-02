@@ -148,29 +148,15 @@ const buildNewMessage = (message , logo_image , date , first_today , timer) => {
     
     // 1번째가 아닌경우
     if(first_today === "null"){
-      if(timer === "시간동일"){
         div.classList.add('senderbox');
         div.prepend(sendMessage(message.split("방이름")[0]));
-        div.appendChild(sendsecondMessage(""));  
-      }  
-      else{
-        div.classList.add('senderbox');
-        div.prepend(sendMessage(message.split("방이름")[0]));
-        div.appendChild(sendsecondMessage(date));  
-      }
+        div.appendChild(sendsecondMessage(date ,timer));  
     }
     // 1번째인경우
     else {
-      if(timer === "시간동일"){
         div.classList.add('sendertoday');
         div.prepend(todayMessage(first_today));
-        div.appendChild(todaysecondMessage(message.split("방이름")[0] , date , "시간동일"));      
-      }
-      else{
-        div.classList.add('sendertoday');
-        div.prepend(todayMessage(first_today));
-        div.appendChild(todaysecondMessage(message.split("방이름")[0] , date , "시간다름"));
-      }
+        div.appendChild(todaysecondMessage(message.split("방이름")[0] , date , timer));      
     }
 
     return div;
@@ -301,6 +287,10 @@ const sendsecondMessage = (datesecond , timeset) => {
 
   return span
 }
+
+
+
+
 
 /* 메세지 받은경우 내용 */
 const receivebox = (text , date) => {
