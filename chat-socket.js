@@ -9,7 +9,7 @@ const options = {
   fractionalSecondDigits: 3
 };
 const formattedfirst = now.toLocaleString("en-US", options).replace(/[/:\s]/g, "-");
-const formattedfirst_receive = formattedfirst.match(/^\d{4}-\d{2}-\d{2}/)?.[0];
+
 
 if(formattedfirst.includes("PM")){
   var second = Number(formattedfirst.split(',')[1].split('-')[1]) + 12
@@ -21,13 +21,15 @@ else {
 var totaltime = formattedfirst.split(',')[0].split('-')[2] + "-" + formattedfirst.split(',')[0].split('-')[0] + "-" + formattedfirst.split(',')[0].split('-')[1] + " " + 
 second  + ":" + formattedfirst.split(',')[1].split('-')[2]
 
+console.log(totaltime.slice(0,10))
+
 
 const socket = io("wss://port-0-chat-back-p8xrq2mlf0mbo1w.sel3.cloudtype.app/")
 // const socket = io("ws://localhost:3000/")
 
 //아래 주석
 var nickname = "";
-const room = "e7e3bb53-2e6c-4900-a537-45e8b03fbc99"
+// const room = "e7e3bb53-2e6c-4900-a537-45e8b03fbc99"
 var biz_logo = "";
 var todaysdads = "";
 // const room = 5
@@ -41,14 +43,14 @@ var data = ""
 function Room(roomname, pk , user , partner , logo_image) {
   
   
-  // nickname = user
+  nickname = user
 
   // 아래 2개는 삭제 , 상단 애완용 꿀꿀이는 user 로 변경예정
-  nickname = "kmskms"
-  user = nickname
-  pk = 3
-  partner = "애완용꿀꿀이"
-  roomname = "e7e3bb53-2e6c-4900-a537-45e8b03fbc99"
+  // nickname = "kmskms"
+  // user = nickname
+  // pk = 3
+  // partner = "애완용꿀꿀이"
+  // roomname = "e7e3bb53-2e6c-4900-a537-45e8b03fbc99"
 
   socket.emit('room', roomname)
 
@@ -68,10 +70,10 @@ function Room(roomname, pk , user , partner , logo_image) {
     
       for (var i = 0; i < data.length; i++) {
         if (data[i].sender === pk){ // [nickname -> user로 변경예정]
-          messages.appendChild(buildNewMessage(nickname + ":" + data[i].content.replace('<br/>' , '\n') + "방이름" + data[i].group , data[i].biz_logo , data[i].created , String(data[i].today) ) );
+          messages.appendChild(buildNewMessage(data[i].content.replace('<br/>' , '\n') + "방이름" + data[i].group , data[i].biz_logo , data[i].created , String(data[i].today) ) );
         }
         else{
-          messages.appendChild(buildNewMessage(data[i].nickname + ":" + data[i].content.replace('<br/>' , '\n') + "방이름" + data[i].group , data[i].biz_logo , data[i].created , String(data[i].today) )); 
+          messages.appendChild(buildNewMessage(data[i].content.replace('<br/>' , '\n') + "방이름" + data[i].group , data[i].biz_logo , data[i].created , String(data[i].today) )); 
         }
       }
 
@@ -94,7 +96,7 @@ function Test(arg, chat, roomname , today) {
   todaysdads = today // 값출력 X
 
   //2번쨰는 수신용  
-  socket.emit('message', arg + ":" + chat + today + "방이름" + roomname)
+  socket.emit('message', chat + today + "방이름" + roomname)
 
   const scrollTop = messages.scrollTop;
       const scrollHeight = messages.scrollHeight;
@@ -117,7 +119,7 @@ const handleNewMessage = (message) => {
    else{
     // 날짜는 console.log 값 확인후 수정예정
     console.log(message)
-    messages.appendChild(buildNewMessage(message.replace("2022-05-02","") , biz_logo , totaltime , "2022-05-02"));
+    messages.appendChild(buildNewMessage(message.replace(totaltime.slice(0,10),"") , biz_logo , totaltime , totaltime.slice(0,10)));
    }
   
 
@@ -353,11 +355,11 @@ const receivesecondMessage = (datesecond) => {
 
 
 /****************************** 아래 코드는 웹용  위 부분은 공용******************************/
-socket.emit('room', room)
+// socket.emit('room', room)
 
-window.onload = function() {
-    Room()
- };
+// window.onload = function() {
+//     Room()
+//  };
 
 // const handleSubmitNewMessage = () => {
 //   // socket.emit('message', nickname + ":" + message.value + "방이름" + room)
