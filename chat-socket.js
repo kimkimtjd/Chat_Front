@@ -98,6 +98,7 @@ function Test(arg, chat, roomname , today) {
   if(todaysdads === "" || todaysdads !== totaltime.slice(11,16)){
     todaysdads = totaltime.slice(11,16)
     socket.emit('message', arg + ":" + chat + today + "방이름" + roomname + "시간다름")
+    console.log("test1")
   }
   else{
     socket.emit('message', arg + ":" + chat + today + "방이름" + roomname + "시간동일")
@@ -117,11 +118,12 @@ function Test(arg, chat, roomname , today) {
 // 소켓 열기 
 socket.on('message', (data) => {
   handleNewMessage(data);
+  console.log("test1_1")
   messages.scrollTop = messages.scrollHeight;
 })
 
 const handleNewMessage = (message) => {
-  console.log(message)
+  console.log("test1_2")
 
   if(message.includes("null")){
     messages.appendChild(buildNewMessage(message.replace("null","") , biz_logo , totaltime , "null"));
