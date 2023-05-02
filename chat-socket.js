@@ -69,12 +69,7 @@ function Room(roomname, pk , user , partner , logo_image) {
     
       for (var i = 0; i < data.length; i++) {
         if (data[i].sender === pk){
-          if(data[i].created.slice(12,16) === data[i+1].created.slice(12,16)){
-            messages.appendChild(buildNewMessage(nickname + ":" + data[i].content.replace('<br/>' , '\n') + "방이름" + data[i].group , data[i].biz_logo , data[i].created , String(data[i].today), "시간동일") );
-          }
-          else{
-            messages.appendChild(buildNewMessage(nickname + ":" + data[i].content.replace('<br/>' , '\n') + "방이름" + data[i].group , data[i].biz_logo , data[i].created , String(data[i].today), "시간다름") );
-          }
+            messages.appendChild(buildNewMessage(nickname + ":" + data[i].content.replace('<br/>' , '\n') + "방이름" + data[i].group , data[i].biz_logo , data[i].created , String(data[i].today)) );
         }
         else{
           messages.appendChild(buildNewMessage(data[i].nickname + ":" + data[i].content.replace('<br/>' , '\n') + "방이름" + data[i].group , data[i].biz_logo , data[i].created , String(data[i].today) )); 
@@ -139,7 +134,7 @@ const handleNewMessage = (message) => {
 
 
 // 채팅 전체 적인 함수
-const buildNewMessage = (message , logo_image , date , first_today , timer) => {
+const buildNewMessage = (message , logo_image , date , first_today ) => {
   
   // 보낸경우
   if (message.split(":")[0] === nickname) {
@@ -148,15 +143,15 @@ const buildNewMessage = (message , logo_image , date , first_today , timer) => {
     
     // 1번째가 아닌경우
     if(first_today === "null"){
-        div.classList.add('senderbox');
-        div.prepend(sendMessage(message.split("방이름")[0]));
-        div.appendChild(sendsecondMessage(date ,timer));  
+      div.classList.add('senderbox');
+      div.prepend(sendMessage(message.split("방이름")[0]));
+      div.appendChild(sendsecondMessage(date));  
     }
     // 1번째인경우
     else {
-        div.classList.add('sendertoday');
-        div.prepend(todayMessage(first_today));
-        div.appendChild(todaysecondMessage(message.split("방이름")[0] , date , timer));      
+      div.classList.add('sendertoday');
+      div.prepend(todayMessage(first_today));
+      div.appendChild(todaysecondMessage(message.split("방이름")[0] , date));
     }
 
     return div;
@@ -228,12 +223,12 @@ const todaybox = (first_today) => {
 
 
 /* 금일 1번쨰 메세지 보내는 경우 시간 */
-const todaysecondMessage = (first , second , third) => {
+const todaysecondMessage = (first , second ) => {
   const div = document.createElement("div");
   div.classList.add('today_total_box');
 
   div.appendChild(sendMessage(first.split("방이름")[0]));
-  div.appendChild(sendsecondMessage(second , third));  
+  div.appendChild(sendsecondMessage(second));  
   
   return div
 } 
@@ -249,7 +244,7 @@ const sendMessage = (message) => {
 }
 
 /* 메세지 보내는경우 시간 */
-const sendsecondMessage = (datesecond , timeset) => {
+const sendsecondMessage = (datesecond) => {
   const span = document.createElement("span");
   span.classList.add('sendertime');
   
@@ -278,19 +273,10 @@ const sendsecondMessage = (datesecond , timeset) => {
     
   }
   
-  if(timeset === "시간다름"){
-    span.prepend(document.createTextNode(second))
-  }
-  else{
-    span.prepend(document.createTextNode(""))
-  }
+  span.prepend(document.createTextNode(second))
 
   return span
 }
-
-
-
-
 
 /* 메세지 받은경우 내용 */
 const receivebox = (text , date) => {
