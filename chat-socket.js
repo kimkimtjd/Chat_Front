@@ -45,11 +45,11 @@ function Room(roomname, pk , user , partner , logo_image) {
   nickname = user
   partner_user = partner
   // 아래 2개는 삭제 , 상단 애완용 꿀꿀이는 user 로 변경예정
-  // nickname = "kmskms"
+  // nickname = "lee"
   // user = nickname
-  // pk = 3
+  // pk = 2
   // partner = "애완용꿀꿀이"
-  // roomname = "e7e3bb53-2e6c-4900-a537-45e8b03fbc99"
+  // roomname = "d67dc57d-14a3-488b-8f5f-dfeee417ed3c"
 
   socket.emit('room', roomname)
 
@@ -69,12 +69,7 @@ function Room(roomname, pk , user , partner , logo_image) {
     
       for (var i = 0; i < data.length; i++) {
         if (data[i].sender === pk){
-          if(data[i].created.slice(12,16) === data[i+1].created.slice(12,16)){
-            messages.appendChild(buildNewMessage(nickname + ":" + data[i].content.replace('<br/>' , '\n') + "방이름" + data[i].group , data[i].biz_logo , data[i].created , "") );
-          }
-          else{
             messages.appendChild(buildNewMessage(nickname + ":" + data[i].content.replace('<br/>' , '\n') + "방이름" + data[i].group , data[i].biz_logo , data[i].created , String(data[i].today)) );
-          }
         }
         else{
           messages.appendChild(buildNewMessage(data[i].nickname + ":" + data[i].content.replace('<br/>' , '\n') + "방이름" + data[i].group , data[i].biz_logo , data[i].created , String(data[i].today) )); 
