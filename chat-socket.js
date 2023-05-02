@@ -92,9 +92,16 @@ function Room(roomname, pk , user , partner , logo_image) {
 
 // 채팅 보내기 앱에서 
 function Test(arg, chat, roomname , today) {
-  nickname = arg
-  // 1번쨰는 송신용
+  //nickname = arg
+  
+  // 아래는 웹테스트용
    
+  var arg = "sososo"
+  var chat = "테스트용 메세지입니다"
+  var roomname = "541d30c4-37a2-41df-b2b7-8e9cc234f3a8"
+  var today = "null"
+
+
   if(todaysdads === "" || todaysdads !== totaltime.slice(11,16)){
     todaysdads = totaltime.slice(11,16)
     socket.emit('message', arg + ":" + chat + today + "방이름" + roomname + "시간다름")
