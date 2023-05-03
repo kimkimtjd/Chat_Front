@@ -20,7 +20,7 @@ else {
 
 var totaltime = formattedfirst.split(',')[0].split('-')[2] + "-" + formattedfirst.split(',')[0].split('-')[0] + "-" + formattedfirst.split(',')[0].split('-')[1] + " " +
   second + ":" + formattedfirst.split(',')[1].split('-')[2]
-console.log(totaltime.slice(10, 16))
+console.log(totaltime.slice(11, 16))
 
 const socket = io("wss://port-0-chat-back-p8xrq2mlf0mbo1w.sel3.cloudtype.app/")
 // const socket = io("ws://localhost:3000/")
@@ -93,17 +93,18 @@ function Room(roomname, pk, user, partner, logo_image) {
 
 }
 
-function Test(arg, chat, roomname, today) {
+function Test(arg, chat, roomname, today , minute) {
   nickname = arg
 
 
-  if(todaysdads === totaltime.slice(10, 16)){
+  if(minute === String(totaltime.slice(11, 16))){
     socket.emit('message', arg + ":" + chat + today + "null" + "방이름" + roomname)
   }
   else{
-    todaysdads = totaltime.slice(10, 16)
     socket.emit('message', arg + ":" + chat + today + totaltime.slice(10, 16) + "방이름" + roomname)
   }
+
+
 
   const scrollTop = messages.scrollTop;
   const scrollHeight = messages.scrollHeight;
