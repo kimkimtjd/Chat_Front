@@ -20,7 +20,7 @@ else {
 
 var totaltime = formattedfirst.split(',')[0].split('-')[2] + "-" + formattedfirst.split(',')[0].split('-')[0] + "-" + formattedfirst.split(',')[0].split('-')[1] + " " +
   second + ":" + formattedfirst.split(',')[1].split('-')[2]
-console.log(totaltime.slice(0, 10))
+console.log(totaltime.slice(10, 16))
 
 const socket = io("wss://port-0-chat-back-p8xrq2mlf0mbo1w.sel3.cloudtype.app/")
 // const socket = io("ws://localhost:3000/")
@@ -95,9 +95,15 @@ function Room(roomname, pk, user, partner, logo_image) {
 
 function Test(arg, chat, roomname, today) {
   nickname = arg
-  todaysdads = today // 값출력 X
 
-  socket.emit('message', arg + ":" + chat + today + "방이름" + roomname)
+
+  if(todaysdads === totaltime.slice(10, 16)){
+    socket.emit('message', arg + ":" + chat + today + "null" + "방이름" + roomname)
+  }
+  else{
+    todaysdads = totaltime.slice(10, 16)
+    socket.emit('message', arg + ":" + chat + today + totaltime.slice(10, 16) + "방이름" + roomname)
+  }
 
   const scrollTop = messages.scrollTop;
   const scrollHeight = messages.scrollHeight;
@@ -110,6 +116,7 @@ function Test(arg, chat, roomname, today) {
   sendertoday.remove();
   receiverbox.remove();
   receive_sendertoday.remove();
+
   Room();
 
 }
@@ -122,11 +129,11 @@ socket.on('message', (data) => {
 const handleNewMessage = (message) => {
 
   if (message.includes("null")) {
-    messages.appendChild(buildNewMessage(message.replace("null", ""), biz_logo, totaltime, "null"));
+    messages.appendChild(buildNewMessage(message.replace("null", ""), biz_logo, totaltime, "null" , "null"));
   }
   else {
     // 날짜는 console.log 값 확인후 수정예정
-    messages.appendChild(buildNewMessage(message.replace(totaltime.slice(0, 10), ""), biz_logo, totaltime, totaltime.slice(0, 10)));
+    messages.appendChild(buildNewMessage(message.replace(totaltime.slice(0, 10), "").replace(totaltime.slice(10, 16), "") , biz_logo, totaltime, totaltime.slice(0, 10) , totaltime.slice(10, 16)));
   }
 
 
@@ -294,6 +301,8 @@ const sendsecondMessage = (datesecond , minute) => {
 
   }
 
+  console.log(String(minute))
+
   if(String(minute) === "null"){
     span.prepend(document.createTextNode(""))
   }
@@ -358,7 +367,7 @@ const receivesecondMessage = (datesecond , minute) => {
 
   }
 
-  if(String(minute) === "null" ){ 
+  if(String(minute) === "null"){ 
     span.prepend(document.createTextNode(""))
   }
   else{
