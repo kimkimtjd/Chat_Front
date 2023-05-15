@@ -88,7 +88,12 @@ function Room(roomname, pk, user, partner, logo_image) {
 
         /* 이미지 */
         else{
-
+          if (data[i].sender === pk) {
+            messages.appendChild(buildNewMessage(nickname + ":" + data[i].content.replace('<br/>', '\n') + "방이름" + data[i].group, data[i].biz_logo, data[i].created, String(data[i].today), data[i].minute));
+          }
+          else {
+            messages.appendChild(buildNewMessage(data[i].nickname + ":" + data[i].content.replace('<br/>', '\n') + "방이름" + data[i].group, data[i].biz_logo, data[i].created, String(data[i].today), data[i].minute));
+          }
         }
 
       }
@@ -252,6 +257,13 @@ const buildNewMessage = (message, logo_image, date, first_today, minute) => {
 }
 
 
+/******************************************************* 이미지 [ 카메라 , 앨범 ] *******************************************************/
+/******************************************************* 명함 *******************************************************/
+
+
+
+
+
 /******************************************************* 송.수신 공용 *******************************************************/
 
 /* 송신 , 수신 - 금일 1번째 메세지일경우 이미지 및 문구 생성 부분 */
@@ -296,10 +308,19 @@ const todaysecondMessage = (first, second, minute) => {
 
 /* 송신 -> 메세지내용 */
 const sendMessage = (message) => {
-  const span = document.createElement("span");
-  span.classList.add('sender');
 
-  span.prepend(document.createTextNode(message.split("방이름")[0].split(":")[1]))
+  /* 이미지 */
+  if(message.split("방이름")[0].split(":")[1].includes("https://scrapmarket.s3.ap-northeast-2.amazonaws.com/Chat/")){
+    const chat_image = document.createElement("img");
+    chat_image.classList.add('chat_image');
+    chat_image.setAttribute('src', message.split("방이름")[0].split(":")[1] );
+  }
+  /* 메세지 */
+  else{
+      const span = document.createElement("span");
+      span.classList.add('sender');
+      span.prepend(document.createTextNode(message.split("방이름")[0].split(":")[1]))
+  }
 
   return span
 }
@@ -370,10 +391,17 @@ const receivesecondbox = (text, date, minute) => {
 
 /* 수신 - 메세지  */
 const receiveMessage = (message) => {
-  const span = document.createElement("span");
-  span.classList.add('receivetext');
-
-  span.prepend(document.createTextNode(message.split("방이름")[0].split(":")[1]))
+  
+  if(message.split("방이름")[0].split(":")[1].includes("https://scrapmarket.s3.ap-northeast-2.amazonaws.com/Chat/")){
+    const chat_image = document.createElement("img");
+    chat_image.classList.add('chat_image');
+    chat_image.setAttribute('src', message.split("방이름")[0].split(":")[1] );
+  }
+  else{
+    const span = document.createElement("span");
+    span.classList.add('receivetext');  
+    span.prepend(document.createTextNode(message.split("방이름")[0].split(":")[1]))
+  }
 
   return span
 }
