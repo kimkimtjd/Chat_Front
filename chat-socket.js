@@ -157,8 +157,13 @@ socket.on('message', (data) => {
 const handleNewMessage = (message) => {
 
   /* 이미지 및 명함 dfkjhdsfkjdshfjkshf -> 판별하기 위해 임의의 변수 셋팅 */
-  if(message.includes("dfkjhdsfkjdshfjkshf")){
-
+  if(message.includes("scrapmarket.s3.ap-northeast-2.amazonaws.com/Chat")){
+    if (message.includes("null")) {
+      messages.appendChild(buildNewMessage(message.replace("null", ""), biz_logo, totaltime, "null", "null"));
+    }
+    else {
+      messages.appendChild(buildNewMessage(message.replace(totaltime.slice(0, 10), "").replace(totaltime.slice(10, 16), ""), biz_logo, totaltime, totaltime.slice(0, 10), totaltime.slice(10, 16)));
+    }
   }
 
   /* 메세지 */
