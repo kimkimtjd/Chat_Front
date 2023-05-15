@@ -319,15 +319,19 @@ const sendMessage = (message) => {
     const chat_image = document.createElement("img");
     chat_image.classList.add('chat_image');
     chat_image.setAttribute('src', message.split("방이름")[0].split(":")[1]);
+
+    return img
   }
   /* 메세지 */
   else{
       const span = document.createElement("span");
       span.classList.add('sender');
       span.prepend(document.createTextNode(message.split("방이름")[0].split(":")[1]))
+  
+      return span
   }
 
-  return span
+  
 }
 
 /* 송신 - 시간 */
@@ -401,14 +405,18 @@ const receiveMessage = (message) => {
     const chat_image = document.createElement("img");
     chat_image.classList.add('chat_image');
     chat_image.setAttribute('src', message.split("방이름")[0].split(":")[1] );
+  
+    return img
   }
   else{
     const span = document.createElement("span");
     span.classList.add('receivetext');  
     span.prepend(document.createTextNode(message.split("방이름")[0].split(":")[1]))
+  
+    return span
   }
 
-  return span
+  
 }
 
 /* 수신 - 시간 */
