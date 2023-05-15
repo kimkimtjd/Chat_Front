@@ -324,7 +324,7 @@ const sendMessage = (message) => {
     chat_image.classList.add('chat_image');
     chat_image.setAttribute('src', message.replace(":","").replace(nickname ,"").replace(nickname ,"").replace(totaltime.slice(10, 16),""));
  
-    return img
+    return chat_image
   }
   /* 메세지 */
   else{
@@ -409,7 +409,7 @@ const receiveMessage = (message) => {
     chat_image.classList.add('chat_image');
     chat_image.setAttribute('src', message.split("방이름")[0].split(":")[1] );
   
-    return img
+    return chat_image
   }
   else{
     const span = document.createElement("span");
