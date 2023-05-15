@@ -205,6 +205,8 @@ const handleNewMessage = (message) => {
   */
 const buildNewMessage = (message, logo_image, date, first_today, minute) => {
   
+  console.log(message,first_today)
+
   /* 송신 */
   if (message.split(":")[0] === nickname) {
 
@@ -313,7 +315,6 @@ const todaysecondMessage = (first, second, minute) => {
 /* 송신 -> 메세지내용 */
 const sendMessage = (message) => {
 
-  console.log(message)
 
   /* 이미지 */
   if(message.includes("https://scrapmarket.s3.ap-northeast-2.amazonaws.")){
