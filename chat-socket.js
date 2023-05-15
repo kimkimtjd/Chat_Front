@@ -314,22 +314,22 @@ const todaysecondMessage = (first, second, minute) => {
 /* 송신 -> 메세지내용 */
 const sendMessage = (message) => {
 
-  /* 이미지 */
-  if(message.split("방이름")[0].split(":")[1].includes("https://scrapmarket.s3.ap-northeast-2.amazonaws.com/Chat/")){
-    const chat_image = document.createElement("img");
-    chat_image.classList.add('chat_image');
-    chat_image.setAttribute('src', message.split("방이름")[0].split(":")[1]);
+  // /* 이미지 */
+  // if(message.split("방이름")[0].split(":")[1].includes("https://scrapmarket.s3.ap-northeast-2.amazonaws.com/Chat/")){
+  //   const chat_image = document.createElement("img");
+  //   chat_image.classList.add('chat_image');
+  //   chat_image.setAttribute('src', message.split("방이름")[0].split(":")[1]);
 
-    return img
-  }
-  /* 메세지 */
-  else{
+  //   return img
+  // }
+  // /* 메세지 */
+  // else{
       const span = document.createElement("span");
       span.classList.add('sender');
       span.prepend(document.createTextNode(message.split("방이름")[0].split(":")[1]))
   
       return span
-  }
+  // }
 
   
 }
