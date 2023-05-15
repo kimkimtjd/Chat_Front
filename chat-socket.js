@@ -455,9 +455,9 @@ const receivesecondMessage = (datesecond, minute) => {
 /****************************** 아래 코드는 웹용  위 부분은 공용******************************/
 // socket.emit('room', room)
 
-// window.onload = function() {
-//     Room()
-//  };
+window.onload = function() {
+    Room()
+ };
 
 // const handleSubmitNewMessage = () => {
 //   // socket.emit('message', nickname + ":" + message.value + "방이름" + room)
