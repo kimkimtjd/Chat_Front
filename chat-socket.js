@@ -313,7 +313,8 @@ const todaysecondMessage = (first, second, minute) => {
 /* 송신 -> 메세지내용 */
 const sendMessage = (message) => {
 
-  
+  console.log(message)
+
   /* 이미지 */
   if(message.includes("https://scrapmarket.s3.ap-northeast-2.amazonaws.")){
     const chat_image = document.createElement("img");
