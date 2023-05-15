@@ -53,12 +53,12 @@ function Room(roomname, pk, user, partner, logo_image) {
   partner_user = partner
   
   /* 아래는 웹 테스트용 inputbox */
-//     nickname = "애완용꿀꿀이"
-//     user = nickname
-//     pk = 1
-//     partner = "lee"
-//     roomname = "d67dc57d-14a3-488b-8f5f-dfeee417ed3c"
-//     logo_image = "https://scrapmarket.s3.ap-northeast-2.amazonaws.com/Chat/1Screenshot_20230511_110843_KakaoTalk.jpg2023-05-15+13%3A20"
+    // nickname = "애완용꿀꿀이"
+    // user = nickname
+    // pk = 1
+    // partner = "lee"
+    // roomname = "d67dc57d-14a3-488b-8f5f-dfeee417ed3c"
+    // logo_image = "https://scrapmarket.s3.ap-northeast-2.amazonaws.com/Chat/1Screenshot_20230511_110843_KakaoTalk.jpg2023-05-15+13%3A20"
 
   socket.emit('room', roomname)
 
@@ -329,7 +329,7 @@ const sendMessage = (message) => {
   if(message.includes("https://scrapmarket.s3.ap-northeast-2.amazonaws.")){
     const chat_image = document.createElement("img");
     chat_image.classList.add('chat_image');
-    chat_image.setAttribute('src', message.replace(":","").replace(nickname ,"").replace(nickname ,"").replace(totaltime.slice(10, 16),""));
+    chat_image.setAttribute('src', message.replace(":","").replace(nickname ,"").replace(nickname ,"").replace(totaltime.slice(10, 16),"").replace("null",""));
  
     return chat_image
   }
@@ -411,10 +411,10 @@ const receivesecondbox = (text, date, minute) => {
 /* 수신 - 메세지  */
 const receiveMessage = (message) => {
 
-  if(message.split("방이름")[0].split(":")[1].includes("https://scrapmarket.s3.ap-northeast-2.amazonaws.")){
+  if(message.includes("https://scrapmarket.s3.ap-northeast-2.amazonaws.")){
     const chat_image = document.createElement("img");
     chat_image.classList.add('chat_image');
-    chat_image.setAttribute('src', message.split("방이름")[0].split(":")[1] );
+    chat_image.setAttribute('src', message.replace(":","").replace(nickname ,"").replace(nickname ,"").replace(totaltime.slice(10, 16),"").replace("null","") );
   
     return chat_image
   }
