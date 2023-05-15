@@ -205,7 +205,6 @@ const handleNewMessage = (message) => {
   */
 const buildNewMessage = (message, logo_image, date, first_today, minute) => {
   
-  console.log(message)
   /* 송신 */
   if (message.split(":")[0] === nickname) {
 
@@ -314,6 +313,9 @@ const todaysecondMessage = (first, second, minute) => {
 /* 송신 -> 메세지내용 */
 const sendMessage = (message) => {
 
+  console.log(message)
+
+  
   /* 이미지 */
   if(message.split("방이름")[0].split(":")[1].includes("https://scrapmarket.s3.ap-northeast-2.amazonaws.")){
     const chat_image = document.createElement("img");
