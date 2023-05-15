@@ -59,7 +59,7 @@ function Room(roomname, pk, user, partner, logo_image) {
     pk = 1
     partner = "lee"
     roomname = "d67dc57d-14a3-488b-8f5f-dfeee417ed3c"
-  
+    logo_image = "https://scrapmarket.s3.ap-northeast-2.amazonaws.com/Chat/1Screenshot_20230511_110843_KakaoTalk.jpg2023-05-15+13%3A20"
 
   socket.emit('room', roomname)
 
