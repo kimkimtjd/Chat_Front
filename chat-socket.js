@@ -22,7 +22,6 @@ else {
 
 var totaltime = formattedfirst.split(',')[0].split('-')[2] + "-" + formattedfirst.split(',')[0].split('-')[0] + "-" + formattedfirst.split(',')[0].split('-')[1] + " " +
   second + ":" + formattedfirst.split(',')[1].split('-')[2]
-console.log(totaltime.slice(10, 16))
 
 const socket = io("wss://port-0-chat-back-p8xrq2mlf0mbo1w.sel3.cloudtype.app/")
 
@@ -72,7 +71,7 @@ function Room(roomname, pk, user, partner, logo_image) {
       for (var i = 0; i < data.length; i++) {
         
         /* 메세지 */  
-        if (data[i].image_url !== "") {
+        if (data[i].image_url === "") {
           if (data[i].sender === pk) {
             messages.appendChild(buildNewMessage(nickname + ":" + data[i].content.replace('<br/>', '\n') + "방이름" + data[i].group, data[i].biz_logo, data[i].created, String(data[i].today), data[i].minute));
           }
@@ -87,12 +86,12 @@ function Room(roomname, pk, user, partner, logo_image) {
         }
 
         /* 이미지 */
-        else{
+        else if(data[i].image_url !== ""){
           if (data[i].sender === pk) {
-            messages.appendChild(buildNewMessage(nickname + ":" + data[i].image_url.replace('<br/>', '\n') + "방이름" + data[i].group, data[i].biz_logo, data[i].created, String(data[i].today), data[i].minute));
+            messages.appendChild(buildNewMessage(nickname + ":" + data[i].image_url + "방이름" + data[i].group, data[i].biz_logo, data[i].created, String(data[i].today), data[i].minute));
           }
           else {
-            messages.appendChild(buildNewMessage(data[i].nickname + ":" + data[i].image_url.replace('<br/>', '\n') + "방이름" + data[i].group, data[i].biz_logo, data[i].created, String(data[i].today), data[i].minute));
+            messages.appendChild(buildNewMessage(data[i].nickname + ":" + data[i].image_url + "방이름" + data[i].group, data[i].biz_logo, data[i].created, String(data[i].today), data[i].minute));
           }
         }
 
@@ -206,6 +205,7 @@ const handleNewMessage = (message) => {
   */
 const buildNewMessage = (message, logo_image, date, first_today, minute) => {
   
+  console.log(message)
   /* 송신 */
   if (message.split(":")[0] === nickname) {
 
@@ -364,7 +364,6 @@ const sendsecondMessage = (datesecond, minute) => {
 
   }
 
-  console.log(String(minute))
 
   if (String(minute) === "null") {
     span.prepend(document.createTextNode(""))
