@@ -313,7 +313,7 @@ const todaysecondMessage = (first, second, minute) => {
 /* 송신 -> 메세지내용 */
 const sendMessage = (message) => {
 
-  console.log(message)
+  console.log(message.split("방이름")[0].split(":")[1])
 
   
   /* 이미지 */
