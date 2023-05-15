@@ -117,12 +117,22 @@ function Test(arg, chat, roomname, today) {
 
   /* 현재시간 1번쨰 메세지가 아닐경우 */
   if (todaysdads === totaltime.slice(10, 16)) {
-    socket.emit('message', arg + ":" + chat + today + "null" + "방이름" + roomname)
+    if(chat.includes("scrapmarket.s3.ap-northeast-2.amazonaws.com")){
+      socket.emit('message', arg + ":" + chat + today + "null" + "방이름" + roomname)
+    }
+    else{
+      socket.emit('message', arg + ":" + chat + today + "null" + "방이름" + roomname)
+    }
   }
   /* 현재시간 1번쨰 메세지일경우 -> 시간 초기화 */
   else {
     todaysdads = totaltime.slice(10, 16)
-    socket.emit('message', arg + ":" + chat + today + totaltime.slice(10, 16) + "방이름" + roomname)
+    if(chat.includes("scrapmarket.s3.ap-northeast-2.amazonaws.com")){
+      socket.emit('message', arg + ":" + chat + today + "방이름" + roomname)    
+    }
+    else{
+      socket.emit('message', arg + ":" + chat + today + totaltime.slice(10, 16) + "방이름" + roomname)
+    }
   }
 
   /* 스크롤 하단으로 이동 */
@@ -311,9 +321,9 @@ const todaysecondMessage = (first, second, minute) => {
 
 /******************************************************* 송신 *******************************************************/
 
+
 /* 송신 -> 메세지내용 */
 const sendMessage = (message) => {
-
 
   /* 이미지 */
   if(message.includes("https://scrapmarket.s3.ap-northeast-2.amazonaws.")){
