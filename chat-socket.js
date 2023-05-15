@@ -329,7 +329,12 @@ const sendMessage = (message) => {
   if(message.includes("https://scrapmarket.s3.ap-northeast-2.amazonaws.")){
     const chat_image = document.createElement("img");
     chat_image.classList.add('chat_image');
-    chat_image.setAttribute('src', message.replace(":","").replace(nickname ,"").replace(nickname ,"").replace(totaltime.slice(10, 16),"").replace("null",""));
+    if(message.includes("null")){
+      chat_image.setAttribute('src', message.replace(":","").replace(nickname ,"").replace(nickname ,"").replace(totaltime.slice(10, 16),"").replace("null",""));
+    }
+    else{
+      chat_image.setAttribute('src', message.replace(":","").replace(nickname ,"").replace(nickname ,"").replace(totaltime.slice(10, 16),""));
+    }
  
     return chat_image
   }
@@ -414,8 +419,14 @@ const receiveMessage = (message) => {
   if(message.includes("https://scrapmarket.s3.ap-northeast-2.amazonaws.")){
     const chat_image = document.createElement("img");
     chat_image.classList.add('chat_image');
-    chat_image.setAttribute('src', message.replace(":","").replace(nickname ,"").replace(nickname ,"").replace(totaltime.slice(10, 16),"").replace("null","") );
-  
+    
+    if(message.includes("null")){
+      chat_image.setAttribute('src', message.replace(":","").replace(nickname ,"").replace(nickname ,"").replace(totaltime.slice(10, 16),"").replace("null",""));
+    }
+    else{
+      chat_image.setAttribute('src', message.replace(":","").replace(nickname ,"").replace(nickname ,"").replace(totaltime.slice(10, 16),""));
+    }
+
     return chat_image
   }
   else{
