@@ -50,16 +50,16 @@ const message = document.getElementById('message');
 /* 방입장 */
 function Room(roomname, pk, user, partner, logo_image) {
 
-  nickname = user
-  partner_user = partner
+  // nickname = user
+  // partner_user = partner
   
-  /* 아래는 웹 테스트용 inputbox 
-    nickname = "kmskms"
+  /* 아래는 웹 테스트용 inputbox */
+    nickname = "애완용꿀꿀이"
     user = nickname
-    pk = 3
-    partner = "애완용꿀꿀이"
-    roomname = "e7e3bb53-2e6c-4900-a537-45e8b03fbc99"
-  */
+    pk = 1
+    partner = "sososo"
+    roomname = "541d30c4-37a2-41df-b2b7-8e9cc234f3a8"
+  
 
   socket.emit('room', roomname)
 
@@ -313,7 +313,7 @@ const sendMessage = (message) => {
   if(message.split("방이름")[0].split(":")[1].includes("https://scrapmarket.s3.ap-northeast-2.amazonaws.com/Chat/")){
     const chat_image = document.createElement("img");
     chat_image.classList.add('chat_image');
-    chat_image.setAttribute('src', message.split("방이름")[0].split(":")[1] );
+    chat_image.setAttribute('src', message.split("방이름")[0].split(":")[1]);
   }
   /* 메세지 */
   else{
@@ -391,7 +391,7 @@ const receivesecondbox = (text, date, minute) => {
 
 /* 수신 - 메세지  */
 const receiveMessage = (message) => {
-  
+
   if(message.split("방이름")[0].split(":")[1].includes("https://scrapmarket.s3.ap-northeast-2.amazonaws.com/Chat/")){
     const chat_image = document.createElement("img");
     chat_image.classList.add('chat_image');
