@@ -88,10 +88,10 @@ function Room(roomname, pk, user, partner, logo_image) {
         /* 이미지 */
         else if(data[i].image_url !== ""){
           if (data[i].sender === pk) {
-            messages.appendChild(buildNewMessage(nickname + ":" + data[i].image_url + "방이름" + data[i].group, data[i].biz_logo, data[i].created, String(data[i].today), data[i].minute));
+            messages.appendChild(buildNewMessage(data[i].image_url + "방이름" + data[i].group, data[i].biz_logo, data[i].created, String(data[i].today)));
           }
           else {
-            messages.appendChild(buildNewMessage(data[i].nickname + ":" + data[i].image_url + "방이름" + data[i].group, data[i].biz_logo, data[i].created, String(data[i].today), data[i].minute));
+            messages.appendChild(buildNewMessage(data[i].image_url + "방이름" + data[i].group, data[i].biz_logo, data[i].created, String(data[i].today)));
           }
         }
 
@@ -317,7 +317,7 @@ const sendMessage = (message) => {
 
   
   /* 이미지 */
-  if(message.split("방이름")[0].split(":")[1].includes("https://scrapmarket.s3.ap-northeast-2.amazonaws.")){
+  if(message.includes("https://scrapmarket.s3.ap-northeast-2.amazonaws.")){
     const chat_image = document.createElement("img");
     chat_image.classList.add('chat_image');
     chat_image.setAttribute('src', message.split("방이름")[0].split(":")[1]);
