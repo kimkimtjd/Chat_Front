@@ -51,16 +51,16 @@ const message = document.getElementById('message');
 /* 방입장 */
 function Room(roomname, pk, user, partner, logo_image) {
 
-  // nickname = user
-  // partner_user = partner
+  nickname = user
+  partner_user = partner
   
   /* 아래는 웹 테스트용 inputbox */
-    nickname = "애완용꿀꿀이"
-    user = nickname
-    pk = 1
-    partner = "lee"
-    roomname = "d67dc57d-14a3-488b-8f5f-dfeee417ed3c"
-    logo_image = "https://scrapmarket.s3.ap-northeast-2.amazonaws.com/Chat/1Screenshot_20230511_110843_KakaoTalk.jpg2023-05-15+13%3A20"
+    // nickname = "애완용꿀꿀이"
+    // user = nickname
+    // pk = 1
+    // partner = "lee"
+    // roomname = "d67dc57d-14a3-488b-8f5f-dfeee417ed3c"
+    // logo_image = "https://scrapmarket.s3.ap-northeast-2.amazonaws.com/Chat/1Screenshot_20230511_110843_KakaoTalk.jpg2023-05-15+13%3A20"
 
   socket.emit('room', roomname)
 
@@ -702,11 +702,268 @@ const receiveMessage = (message) => {
     return chat_image
   }
   else{
-    const span = document.createElement("span");
-    span.classList.add('receivetext');  
-    span.prepend(document.createTextNode(message.split("방이름")[0].split(":")[1]))
-  
-    return span
+
+    if(message.includes("businesscard_certifycode")){
+      
+      console.log("명함입니다.")
+
+      const div = document.createElement("div");
+      div.classList.add("businesscard_full")
+
+      const div_logo = document.createElement("div");
+      div_logo.classList.add("businesscard_logo")
+
+      const div_logo_img = document.createElement("img");
+      div_logo_img.classList.add("businesscard_logo_img")
+
+      /* 로고 */ 
+      if(message.split("방이름")[0].split("dflksjfdsj")[1].split("/")[0] === "no"){
+        div_logo_img.setAttribute('src' , "https://scrapmarket.s3.ap-northeast-2.amazonaws.com/businesscard/businesscard_logo.png")
+      }
+      else{
+        div_logo_img.setAttribute('src' , message.split("방이름")[0].split("dflksjfdsj")[1].split("&&")[0])
+      }
+
+      div.prepend(div_logo)
+      div_logo.prepend(div_logo_img)
+
+      /* 명함정보 전체 박스 */
+      const div_info_total = document.createElement("div");
+      div_info_total.classList.add("businesscard_information")
+      div.appendChild(div_info_total)
+
+      /* 닉네임 이름 직급 */
+      const div_info_first = document.createElement("div");
+      div_info_first.classList.add("businesscard_info_first")
+
+      /* 회사명 지역 상세주소 */
+      const div_info_second = document.createElement("div");
+      div_info_second.classList.add("businesscard_info_second")
+
+      /* 휴대전화 전화 이메일 */
+      const div_info_third = document.createElement("div");
+      div_info_third.classList.add("businesscard_info_third")
+
+      /* 1번째줄 이미지 */
+      const div_info_first_img = document.createElement("div");
+      div_info_first_img.classList.add("businesscard_info_first_logo")
+
+      const div_info_first_img_img = document.createElement("img");
+      div_info_first_img_img.setAttribute('src' , "https://scrapmarket.s3.ap-northeast-2.amazonaws.com/businesscard/businesscard_first.png")
+      div_info_first_img_img.classList.add("businesscard_info_first_logo_img")
+
+      div_info_total.prepend(div_info_first)
+      div_info_first.prepend(div_info_first_img)
+      div_info_first_img.prepend(div_info_first_img_img)
+
+      // 여기
+      const div_info_first_box = document.createElement("div");
+      div_info_first_box.classList.add("businesscard_info_first_list")
+      div_info_first.appendChild(div_info_first_box)
+
+      /* 닉네임 */
+      const div_info_first_nickname_box = document.createElement("div");
+      div_info_first_nickname_box.classList.add("businesscard_info_nickname")
+
+      const div_info_first_nickname_title = document.createElement("span");
+      div_info_first_nickname_title.classList.add("businesscard_info_nickname_title")
+      div_info_first_nickname_title.prepend("닉네임")
+
+      const div_info_first_nickname_data = document.createElement("span");
+      div_info_first_nickname_data.classList.add("businesscard_info_nickname_data")
+      div_info_first_nickname_data.prepend(message.split("방이름")[0].split("dflksjfdsj")[1].split("&&")[1])
+      
+
+      div_info_first_box.prepend(div_info_first_nickname_box)
+      div_info_first_nickname_box.prepend(div_info_first_nickname_title)
+      div_info_first_nickname_box.appendChild(div_info_first_nickname_data)
+
+
+      /* 이름 */
+      const div_info_first_name_box = document.createElement("div");
+      div_info_first_name_box.classList.add("businesscard_info_name")
+
+      const div_info_first_name_title = document.createElement("span");
+      div_info_first_name_title.classList.add("businesscard_info_name_title")
+      div_info_first_name_title.prepend("이름")
+
+      const div_info_first_name_data = document.createElement("span");
+      div_info_first_name_data.classList.add("businesscard_info_name_data")
+      div_info_first_name_data.prepend(message.split("방이름")[0].split("dflksjfdsj")[1].split("&&")[2])
+
+
+      div_info_first_box.appendChild(div_info_first_name_box)
+      div_info_first_name_box.prepend(div_info_first_name_title)
+      div_info_first_name_box.appendChild(div_info_first_name_data)
+
+      /* 직급 */
+      const div_info_first_position_box = document.createElement("div");
+      div_info_first_position_box.classList.add("businesscard_info_position")
+
+      const div_info_first_position_title = document.createElement("span");
+      div_info_first_position_title.classList.add("businesscard_info_position_title")
+      div_info_first_position_title.prepend("직급")
+
+      const div_info_first_position_data = document.createElement("span");
+      div_info_first_position_data.classList.add("businesscard_info_position_data")
+      div_info_first_position_data.prepend(message.split("방이름")[0].split("dflksjfdsj")[1].split("&&")[3])
+
+
+      div_info_first_box.appendChild(div_info_first_position_box)
+      div_info_first_position_box.prepend(div_info_first_position_title)
+      div_info_first_position_box.appendChild(div_info_first_position_data)
+
+      
+       /* 2번째줄 이미지 */
+      const div_info_second_img = document.createElement("div");
+      div_info_second_img.classList.add("businesscard_info_second_logo")
+
+      const div_info_second_img_img = document.createElement("img");
+      div_info_second_img_img.setAttribute('src' , "https://scrapmarket.s3.ap-northeast-2.amazonaws.com/businesscard/businesscard_second.png")
+      div_info_second_img_img.classList.add("businesscard_info_first_logo_img")
+
+      div_info_total.appendChild(div_info_second)
+      div_info_second.prepend(div_info_second_img)
+      div_info_second_img.prepend(div_info_second_img_img)
+
+      const div_info_second_box = document.createElement("div");
+      div_info_second_box.classList.add("businesscard_info_first_list")
+      div_info_second.appendChild(div_info_second_box)
+
+       /* 회사명 */
+       const div_info_first_businessname_box = document.createElement("div");
+       div_info_first_businessname_box.classList.add("businesscard_info_nickname")
+ 
+       const div_info_first_businessname_title = document.createElement("span");
+       div_info_first_businessname_title.classList.add("businesscard_info_nickname_title")
+       div_info_first_businessname_title.prepend("회사명")
+ 
+       const div_info_first_businessname_data = document.createElement("span");
+       div_info_first_businessname_data.classList.add("businesscard_info_nickname_data")
+       div_info_first_businessname_data.prepend(message.split("방이름")[0].split(":")[1].split("&&")[4])
+ 
+ 
+       div_info_second_box.prepend(div_info_first_businessname_box)
+       div_info_first_businessname_box.prepend(div_info_first_businessname_title)
+       div_info_first_businessname_box.appendChild(div_info_first_businessname_data)
+ 
+ 
+       /* 지역 */
+       const div_info_first_location_box = document.createElement("div");
+       div_info_first_location_box.classList.add("businesscard_info_name")
+ 
+       const div_info_first_location_title = document.createElement("span");
+       div_info_first_location_title.classList.add("businesscard_info_name_title")
+       div_info_first_location_title.prepend("지역")
+ 
+       const div_info_first_location_data = document.createElement("span");
+       div_info_first_location_data.classList.add("businesscard_info_name_data")
+       div_info_first_location_data.prepend(message.split("방이름")[0].split(":")[1].split("&&")[5])
+ 
+ 
+       div_info_second_box.appendChild(div_info_first_location_box)
+       div_info_first_location_box.prepend(div_info_first_location_title)
+       div_info_first_location_box.appendChild(div_info_first_location_data)
+ 
+       /* 상세주소 */
+       const div_info_first_detail_box = document.createElement("div");
+       div_info_first_detail_box.classList.add("businesscard_info_position")
+ 
+       const div_info_first_detail_title = document.createElement("span");
+       div_info_first_detail_title.classList.add("businesscard_info_position_title")
+       div_info_first_detail_title.prepend("상세주소")
+ 
+       const div_info_first_detail_data = document.createElement("span");
+       div_info_first_detail_data.classList.add("businesscard_info_position_data")
+       div_info_first_detail_data.prepend(message.split("방이름")[0].split(":")[1].split("&&")[6])
+ 
+ 
+       div_info_second_box.appendChild(div_info_first_detail_box)
+       div_info_first_detail_box.prepend(div_info_first_detail_title)
+       div_info_first_detail_box.appendChild(div_info_first_detail_data)
+ 
+      /* 3번째줄 이미지 */
+      const div_info_third_img = document.createElement("div");
+      div_info_third_img.classList.add("businesscard_info_third_logo")
+
+      const div_info_third_img_img = document.createElement("img");
+      div_info_third_img_img.setAttribute('src' , "https://scrapmarket.s3.ap-northeast-2.amazonaws.com/businesscard/businesscard_third.png")
+      div_info_third_img_img.classList.add("businesscard_info_third_logo_img")
+
+      div_info_total.appendChild(div_info_third)
+      div_info_third.prepend(div_info_third_img)
+      div_info_third_img.prepend(div_info_third_img_img)
+
+      const div_info_third_box = document.createElement("div");
+      div_info_third_box.classList.add("businesscard_info_first_list")
+      div_info_third.appendChild(div_info_third_box)
+
+      /* 휴대전화 */
+       const div_info_first_phone_box = document.createElement("div");
+       div_info_first_phone_box.classList.add("businesscard_info_nickname")
+ 
+       const div_info_first_phone_title = document.createElement("span");
+       div_info_first_phone_title.classList.add("businesscard_info_nickname_title")
+       div_info_first_phone_title.prepend("휴대전화")
+ 
+       const div_info_first_phone_data = document.createElement("span");
+       div_info_first_phone_data.classList.add("businesscard_info_nickname_data")
+       div_info_first_phone_data.prepend(message.split("방이름")[0].split(":")[1].split("&&")[7].replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3'))
+ 
+       div_info_third_box.prepend(div_info_first_phone_box)
+       div_info_first_phone_box.prepend(div_info_first_phone_title)
+       div_info_first_phone_box.appendChild(div_info_first_phone_data)
+ 
+ 
+       /* 전화 */
+       const div_info_first_tel_box = document.createElement("div");
+       div_info_first_tel_box.classList.add("businesscard_info_name")
+ 
+       const div_info_first_tel_title = document.createElement("span");
+       div_info_first_tel_title.classList.add("businesscard_info_name_title")
+       div_info_first_tel_title.prepend("전화")
+ 
+       const div_info_first_tel_data = document.createElement("span");
+       div_info_first_tel_data.classList.add("businesscard_info_name_data")
+       
+       if (message.split("방이름")[0].split(":")[1].split("&&")[8].length === 10) {
+        div_info_first_tel_data.prepend(message.split("방이름")[0].split(":")[1].split("&&")[8].replace(/(\d{2})(\d{3})(\d{4})/, '$1-$2-$3'))
+      } else if (message.split("방이름")[0].split(":")[1].split("&&")[8].length === 11) {
+        div_info_first_tel_data.prepend(message.split("방이름")[0].split(":")[1].split("&&")[8].replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3'))
+      } else {
+        div_info_first_tel_data.prepend(message.split("방이름")[0].split(":")[1].split("&&")[8])
+      }
+
+       div_info_third_box.appendChild(div_info_first_tel_box)
+       div_info_first_tel_box.prepend(div_info_first_tel_title)
+       div_info_first_tel_box.appendChild(div_info_first_tel_data)
+ 
+       /* 이메일 */
+       const div_info_first_email_box = document.createElement("div");
+       div_info_first_email_box.classList.add("businesscard_info_position")
+ 
+       const div_info_first_email_title = document.createElement("span");
+       div_info_first_email_title.classList.add("businesscard_info_position_title")
+       div_info_first_email_title.prepend("이메일")
+ 
+       const div_info_first_email_data = document.createElement("span");
+       div_info_first_email_data.classList.add("businesscard_info_position_data")
+       div_info_first_email_data.prepend(message.split("방이름")[0].split(":")[1].split("&&")[9])
+ 
+ 
+       div_info_third_box.appendChild(div_info_first_email_box)
+       div_info_first_email_box.prepend(div_info_first_email_title)
+       div_info_first_email_box.appendChild(div_info_first_email_data)
+
+       return div
+    }
+    else{
+      const span = document.createElement("span");
+      span.classList.add('receivetext');  
+      span.prepend(document.createTextNode(message.split("방이름")[0].split(":")[1]))
+    
+      return span
+    }
   }
 
   
@@ -756,9 +1013,9 @@ const receivesecondMessage = (datesecond, minute) => {
 /****************************** 아래 코드는 웹용  위 부분은 공용******************************/
 // socket.emit('room', room)
 
-window.onload = function() {
-    Room()
- };
+// window.onload = function() {
+//     Room()
+//  };
 
 // const handleSubmitNewMessage = () => {
 //   // socket.emit('message', nickname + ":" + message.value + "방이름" + room)
