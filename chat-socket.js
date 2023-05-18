@@ -408,10 +408,10 @@ const sendMessage = (message) => {
       div_info_first.prepend(div_info_first_img)
       div_info_first_img.prepend(div_info_first_img_img)
 
-      
+      // 여기
       const div_info_first_box = document.createElement("div");
       div_info_first_box.classList.add("businesscard_info_first_list")
-      div_info_total.appendChild(div_info_first_box)
+      div_info_first.appendChild(div_info_first_box)
 
       /* 닉네임 */
       const div_info_first_nickname_box = document.createElement("div");
@@ -423,7 +423,7 @@ const sendMessage = (message) => {
 
       const div_info_first_nickname_data = document.createElement("span");
       div_info_first_nickname_data.classList.add("businesscard_info_nickname_data")
-      div_info_first_nickname_data.prepend(message.split("방이름")[0].split(":")[1].split("/")[1])
+      div_info_first_nickname_data.prepend(message.split("방이름")[0].split(":")[1])
 
 
       div_info_first_box.prepend(div_info_first_nickname_box)
