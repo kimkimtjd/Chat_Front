@@ -373,7 +373,7 @@ const sendMessage = (message) => {
         div_logo_img.setAttribute('src' , "https://scrapmarket.s3.ap-northeast-2.amazonaws.com/businesscard/businesscard_logo.png")
       }
       else{
-        div_logo_img.setAttribute('src' , message.split("방이름")[0].split("dflksjfdsj")[1].split("/")[0])
+        div_logo_img.setAttribute('src' , message.split("방이름")[0].split("dflksjfdsj")[1].split("&&")[0])
       }
 
       div.prepend(div_logo)
@@ -423,7 +423,7 @@ const sendMessage = (message) => {
 
       const div_info_first_nickname_data = document.createElement("span");
       div_info_first_nickname_data.classList.add("businesscard_info_nickname_data")
-      div_info_first_nickname_data.prepend(message.split("방이름")[0].split("dflksjfdsj")[1].split("/")[1])
+      div_info_first_nickname_data.prepend(message.split("방이름")[0].split("dflksjfdsj")[1].split("&&")[1])
       console.log(message)
 
       div_info_first_box.prepend(div_info_first_nickname_box)
@@ -441,7 +441,7 @@ const sendMessage = (message) => {
 
       const div_info_first_name_data = document.createElement("span");
       div_info_first_name_data.classList.add("businesscard_info_name_data")
-      div_info_first_name_data.prepend(message.split("방이름")[0].split("dflksjfdsj")[1].split("/")[2])
+      div_info_first_name_data.prepend(message.split("방이름")[0].split("dflksjfdsj")[1].split("&&")[2])
 
 
       div_info_first_box.appendChild(div_info_first_name_box)
@@ -454,11 +454,11 @@ const sendMessage = (message) => {
 
       const div_info_first_position_title = document.createElement("span");
       div_info_first_position_title.classList.add("businesscard_info_position_title")
-      div_info_first_position_title.prepend("이름")
+      div_info_first_position_title.prepend("직급")
 
       const div_info_first_position_data = document.createElement("span");
       div_info_first_position_data.classList.add("businesscard_info_position_data")
-      div_info_first_position_data.prepend(message.split("방이름")[0].split("dflksjfdsj")[1].split("/")[2])
+      div_info_first_position_data.prepend(message.split("방이름")[0].split("dflksjfdsj")[1].split("&&")[3])
 
 
       div_info_first_box.appendChild(div_info_first_position_box)
@@ -491,7 +491,7 @@ const sendMessage = (message) => {
  
        const div_info_first_businessname_data = document.createElement("span");
        div_info_first_businessname_data.classList.add("businesscard_info_nickname_data")
-       div_info_first_businessname_data.prepend(message.split("방이름")[0].split(":")[1].split("/")[3])
+       div_info_first_businessname_data.prepend(message.split("방이름")[0].split(":")[1].split("&&")[4])
  
  
        div_info_second_box.prepend(div_info_first_businessname_box)
@@ -509,7 +509,7 @@ const sendMessage = (message) => {
  
        const div_info_first_location_data = document.createElement("span");
        div_info_first_location_data.classList.add("businesscard_info_name_data")
-       div_info_first_location_data.prepend(message.split("방이름")[0].split(":")[1].split("/")[4])
+       div_info_first_location_data.prepend(message.split("방이름")[0].split(":")[1].split("&&")[5])
  
  
        div_info_second_box.prepend(div_info_first_location_box)
@@ -526,7 +526,7 @@ const sendMessage = (message) => {
  
        const div_info_first_detail_data = document.createElement("span");
        div_info_first_detail_data.classList.add("businesscard_info_position_data")
-       div_info_first_detail_data.prepend(message.split("방이름")[0].split(":")[1].split("/")[5])
+       div_info_first_detail_data.prepend(message.split("방이름")[0].split(":")[1].split("&&")[6])
  
  
        div_info_second_box.prepend(div_info_first_detail_box)
@@ -558,7 +558,7 @@ const sendMessage = (message) => {
  
        const div_info_first_phone_data = document.createElement("span");
        div_info_first_phone_data.classList.add("businesscard_info_nickname_data")
-       div_info_first_phone_data.prepend(message.split("방이름")[0].split(":")[1].split("/")[6])
+       div_info_first_phone_data.prepend(message.split("방이름")[0].split(":")[1].split("&&")[7])
  
  
        div_info_third_box.prepend(div_info_first_phone_box)
@@ -576,7 +576,7 @@ const sendMessage = (message) => {
  
        const div_info_first_tel_data = document.createElement("span");
        div_info_first_tel_data.classList.add("businesscard_info_name_data")
-       div_info_first_tel_data.prepend(message.split("방이름")[0].split(":")[1].split("/")[7])
+       div_info_first_tel_data.prepend(message.split("방이름")[0].split(":")[1].split("&&")[8])
  
  
        div_info_third_box.prepend(div_info_first_tel_box)
@@ -593,7 +593,7 @@ const sendMessage = (message) => {
  
        const div_info_first_email_data = document.createElement("span");
        div_info_first_email_data.classList.add("businesscard_info_position_data")
-       div_info_first_email_data.prepend(message.split("방이름")[0].split(":")[1].split("/")[8])
+       div_info_first_email_data.prepend(message.split("방이름")[0].split(":")[1].split("&&")[9])
  
  
        div_info_third_box.prepend(div_info_first_email_box)
