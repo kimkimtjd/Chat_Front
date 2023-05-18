@@ -405,9 +405,11 @@ const sendMessage = (message) => {
       div_info_first_img_img.classList.add("businesscard_info_first_logo_img")
 
       div_info_total.prepend(div_info_first)
+      div_info_total.appendChild(div_info_first_box)
       div_info_first.prepend(div_info_first_img)
       div_info_first_img.prepend(div_info_first_img_img)
 
+      
       const div_info_first_box = document.createElement("div");
       div_info_first_box.classList.add("businesscard_info_first_list")
 
