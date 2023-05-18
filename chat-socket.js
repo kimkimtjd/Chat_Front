@@ -234,7 +234,7 @@ const buildNewMessage = (message, logo_image, date, first_today, minute) => {
   
 
   /* 송신 */
-  if (message.split(":")[0] === nickname) {
+  if (message.split(":")[0] === nickname || message.split("dflksjfdsj")[0] === nickname) {
 
     const div = document.createElement("div");
 
