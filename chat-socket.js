@@ -341,7 +341,7 @@ const todaysecondMessage = (first, second, minute) => {
 const sendMessage = (message) => {
 
   /* 이미지 */
-  if(message.includes("https://scrapmarket.s3.ap-northeast-2.amazonaws.")){
+  if(message.includes("https://scrapmarket.s3.ap-northeast-2.amazonaws.") || message.indexOf("businesscard_certifycode") === -1 ){
     const chat_image = document.createElement("img");
     chat_image.classList.add('chat_image');
     if(message.includes("null")){
