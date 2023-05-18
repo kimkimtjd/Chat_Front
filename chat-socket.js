@@ -51,16 +51,16 @@ const message = document.getElementById('message');
 /* 방입장 */
 function Room(roomname, pk, user, partner, logo_image) {
 
-  nickname = user
-  partner_user = partner
+  // nickname = user
+  // partner_user = partner
   
   /* 아래는 웹 테스트용 inputbox */
-    // nickname = "애완용꿀꿀이"
-    // user = nickname
-    // pk = 1
-    // partner = "lee"
-    // roomname = "d67dc57d-14a3-488b-8f5f-dfeee417ed3c"
-    // logo_image = "https://scrapmarket.s3.ap-northeast-2.amazonaws.com/Chat/1Screenshot_20230511_110843_KakaoTalk.jpg2023-05-15+13%3A20"
+    nickname = "애완용꿀꿀이"
+    user = nickname
+    pk = 1
+    partner = "lee"
+    roomname = "d67dc57d-14a3-488b-8f5f-dfeee417ed3c"
+    logo_image = "https://scrapmarket.s3.ap-northeast-2.amazonaws.com/Chat/1Screenshot_20230511_110843_KakaoTalk.jpg2023-05-15+13%3A20"
 
   socket.emit('room', roomname)
 
@@ -584,8 +584,9 @@ const sendMessage = (message) => {
  
        const div_info_first_phone_data = document.createElement("span");
        div_info_first_phone_data.classList.add("businesscard_info_nickname_data")
-       div_info_first_phone_data.prepend(message.split("방이름")[0].split(":")[1].split("&&")[7].replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3'))
- 
+      //  div_info_first_phone_data.prepend(message.split("방이름")[0].split(":")[1].split("&&")[7]?.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3'))
+      div_info_first_phone_data.prepend(message.split("방이름")[0].split(":")[1].split("&&")[7])
+
        div_info_third_box.prepend(div_info_first_phone_box)
        div_info_first_phone_box.prepend(div_info_first_phone_title)
        div_info_first_phone_box.appendChild(div_info_first_phone_data)
@@ -602,13 +603,13 @@ const sendMessage = (message) => {
        const div_info_first_tel_data = document.createElement("span");
        div_info_first_tel_data.classList.add("businesscard_info_name_data")
        
-       if (message.split("방이름")[0].split(":")[1].split("&&")[8].length === 10) {
-        div_info_first_tel_data.prepend(message.split("방이름")[0].split(":")[1].split("&&")[8].replace(/(\d{2})(\d{3})(\d{4})/, '$1-$2-$3'))
-      } else if (message.split("방이름")[0].split(":")[1].split("&&")[8].length === 11) {
-        div_info_first_tel_data.prepend(message.split("방이름")[0].split(":")[1].split("&&")[8].replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3'))
-      } else {
+      //  if (message.split("방이름")[0].split(":")[1].split("&&")[8].length === 10) {
+      //   div_info_first_tel_data.prepend(message.split("방이름")[0].split(":")[1].split("&&")[8].replace(/(\d{2})(\d{3})(\d{4})/, '$1-$2-$3'))
+      // } else if (message.split("방이름")[0].split(":")[1].split("&&")[8].length === 11) {
+      //   div_info_first_tel_data.prepend(message.split("방이름")[0].split(":")[1].split("&&")[8].replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3'))
+      // } else {
         div_info_first_tel_data.prepend(message.split("방이름")[0].split(":")[1].split("&&")[8])
-      }
+      // }
 
        div_info_third_box.appendChild(div_info_first_tel_box)
        div_info_first_tel_box.prepend(div_info_first_tel_title)
@@ -928,7 +929,7 @@ const receiveMessage = (message) => {
  
        const div_info_first_phone_data = document.createElement("span");
        div_info_first_phone_data.classList.add("businesscard_info_nickname_data")
-       div_info_first_phone_data.prepend(message.split("방이름")[0].split(":")[1].split("&&")[7].replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3'))
+       div_info_first_phone_data.prepend(message.split("방이름")[0].split(":")[1].split("&&")[7])
  
        div_info_third_box.prepend(div_info_first_phone_box)
        div_info_first_phone_box.prepend(div_info_first_phone_title)
@@ -946,13 +947,13 @@ const receiveMessage = (message) => {
        const div_info_first_tel_data = document.createElement("span");
        div_info_first_tel_data.classList.add("businesscard_info_name_data")
        
-       if (message.split("방이름")[0].split(":")[1].split("&&")[8].length === 10) {
-        div_info_first_tel_data.prepend(message.split("방이름")[0].split(":")[1].split("&&")[8].replace(/(\d{2})(\d{3})(\d{4})/, '$1-$2-$3'))
-      } else if (message.split("방이름")[0].split(":")[1].split("&&")[8].length === 11) {
-        div_info_first_tel_data.prepend(message.split("방이름")[0].split(":")[1].split("&&")[8].replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3'))
-      } else {
+      //  if (message.split("방이름")[0].split(":")[1].split("&&")[8].length === 10) {
+      //   div_info_first_tel_data.prepend(message.split("방이름")[0].split(":")[1].split("&&")[8].replace(/(\d{2})(\d{3})(\d{4})/, '$1-$2-$3'))
+      // } else if (message.split("방이름")[0].split(":")[1].split("&&")[8].length === 11) {
+      //   div_info_first_tel_data.prepend(message.split("방이름")[0].split(":")[1].split("&&")[8].replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3'))
+      // } else {
         div_info_first_tel_data.prepend(message.split("방이름")[0].split(":")[1].split("&&")[8])
-      }
+      // }
 
        div_info_third_box.appendChild(div_info_first_tel_box)
        div_info_first_tel_box.prepend(div_info_first_tel_title)
@@ -1033,9 +1034,9 @@ const receivesecondMessage = (datesecond, minute) => {
 /****************************** 아래 코드는 웹용  위 부분은 공용******************************/
 // socket.emit('room', room)
 
-// window.onload = function() {
-//     Room()
-//  };
+window.onload = function() {
+    Room()
+ };
 
 // const handleSubmitNewMessage = () => {
 //   // socket.emit('message', nickname + ":" + message.value + "방이름" + room)
