@@ -88,20 +88,20 @@ function Room(roomname, pk, user, partner, logo_image) {
         /* 명함 */
         else if(data[i].image_url === "no"){
           if (data[i].sender === pk) {
-            messages.appendChild(buildNewMessage(nickname + ":" + data[i].content.replace('<br/>', '\n') + "방이름" + data[i].group, data[i].biz_logo, data[i].created, String(data[i].today), data[i].minute));
+            messages.appendChild(buildNewMessage(nickname + "dflksjfdsj" + data[i].content.replace('<br/>', '\n') + "방이름" + data[i].group, data[i].biz_logo, data[i].created, String(data[i].today), data[i].minute));
           }
           else {
-            messages.appendChild(buildNewMessage(data[i].nickname + ":" + data[i].content.replace('<br/>', '\n') + "방이름" + data[i].group, data[i].biz_logo, data[i].created, String(data[i].today), data[i].minute));
+            messages.appendChild(buildNewMessage(data[i].nickname + "dflksjfdsj" + data[i].content.replace('<br/>', '\n') + "방이름" + data[i].group, data[i].biz_logo, data[i].created, String(data[i].today), data[i].minute));
           }
         }
 
         /* 이미지 */
         else if(data[i].image_url !== ""){
           if (data[i].sender === pk) {
-            messages.appendChild(buildNewMessage(nickname + "dflksjfdsj" + data[i].image_url.replace('<br/>', '\n') + "방이름" + data[i].group, data[i].biz_logo, data[i].created, String(data[i].today), data[i].minute));
+            messages.appendChild(buildNewMessage(nickname + ":" + data[i].image_url.replace('<br/>', '\n') + "방이름" + data[i].group, data[i].biz_logo, data[i].created, String(data[i].today), data[i].minute));
           }
           else {
-            messages.appendChild(buildNewMessage(data[i].nickname + "dflksjfdsj" + data[i].image_url.replace('<br/>', '\n') + "방이름" + data[i].group, data[i].biz_logo, data[i].created, String(data[i].today), data[i].minute));
+            messages.appendChild(buildNewMessage(data[i].nickname + ":" + data[i].image_url.replace('<br/>', '\n') + "방이름" + data[i].group, data[i].biz_logo, data[i].created, String(data[i].today), data[i].minute));
           }
         }
 
