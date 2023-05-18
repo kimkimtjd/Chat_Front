@@ -196,6 +196,7 @@ const handleNewMessage = (message) => {
 
   /* 이미지 */
   if(message.includes("scrapmarket.s3.ap-northeast-2.amazonaws.com/Chat") && !message.includes('businesscard_certifycode')){
+    console.log("이미지")
     if (message.includes("null")) {
       messages.appendChild(buildNewMessage(message.replace("null", ""), biz_logo, totaltime, "null", "null"));
     }
@@ -206,6 +207,7 @@ const handleNewMessage = (message) => {
 
   /* 명함 */
   else if (message.includes("scrapmarket.s3.ap-northeast-2.amazonaws.com/Chat") && message.includes('businesscard_certifycode')){
+    console.log("명함")
     if (message.includes("null")) {
       messages.appendChild(buildNewMessage(message.replace("null", ""), biz_logo, totaltime, "null", "null"));
     }
