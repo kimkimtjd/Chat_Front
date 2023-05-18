@@ -560,8 +560,7 @@ const sendMessage = (message) => {
  
        const div_info_first_phone_data = document.createElement("span");
        div_info_first_phone_data.classList.add("businesscard_info_nickname_data")
-       div_info_first_phone_data.prepend(message.split("방이름")[0].split(":")[1].split("&&")[7])
- 
+       div_info_first_phone_data.prepend(message.split("방이름")[0].split(":")[1].split("&&")[7].replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3'))
  
        div_info_third_box.prepend(div_info_first_phone_box)
        div_info_first_phone_box.prepend(div_info_first_phone_title)
@@ -578,9 +577,15 @@ const sendMessage = (message) => {
  
        const div_info_first_tel_data = document.createElement("span");
        div_info_first_tel_data.classList.add("businesscard_info_name_data")
-       div_info_first_tel_data.prepend(message.split("방이름")[0].split(":")[1].split("&&")[8])
- 
- 
+       
+       if (message.split("방이름")[0].split(":")[1].split("&&")[8].length === 10) {
+        div_info_first_tel_data.prepend(message.split("방이름")[0].split(":")[1].split("&&")[8].replace(/(\d{2})(\d{3})(\d{4})/, '$1-$2-$3'))
+      } else if (message.split("방이름")[0].split(":")[1].split("&&")[8].length === 11) {
+        div_info_first_tel_data.prepend(message.split("방이름")[0].split(":")[1].split("&&")[8].replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3'))
+      } else {
+        div_info_first_tel_data.prepend(message.split("방이름")[0].split(":")[1].split("&&")[8])
+      }
+
        div_info_third_box.appendChild(div_info_first_tel_box)
        div_info_first_tel_box.prepend(div_info_first_tel_title)
        div_info_first_tel_box.appendChild(div_info_first_tel_data)
