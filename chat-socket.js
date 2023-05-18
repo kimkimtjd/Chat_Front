@@ -98,10 +98,10 @@ function Room(roomname, pk, user, partner, logo_image) {
         /* 이미지 */
         else if(data[i].image_url !== ""){
           if (data[i].sender === pk) {
-            messages.appendChild(buildNewMessage(nickname + ":" + data[i].image_url.replace('<br/>', '\n') + "방이름" + data[i].group, data[i].biz_logo, data[i].created, String(data[i].today), data[i].minute));
+            messages.appendChild(buildNewMessage(nickname + "dflksjfdsj" + data[i].image_url.replace('<br/>', '\n') + "방이름" + data[i].group, data[i].biz_logo, data[i].created, String(data[i].today), data[i].minute));
           }
           else {
-            messages.appendChild(buildNewMessage(data[i].nickname + ":" + data[i].image_url.replace('<br/>', '\n') + "방이름" + data[i].group, data[i].biz_logo, data[i].created, String(data[i].today), data[i].minute));
+            messages.appendChild(buildNewMessage(data[i].nickname + "dflksjfdsj" + data[i].image_url.replace('<br/>', '\n') + "방이름" + data[i].group, data[i].biz_logo, data[i].created, String(data[i].today), data[i].minute));
           }
         }
 
@@ -369,11 +369,11 @@ const sendMessage = (message) => {
       div_logo_img.classList.add("businesscard_logo_img")
 
       /* 로고 */ 
-      if(message.split("방이름")[0].split(":")[1].split("/")[0] === "no"){
+      if(message.split("방이름")[0].split("dflksjfdsj")[1].split("/")[0] === "no"){
         div_logo_img.setAttribute('src' , "https://scrapmarket.s3.ap-northeast-2.amazonaws.com/businesscard/businesscard_logo.png")
       }
       else{
-        div_logo_img.setAttribute('src' , message.split("방이름")[0].split(":")[1].split("/")[0])
+        div_logo_img.setAttribute('src' , message.split("방이름")[0].split("dflksjfdsj")[1].split("/")[0])
       }
 
       div.prepend(div_logo)
@@ -423,7 +423,7 @@ const sendMessage = (message) => {
 
       const div_info_first_nickname_data = document.createElement("span");
       div_info_first_nickname_data.classList.add("businesscard_info_nickname_data")
-      div_info_first_nickname_data.prepend(message.split("방이름")[0].split(":")[1].split("/")[1])
+      div_info_first_nickname_data.prepend(message.split("방이름")[0].split("dflksjfdsj")[1].split("/")[1])
       console.log(message)
 
       div_info_first_box.prepend(div_info_first_nickname_box)
@@ -441,7 +441,7 @@ const sendMessage = (message) => {
 
       const div_info_first_name_data = document.createElement("span");
       div_info_first_name_data.classList.add("businesscard_info_name_data")
-      div_info_first_name_data.prepend(message.split("방이름")[0].split(":")[1].split("/")[2])
+      div_info_first_name_data.prepend(message.split("방이름")[0].split("dflksjfdsj")[1].split("/")[2])
 
 
       div_info_first_box.appendChild(div_info_first_name_box)
@@ -458,7 +458,7 @@ const sendMessage = (message) => {
 
       const div_info_first_position_data = document.createElement("span");
       div_info_first_position_data.classList.add("businesscard_info_position_data")
-      div_info_first_position_data.prepend(message.split("방이름")[0].split(":")[1].split("/")[2])
+      div_info_first_position_data.prepend(message.split("방이름")[0].split("dflksjfdsj")[1].split("/")[2])
 
 
       div_info_first_box.appendChild(div_info_first_position_box)
@@ -487,7 +487,7 @@ const sendMessage = (message) => {
  
        const div_info_first_businessname_title = document.createElement("span");
        div_info_first_businessname_title.classList.add("businesscard_info_nickname_title")
-       div_info_first_nickname_title.prepend("회사명")
+       div_info_first_businessname_title.prepend("회사명")
  
        const div_info_first_businessname_data = document.createElement("span");
        div_info_first_businessname_data.classList.add("businesscard_info_nickname_data")
