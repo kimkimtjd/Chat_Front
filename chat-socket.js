@@ -513,7 +513,7 @@ const sendMessage = (message) => {
        div_info_first_location_data.prepend(message.split("방이름")[0].split(":")[1].split("&&")[5])
  
  
-       div_info_second_box.prepend(div_info_first_location_box)
+       div_info_second_box.appendChild(div_info_first_location_box)
        div_info_first_location_box.prepend(div_info_first_location_title)
        div_info_first_location_box.appendChild(div_info_first_location_data)
  
@@ -523,14 +523,14 @@ const sendMessage = (message) => {
  
        const div_info_first_detail_title = document.createElement("span");
        div_info_first_detail_title.classList.add("businesscard_info_position_title")
-       div_info_first_detail_title.prepend("이름")
+       div_info_first_detail_title.prepend("상세주소")
  
        const div_info_first_detail_data = document.createElement("span");
        div_info_first_detail_data.classList.add("businesscard_info_position_data")
        div_info_first_detail_data.prepend(message.split("방이름")[0].split(":")[1].split("&&")[6])
  
  
-       div_info_second_box.prepend(div_info_first_detail_box)
+       div_info_second_box.appendChild(div_info_first_detail_box)
        div_info_first_detail_box.prepend(div_info_first_detail_title)
        div_info_first_detail_box.appendChild(div_info_first_detail_data)
  
@@ -581,7 +581,7 @@ const sendMessage = (message) => {
        div_info_first_tel_data.prepend(message.split("방이름")[0].split(":")[1].split("&&")[8])
  
  
-       div_info_third_box.prepend(div_info_first_tel_box)
+       div_info_third_box.appendChild(div_info_first_tel_box)
        div_info_first_tel_box.prepend(div_info_first_tel_title)
        div_info_first_tel_box.appendChild(div_info_first_tel_data)
  
@@ -598,7 +598,7 @@ const sendMessage = (message) => {
        div_info_first_email_data.prepend(message.split("방이름")[0].split(":")[1].split("&&")[9])
  
  
-       div_info_third_box.prepend(div_info_first_email_box)
+       div_info_third_box.appendChild(div_info_first_email_box)
        div_info_first_email_box.prepend(div_info_first_email_title)
        div_info_first_email_box.appendChild(div_info_first_email_data)
 
