@@ -127,8 +127,11 @@ function Test(arg, chat, roomname, today) {
 
   /* 현재시간 1번쨰 메세지가 아닐경우 */
   if (todaysdads === totaltime.slice(10, 16)) {
-    if(chat.includes("scrapmarket.s3.ap-northeast-2.amazonaws.com")){
+    if(chat.includes("scrapmarket.s3.ap-northeast-2.amazonaws.com" && !chat.includes('businesscard_certifycode'))){
       socket.emit('message', arg + ":" + chat + today + "null" + "방이름" + roomname)
+    }
+    else if(chat.includes("scrapmarket.s3.ap-northeast-2.amazonaws.com" && chat.includes('businesscard_certifycode'))){
+      socket.emit('message', arg + "dflksjfdsj" + chat + today + "null" + "방이름" + roomname)
     }
     else{
       socket.emit('message', arg + ":" + chat + today + "null" + "방이름" + roomname)
@@ -137,8 +140,11 @@ function Test(arg, chat, roomname, today) {
   /* 현재시간 1번쨰 메세지일경우 -> 시간 초기화 */
   else {
     todaysdads = totaltime.slice(10, 16)
-    if(chat.includes("scrapmarket.s3.ap-northeast-2.amazonaws.com")){
+    if(chat.includes("scrapmarket.s3.ap-northeast-2.amazonaws.com" && !chat.includes('businesscard_certifycode'))){
       socket.emit('message', arg + ":" + chat + today + "방이름" + roomname)    
+    }
+    else if(chat.includes("scrapmarket.s3.ap-northeast-2.amazonaws.com" && chat.includes('businesscard_certifycode'))){
+      socket.emit('message', arg + "dflksjfdsj" + chat + today + "방이름" + roomname)    
     }
     else{
       socket.emit('message', arg + ":" + chat + today + totaltime.slice(10, 16) + "방이름" + roomname)
@@ -182,8 +188,8 @@ const businesscardMessage = (message) => {
 /* 소켓 연결 후 메세지 송수신 [1차 -> buildNewMessage로 값을전달 ] */
 const handleNewMessage = (message) => {
 
-  /* 이미지 및 명함 dfkjhdsfkjdshfjkshf -> 판별하기 위해 임의의 변수 셋팅 */
-  if(message.includes("scrapmarket.s3.ap-northeast-2.amazonaws.com/Chat")){
+  /* 이미지 */
+  if(message.includes("scrapmarket.s3.ap-northeast-2.amazonaws.com/Chat" && !message.includes('businesscard_certifycode'))){
     if (message.includes("null")) {
       messages.appendChild(buildNewMessage(message.replace("null", ""), biz_logo, totaltime, "null", "null"));
     }
@@ -192,6 +198,15 @@ const handleNewMessage = (message) => {
     }
   }
 
+  /* 명함 */
+  else if (message.includes("scrapmarket.s3.ap-northeast-2.amazonaws.com/Chat" && message.includes('businesscard_certifycode'))){
+    if (message.includes("null")) {
+      messages.appendChild(buildNewMessage(message.replace("null", ""), biz_logo, totaltime, "null", "null"));
+    }
+    else {
+      messages.appendChild(buildNewMessage(message.replace(totaltime.slice(0, 10), "").replace(totaltime.slice(10, 16), ""), biz_logo, totaltime, totaltime.slice(0, 10), totaltime.slice(10, 16)));
+    }
+  }
   /* 메세지 */
   else{
     if (message.includes("null")) {
