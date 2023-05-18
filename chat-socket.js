@@ -424,7 +424,7 @@ const sendMessage = (message) => {
       const div_info_first_nickname_data = document.createElement("span");
       div_info_first_nickname_data.classList.add("businesscard_info_nickname_data")
       div_info_first_nickname_data.prepend(message.split("방이름")[0].split("dflksjfdsj")[1].split("&&")[1])
-      console.log(message)
+      
 
       div_info_first_box.prepend(div_info_first_nickname_box)
       div_info_first_nickname_box.prepend(div_info_first_nickname_title)
@@ -479,7 +479,7 @@ const sendMessage = (message) => {
       div_info_second_img.prepend(div_info_second_img_img)
 
       const div_info_second_box = document.createElement("div");
-      div_info_second_box.classList.add("businesscard_info_second")
+      div_info_second_box.classList.add("businesscard_info_first_list")
       div_info_second.appendChild(div_info_second_box)
 
        /* 회사명 */
@@ -547,7 +547,7 @@ const sendMessage = (message) => {
       div_info_third_img.prepend(div_info_third_img_img)
 
       const div_info_third_box = document.createElement("div");
-      div_info_third_box.classList.add("businesscard_info_third")
+      div_info_third_box.classList.add("businesscard_info_first_list")
       div_info_third.appendChild(div_info_third_box)
 
       /* 휴대전화 */
