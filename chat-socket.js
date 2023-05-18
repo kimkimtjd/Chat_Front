@@ -480,6 +480,7 @@ const sendMessage = (message) => {
 
       const div_info_second_box = document.createElement("div");
       div_info_second_box.classList.add("businesscard_info_second")
+      div_info_second.appendChild(div_info_second_box)
 
        /* 회사명 */
        const div_info_first_businessname_box = document.createElement("div");
@@ -547,6 +548,7 @@ const sendMessage = (message) => {
 
       const div_info_third_box = document.createElement("div");
       div_info_third_box.classList.add("businesscard_info_third")
+      div_info_third.appendChild(div_info_third_box)
 
       /* 휴대전화 */
        const div_info_first_phone_box = document.createElement("div");
