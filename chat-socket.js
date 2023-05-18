@@ -64,11 +64,14 @@ function Room(roomname, pk, user, partner, logo_image) {
 
   socket.emit('room', roomname)
 
+
   biz_logo = logo_image
 
   fetch('https://www.scrapmk.com/api/chat/chatroom/' + user + "/" + partner)
     .then(response => response.json())
     .then(data => {
+
+      console.log(data)
     
       for (var i = 0; i < data.length; i++) {
         
@@ -335,7 +338,7 @@ const todaysecondMessage = (first, second, minute) => {
 /******************************************************* 송신 *******************************************************/
 
 /* 송신 */
-const sendMessage = (message) => {z
+const sendMessage = (message) => {
 
   /* 이미지 */
   if(message.includes("https://scrapmarket.s3.ap-northeast-2.amazonaws.")){
