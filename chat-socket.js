@@ -128,10 +128,10 @@ function Test(arg, chat, roomname, today) {
   console.log(chat)
   /* 현재시간 1번쨰 메세지가 아닐경우 */
   if (todaysdads === totaltime.slice(10, 16)) {
-    if(chat.includes("scrapmarket.s3.ap-northeast-2.amazonaws.com" && !chat.includes('businesscard_certifycode'))){
+    if(chat.includes("scrapmarket.s3.ap-northeast-2.amazonaws.com") && !chat.includes('businesscard_certifycode')){
       socket.emit('message', arg + ":" + chat + today + "null" + "방이름" + roomname)
     }
-    else if(chat.includes("scrapmarket.s3.ap-northeast-2.amazonaws.com" && chat.includes('businesscard_certifycode'))){
+    else if(chat.includes("scrapmarket.s3.ap-northeast-2.amazonaws.com") && chat.includes('businesscard_certifycode')){
       socket.emit('message', arg + "dflksjfdsj" + chat + today + "null" + "방이름" + roomname)
     }
     else{
@@ -141,10 +141,10 @@ function Test(arg, chat, roomname, today) {
   /* 현재시간 1번쨰 메세지일경우 -> 시간 초기화 */
   else {
     todaysdads = totaltime.slice(10, 16)
-    if(chat.includes("scrapmarket.s3.ap-northeast-2.amazonaws.com" && !chat.includes('businesscard_certifycode'))){
+    if(chat.includes("scrapmarket.s3.ap-northeast-2.amazonaws.com") && !chat.includes('businesscard_certifycode')){
       socket.emit('message', arg + ":" + chat + today + "방이름" + roomname)    
     }
-    else if(chat.includes("scrapmarket.s3.ap-northeast-2.amazonaws.com" && chat.includes('businesscard_certifycode'))){
+    else if(chat.includes("scrapmarket.s3.ap-northeast-2.amazonaws.com") && chat.includes('businesscard_certifycode')){
       socket.emit('message', arg + "dflksjfdsj" + chat + today + "방이름" + roomname)    
     }
     else{
@@ -385,15 +385,15 @@ const sendMessage = (message) => {
       div_logo_img.classList.add("businesscard_logo_img")
 
       /* 로고 */ 
-      // div_logo_img.setAttribute('src' , message.split("방이름")[0].split("dflksjfdsj")[1].split("&&")[0])
-      const parts = message.split("방이름");
-      if (parts.length > 1) {
-        const subParts = parts[1].split("dflksjfdsj");
-        if (subParts.length > 1) {
-          const src = subParts[1].split("&&")[0];
-          div_logo_img.setAttribute('src', src);
-        }
-      }
+      div_logo_img.setAttribute('src' , message.split("방이름")[0].split("dflksjfdsj")[1].split("&&")[0])
+      // const parts = message.split("방이름");
+      // if (parts.length > 1) {
+      //   const subParts = parts[1].split("dflksjfdsj");
+      //   if (subParts.length > 1) {
+      //     const src = subParts[1].split("&&")[0];
+      //     div_logo_img.setAttribute('src', src);
+      //   }
+      // }
 
       div.prepend(div_logo)
       div_logo.prepend(div_logo_img)
