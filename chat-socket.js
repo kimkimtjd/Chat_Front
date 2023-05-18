@@ -384,7 +384,7 @@ const sendMessage = (message) => {
       div_logo_img.classList.add("businesscard_logo_img")
 
       /* 로고 */ 
-      if(message.split("방이름")[0].split("dflksjfdsj")[1].split("/")[0] === "no"){
+      if(message.split("방이름")[0].split("dflksjfdsj")[1].split("&&")[0] === "비공개"){
         div_logo_img.setAttribute('src' , "https://scrapmarket.s3.ap-northeast-2.amazonaws.com/businesscard/businesscard_logo.png")
       }
       else{
@@ -732,7 +732,7 @@ const receiveMessage = (message) => {
       div_logo_img.classList.add("businesscard_logo_img")
 
       /* 로고 */ 
-      if(message.split("방이름")[0].split("dflksjfdsj")[1].split("/")[0] === "no"){
+      if(message.split("방이름")[0].split("dflksjfdsj")[1].split("&&")[0] === "비공개"){
         div_logo_img.setAttribute('src' , "https://scrapmarket.s3.ap-northeast-2.amazonaws.com/businesscard/businesscard_logo.png")
       }
       else{
