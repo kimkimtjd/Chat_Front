@@ -627,7 +627,7 @@ const sendMessage = (message) => {
  
        const div_info_first_email_data = document.createElement("span");
        div_info_first_email_data.classList.add("businesscard_info_position_data")
-       div_info_first_email_data.prepend(message.split("방이름")[0].split("dflksjfdsj")[1].split("&&")[9])
+       div_info_first_email_data.prepend(message.split("방이름")[0].split("dflksjfdsj")[1].split("&&")[9].replace("businesscard_certifycode" , ""))
  
  
        div_info_third_box.appendChild(div_info_first_email_box)
@@ -971,7 +971,7 @@ const receiveMessage = (message) => {
  
        const div_info_first_email_data = document.createElement("span");
        div_info_first_email_data.classList.add("businesscard_info_position_data")
-       div_info_first_email_data.prepend(message.split("방이름")[0].split("dflksjfdsj")[1].split("&&")[9])
+       div_info_first_email_data.prepend(message.split("방이름")[0].split("dflksjfdsj")[1].split("&&")[9].replace("businesscard_certifycode" , ""))
  
  
        div_info_third_box.appendChild(div_info_first_email_box)
