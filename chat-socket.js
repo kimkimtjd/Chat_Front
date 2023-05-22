@@ -1079,7 +1079,7 @@ function openModal(imageUrl ,fixedText ) {
   modal.appendChild(fixedTextElement);
   modal.appendChild(modalImage);
   document.body.appendChild(modal);
-  
+
   // 모달 닫기 이벤트 등록
   back_arrow.addEventListener('click', function() {
     closeModal(modal);
@@ -1111,8 +1111,8 @@ function openSaveBox() {
   document.body.appendChild(modal_save);
 
   modal_save.addEventListener('click', function() {
-    console.log("저장하기 기능 실행");
     closeModal(modal_save);
+    alert("저장하기 기능 실행 및 모달닫기")
   });
 }
 
