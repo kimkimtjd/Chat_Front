@@ -733,7 +733,7 @@ const receiveMessage = (message) => {
     }
 
     chat_image.addEventListener('click', function() {
-      Android.sendDataToApp("이미지 전체");
+        Android.sendDataToApp(chat_image.getAttribute('src'));
     });
 
     return chat_image
