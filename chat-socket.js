@@ -374,6 +374,10 @@ const sendMessage = (message) => {
     else{
       chat_image.setAttribute('src', message.replace(":","").replace(nickname ,"").replace(nickname ,"").replace(totaltime.slice(10, 16),""));
     }
+
+    chat_image.addEventListener('click', function() {
+      openModal(chat_image.getAttribute('src'));
+    });
  
     return chat_image
   }
