@@ -103,10 +103,10 @@ function Room(roomname, pk, user, partner, logo_image) {
         /* 이미지 */
         else if(data[i].image_url !== ""){
           if (data[i].sender === pk) {
-            messages.appendChild(buildNewMessage(nickname + ":" + data[i].image_url.replace('<br/>', '\n') + "방이름" + data[i].group, data[i].biz_logo, data[i].created, String(data[i].today), data[i].minute));
+            messages.appendChild(buildNewMessage(nickname + ":" + data[i].image_url.replace('<br/>', '\n') + "방이름" + data[i].group, data[i].biz_logo, data[i].created, String(data[i].today), data[i].minute , data[i].id));
           }
           else {
-            messages.appendChild(buildNewMessage(data[i].nickname + ":" + data[i].image_url.replace('<br/>', '\n') + "방이름" + data[i].group, data[i].biz_logo, data[i].created, String(data[i].today), data[i].minute));
+            messages.appendChild(buildNewMessage(data[i].nickname + ":" + data[i].image_url.replace('<br/>', '\n') + "방이름" + data[i].group, data[i].biz_logo, data[i].created, String(data[i].today), data[i].minute , data[i].id));
           }
         }
 
@@ -259,7 +259,7 @@ const handleNewMessage = (message) => {
 
   ] 
   */
-const buildNewMessage = (message, logo_image, date, first_today, minute) => {
+const buildNewMessage = (message, logo_image, date, first_today, minute , id) => {
   
 
   /* 송신 */
@@ -269,13 +269,13 @@ const buildNewMessage = (message, logo_image, date, first_today, minute) => {
 
     if (first_today === "null") {
       div.classList.add('senderbox');
-      div.prepend(sendMessage(message.split("방이름")[0]));
-      div.appendChild(sendsecondMessage(date, minute));
+      div.prepend(sendMessage(message.split("방이름")[0] , id));
+      div.appendChild(sendsecondMessage(date, minute ));
     }
     else {
       div.classList.add('sendertoday');
       div.prepend(todayMessage(first_today));
-      div.appendChild(todaysecondMessage(message.split("방이름")[0], date, minute));
+      div.appendChild(todaysecondMessage(message.split("방이름")[0], date, minute , id));
     }
 
     return div;
@@ -299,14 +299,14 @@ const buildNewMessage = (message, logo_image, date, first_today, minute) => {
 
     if (first_today === "null") {
       div.prepend(logo);
-      div.appendChild(receivebox(message.split("방이름")[0], date, minute));
+      div.appendChild(receivebox(message.split("방이름")[0], date, minute , id));
       document.body.prepend(div)
     }
     else {
       div.classList.add('receive_sendertoday');
       div.prepend(todayMessage(first_today));
       div.appendChild(logo)
-      div.appendChild(receivesecondbox(message.split("방이름")[0], date, minute));
+      div.appendChild(receivesecondbox(message.split("방이름")[0], date, minute , id));
       
       document.body.prepend(div)
     }
@@ -323,7 +323,7 @@ const buildNewMessage = (message, logo_image, date, first_today, minute) => {
 /******************************************************* 송.수신 공용 *******************************************************/
 
 /* 송신 , 수신 - 금일 1번째 메세지일경우 이미지 및 문구 생성 부분 */
-const todayMessage = (first_today) => {
+const todayMessage = (first_today , id) => {
   const div = document.createElement("div");
 
   div.classList.add('today_active');
@@ -350,12 +350,12 @@ const todaybox = (first_today) => {
   return div
 }
 
-const todaysecondMessage = (first, second, minute) => {
+const todaysecondMessage = (first, second, minute , id) => {
   const div = document.createElement("div");
   div.classList.add('today_total_box');
 
-  div.appendChild(sendMessage(first.split("방이름")[0]));
-  div.appendChild(sendsecondMessage(second, minute));
+  div.appendChild(sendMessage(first.split("방이름")[0] , id));
+  div.appendChild(sendsecondMessage(second, minute ));
 
   return div
 }
@@ -363,7 +363,7 @@ const todaysecondMessage = (first, second, minute) => {
 /******************************************************* 송신 *******************************************************/
 
 /* 송신 */
-const sendMessage = (message) => {
+const sendMessage = (message , id) => {
 
   /* 이미지 */
   if(message.includes("https://scrapmarket.s3.ap-northeast-2.amazonaws.") && !message.includes('businesscard_certifycode') ){
@@ -377,7 +377,7 @@ const sendMessage = (message) => {
     }
 
     chat_image.addEventListener('click', function() {
-      Android.sendDataToApp(chat_image.getAttribute('src'));
+      Android.sendDataToApp(id);
     });
  
     return chat_image
@@ -655,7 +655,7 @@ const sendMessage = (message) => {
 }
 
 /* 송신 - 시간 */
-const sendsecondMessage = (datesecond, minute) => {
+const sendsecondMessage = (datesecond, minute ,id) => {
   const span = document.createElement("span");
   span.classList.add('sendertime');
 
@@ -709,16 +709,16 @@ const receivebox = (text, date, minute) => {
 }
 
 /* 수신 - 금일 1번째일경우  flex로인해 분리작업진행*/
-const receivesecondbox = (text, date, minute) => {
+const receivesecondbox = (text, date, minute , id) => {
   const div = document.createElement("div");
   div.classList.add('receiversecond_today');
-  div.prepend(receiveMessage(text));
+  div.prepend(receiveMessage(text,id));
   div.appendChild(receivesecondMessage(date));
   return div
 }
 
 /* 수신 - 메세지 , 이미지  */
-const receiveMessage = (message) => {
+const receiveMessage = (message , id) => {
 
   /* 이미지 */
   if(message.includes("https://scrapmarket.s3.ap-northeast-2.amazonaws.")){
@@ -733,7 +733,7 @@ const receiveMessage = (message) => {
     }
 
     chat_image.addEventListener('click', function() {
-        Android.sendDataToApp(chat_image.getAttribute('src'));
+        Android.sendDataToApp(id);
     });
 
     return chat_image
