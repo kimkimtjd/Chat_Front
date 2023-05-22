@@ -374,3 +374,18 @@ li{
     display: flex;
     flex-direction: row;
 }
+.back_arrow_image{
+  width: auto;
+  height: 20px;
+}
+.save_img{
+  width: auto;
+  height: 24px;
+}
+.span_nickname_text{
+  width: 80%;
+  height: 100%;
+  display: flex;
+  justify-self: flex-start;
+  align-items: center;
+}
