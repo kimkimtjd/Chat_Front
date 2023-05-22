@@ -1096,16 +1096,7 @@ function openModal(imageUrl ,fixedText ) {
 
   // 저장하기 열는 이벤트
   save_img.addEventListener('click', function() {
-    const modal_save = document.createElement("div");
-    modal_save.classList.add("modal_save");
-    modal_save.textContent = "저장하기";
-    
-    modal_save.addEventListener('click', function() {
-      save_closeModal(modal_save);
-    });
-    
-    return modal_save;
-
+    Save_box()
   });
 
 
@@ -1115,6 +1106,20 @@ function openModal(imageUrl ,fixedText ) {
 // 모달 닫기
 function closeModal(modal) {
   document.body.removeChild(modal);
+}
+
+function Save_box(){
+  const modal_save = document.createElement("div");
+  modal_save.classList.add("modal_save");
+
+  const fixedTextElement = document.createElement("div");
+  fixedTextElement.classList.add("save_text");
+  fixedTextElement.textContent = "저장하기";
+  modal_save.appendChild(fixedTextElement);
+  
+  modal_save.addEventListener('click', function() {
+    console.log("저장하기기능 앱에서 실행")
+  });
 }
 
 // 저장하기 모달 닫기
