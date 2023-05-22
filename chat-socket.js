@@ -1061,14 +1061,14 @@ function openModal(imageUrl ,fixedText ) {
 
   const back_arrow = document.createElement("img");
   back_arrow.classList.add("back_arrow_image");
-  modalImage.setAttribute("src", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTlOehIXNfzkIJi2KlYKItQND_Fk8yR4Yf80RyCMtMSQ&s");
+  back_arrow.setAttribute("src", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTlOehIXNfzkIJi2KlYKItQND_Fk8yR4Yf80RyCMtMSQ&s");
 
   const span_nickname = document.createElement("span");
   span_nickname.classList.add("span_nickname_text");
 
   const save_img = document.createElement("img");
   save_img.classList.add("save_img");
-  modalImage.setAttribute("src", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTlOehIXNfzkIJi2KlYKItQND_Fk8yR4Yf80RyCMtMSQ&s");
+  save_img.setAttribute("src", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTlOehIXNfzkIJi2KlYKItQND_Fk8yR4Yf80RyCMtMSQ&s");
 
 
 
