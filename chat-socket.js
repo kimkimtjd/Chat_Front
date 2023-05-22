@@ -376,7 +376,7 @@ const sendMessage = (message) => {
     }
 
     chat_image.addEventListener('click', function() {
-      openModal(chat_image.getAttribute('src'));
+      openModal(chat_image.getAttribute('src') , nickname);
     });
  
     return chat_image
@@ -1045,7 +1045,7 @@ const receivesecondMessage = (datesecond, minute) => {
 
 
 
-function openModal(imageUrl) {
+function openModal(imageUrl ,fixedText ) {
   // 모달 열기 및 이미지 설정
   const modal = document.createElement("div");
   modal.classList.add("modal");
@@ -1054,6 +1054,10 @@ function openModal(imageUrl) {
   modalImage.classList.add("modal-image");
   modalImage.setAttribute("src", imageUrl);
   modalImage.setAttribute("alt", "Image");
+
+  const fixedTextElement = document.createElement("div");
+  fixedTextElement.classList.add("fixed-text");
+  fixedTextElement.textContent = fixedText;
 
   modal.appendChild(modalImage);
   document.body.appendChild(modal);
