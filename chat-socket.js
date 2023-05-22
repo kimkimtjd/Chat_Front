@@ -44,23 +44,28 @@ const message = document.getElementById('message');
 */
 
 
-/******************************************************* 채팅 이미지클릭 확댐및 이동 대기중 *******************************************************/
+/******************************************************* 
+ * 남은기능
+ * 채팅 이미지클릭 확대
+ * 이미지 클릭 확대 -> 네이버클라우드 서버 확인 및 배포 [3000번 포트도 https 연결해야함] 
+ * 26번째줄  const socket = io("wss:smkchat.site:3000") -> Hello World! 출력되면 정상적으로 서버연결 완료
+ * *******************************************************/
 
 /******************************************************* 방 입장 및 소캣연결 . 메세지 송수신 *******************************************************/
 
 /* 방입장 */
 function Room(roomname, pk, user, partner, logo_image) {
 
-  nickname = user
-  partner_user = partner
+  // nickname = user
+  // partner_user = partner
   
   /* 아래는 웹 테스트용 inputbox */
-    // nickname = "애완용꿀꿀이"
-    // user = nickname
-    // pk = 1
-    // partner = "lee"
-    // roomname = "d67dc57d-14a3-488b-8f5f-dfeee417ed3c"
-    // logo_image = "https://scrapmarket.s3.ap-northeast-2.amazonaws.com/Chat/1Screenshot_20230511_110843_KakaoTalk.jpg2023-05-15+13%3A20"
+    nickname = "애완용꿀꿀이"
+    user = nickname
+    pk = 1
+    partner = "lee"
+    roomname = "d67dc57d-14a3-488b-8f5f-dfeee417ed3c"
+    logo_image = "https://scrapmarket.s3.ap-northeast-2.amazonaws.com/Chat/1Screenshot_20230511_110843_KakaoTalk.jpg2023-05-15+13%3A20"
 
   socket.emit('room', roomname)
 
@@ -313,10 +318,6 @@ const buildNewMessage = (message, logo_image, date, first_today, minute) => {
 
 /******************************************************* 이미지 [ 카메라 , 앨범 ] *******************************************************/
 /******************************************************* 명함 *******************************************************/
-
-
-
-
 
 /******************************************************* 송.수신 공용 *******************************************************/
 
@@ -726,6 +727,10 @@ const receiveMessage = (message) => {
       chat_image.setAttribute('src', message.replace(":","").replace(nickname ,"").replace(nickname ,"").replace(totaltime.slice(10, 16),""));
     }
 
+    chat_image.addEventListener('click', function() {
+      openModal(chat_image.getAttribute('src'));
+    });
+
     return chat_image
   }
   else{
@@ -1033,12 +1038,41 @@ const receivesecondMessage = (datesecond, minute) => {
 }
 
 
+
+
+
+function openModal(imageUrl) {
+  // 모달 열기 및 이미지 설정
+  const modal = document.createElement("div");
+  modal.classList.add("modal");
+
+  const modalImage = document.createElement("img");
+  modalImage.classList.add("modal-image");
+  modalImage.setAttribute("src", imageUrl);
+  modalImage.setAttribute("alt", "Image");
+
+  modal.appendChild(modalImage);
+  document.body.appendChild(modal);
+
+  // 모달 닫기 이벤트 등록
+  modal.addEventListener('click', function() {
+    closeModal(modal);
+  });
+}
+
+function closeModal(modal) {
+  // 모달 닫기
+  document.body.removeChild(modal);
+}
+
+
+
 /****************************** 아래 코드는 웹용  위 부분은 공용******************************/
 // socket.emit('room', room)
 
-// window.onload = function() {
-//     Room()
-//  };
+window.onload = function() {
+  Room()
+};
 
 // const handleSubmitNewMessage = () => {
 //   socket.emit('message', "애완용꿀꿀이dflksjfdsjhttps://scrapmarket.s3.ap-northeast-2.amazonaws.com/ProfileCard/logo.jpeg10%3A3924&&애완용꿀꿀이&&비공개&&비공개&&김성원&&서울마포구&&연남로5길 44&&010080758012&&비공개&&비공개businesscard_certifycode" + "2023-05-19null방이름d67dc57d-14a3-488b-8f5f-dfeee417ed3c")
