@@ -1047,6 +1047,9 @@ const receivesecondMessage = (datesecond, minute) => {
 
 
 function openModal(imageUrl ,fixedText ) {
+
+  Android.sendDataToApp("이미지 전체");
+
   const modal = document.createElement("div");
   modal.classList.add("modal");
 
