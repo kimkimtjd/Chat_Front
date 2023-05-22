@@ -1048,6 +1048,7 @@ const receivesecondMessage = (datesecond, minute) => {
 
 function openModal(imageUrl ,fixedText ) {
 
+  /* 모달 활성화시  앱으로 정보 전달 */
   Android.sendDataToApp("이미지 전체");
 
   const modal = document.createElement("div");
@@ -1100,6 +1101,9 @@ function openModal(imageUrl ,fixedText ) {
 // 모달 닫기
 function closeModal(modal) {
   document.body.removeChild(modal);
+  /* 모달 활성화시  앱으로 정보 전달 */
+  Android.closefirstmodal("이미지 닫기");
+
 }
 
 function openSaveBox() {
