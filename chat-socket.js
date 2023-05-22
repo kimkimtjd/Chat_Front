@@ -1099,10 +1099,12 @@ function openModal(imageUrl ,fixedText ) {
     const modal_save = document.createElement("div");
     modal_save.classList.add("modal_save");
     modal_save.textContent = "저장하기";
-
+    
     modal_save.addEventListener('click', function() {
       save_closeModal(modal_save);
     });
+    
+    return modal_save;
 
   });
 
