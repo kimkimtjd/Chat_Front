@@ -64,6 +64,7 @@ function Room(roomname, pk, user, partner, logo_image) {
     user = nickname
     pk = 1
     partner = "lee"
+    partner_user = partner
     roomname = "d67dc57d-14a3-488b-8f5f-dfeee417ed3c"
     logo_image = "https://scrapmarket.s3.ap-northeast-2.amazonaws.com/Chat/1Screenshot_20230511_110843_KakaoTalk.jpg2023-05-15+13%3A20"
 
@@ -376,7 +377,7 @@ const sendMessage = (message) => {
     }
 
     chat_image.addEventListener('click', function() {
-      openModal(chat_image.getAttribute('src') , nickname);
+      openModal(chat_image.getAttribute('src') , partner_user);
     });
  
     return chat_image
@@ -732,7 +733,7 @@ const receiveMessage = (message) => {
     }
 
     chat_image.addEventListener('click', function() {
-      openModal(chat_image.getAttribute('src'));
+      openModal(chat_image.getAttribute('src') , partner_user);
     });
 
     return chat_image
@@ -1095,17 +1096,29 @@ function openModal(imageUrl ,fixedText ) {
 
   // 저장하기 열는 이벤트
   save_img.addEventListener('click', function() {
-    console.log("저장하기 이벤트")
+    const modal_save = document.createElement("div");
+    modal_save.classList.add("modal_save");
+    modal_save.textContent = "저장하기";
+
+    modal_save.addEventListener('click', function() {
+      save_closeModal(modal_save);
+    });
+
   });
+
+
 
 }
 
 // 모달 닫기
 function closeModal(modal) {
-  // 모달 닫기
   document.body.removeChild(modal);
 }
 
+// 저장하기 모달 닫기
+function save_closeModal(modal) {
+  document.body.removeChild(modal);
+}
 
 
 /****************************** 아래 코드는 웹용  위 부분은 공용******************************/
