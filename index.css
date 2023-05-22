@@ -360,3 +360,13 @@ li{
 .modal-image:hover {
   opacity: 0.8; /* 마우스 호버 시 이미지 투명도 조절 */
 }
+.fixed-text {
+  position: absolute;
+  top: 10px; /* 상단 위치 조절 */
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-size: 18px;
+  text-decoration: underline;
+}
