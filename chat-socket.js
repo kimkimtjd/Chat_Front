@@ -732,9 +732,9 @@ const receiveMessage = (message) => {
       chat_image.setAttribute('src', message.replace(":","").replace(nickname ,"").replace(nickname ,"").replace(totaltime.slice(10, 16),""));
     }
 
-    // chat_image.addEventListener('click', function() {
-    //   openModal(chat_image.getAttribute('src') , partner_user);
-    // });
+    chat_image.addEventListener('click', function() {
+      Android.sendDataToApp("이미지 전체");
+    });
 
     return chat_image
   }
