@@ -395,7 +395,7 @@ li{
 }
 .fixed-text {
   position: absolute;
-  top: 10px; /* 상단 위치 조절 */
+  top: 0px; /* 상단 위치 조절 */
   left: 0;
   width: 100%;
   text-align: center;
@@ -408,7 +408,7 @@ li{
   height: 40px;
   z-index: 99;
   position: absolute;
-  top: 50px;
+  top: 40px;
   right: 20px;
   display: flex;
   justify-content: flex-start;
