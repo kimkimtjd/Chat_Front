@@ -1059,6 +1059,7 @@ function openModal(imageUrl ,fixedText ) {
   fixedTextElement.classList.add("fixed-text");
   fixedTextElement.textContent = fixedText;
 
+  modal.appendChild(fixedTextElement);
   modal.appendChild(modalImage);
   document.body.appendChild(modal);
 
