@@ -362,11 +362,15 @@ li{
 }
 .fixed-text {
   position: absolute;
-  top: 10px; /* 상단 위치 조절 */
-  left: 0;
-  width: 100%;
-  text-align: center;
-  color: white;
-  font-size: 18px;
-  text-decoration: underline;
+    top: 10px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-size: 15px;
+    /* text-decoration: underline; */
+    /* background: red; */
+    border-bottom: 1px solid white;
+    display: flex;
+    flex-direction: row;
 }
