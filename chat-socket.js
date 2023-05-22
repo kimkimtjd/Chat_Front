@@ -1089,11 +1089,18 @@ function openModal(imageUrl ,fixedText ) {
   document.body.appendChild(modal);
 
   // 모달 닫기 이벤트 등록
-  modal.addEventListener('click', function() {
+  back_arrow.addEventListener('click', function() {
     closeModal(modal);
   });
+
+  // 저장하기 열는 이벤트
+  save_img.addEventListener('click', function() {
+    console.log("저장하기 이벤트")
+  });
+
 }
 
+// 모달 닫기
 function closeModal(modal) {
   // 모달 닫기
   document.body.removeChild(modal);
