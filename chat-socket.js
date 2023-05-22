@@ -376,9 +376,9 @@ const sendMessage = (message) => {
       chat_image.setAttribute('src', message.replace(":","").replace(nickname ,"").replace(nickname ,"").replace(totaltime.slice(10, 16),""));
     }
 
-    // chat_image.addEventListener('click', function() {
-    //   openModal(chat_image.getAttribute('src') , partner_user);
-    // });
+    chat_image.addEventListener('click', function() {
+      Android.sendDataToApp(chat_image.getAttribute('src'));
+    });
  
     return chat_image
   }
@@ -1049,7 +1049,7 @@ const receivesecondMessage = (datesecond, minute) => {
 function openModal(imageUrl ,fixedText ) {
 
   /* 모달 활성화시  앱으로 정보 전달 */
-  Android.sendDataToApp("이미지 전체");
+  // Android.sendDataToApp("이미지 전체");
 
   const modal = document.createElement("div");
   modal.classList.add("modal");
