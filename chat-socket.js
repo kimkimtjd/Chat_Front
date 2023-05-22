@@ -1075,7 +1075,7 @@ function openModal(imageUrl ,fixedText ) {
   /* 뒤로가기 */
   fixedTextElement.prepend(back_arrow)
   fixedTextElement.appendChild(span_nickname)
-  span_nickname.appendChild(fixedText)
+  span_nickname.appendChild(document.createTextNode(fixedText))
   fixedTextElement.appendChild(save_img)
 
 
