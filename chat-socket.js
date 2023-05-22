@@ -1055,10 +1055,35 @@ function openModal(imageUrl ,fixedText ) {
   modalImage.setAttribute("src", imageUrl);
   modalImage.setAttribute("alt", "Image");
 
+  /* 상단에 글자 전체 박스 */
   const fixedTextElement = document.createElement("div");
   fixedTextElement.classList.add("fixed-text");
-  fixedTextElement.textContent = fixedText;
 
+  const back_arrow = document.createElement("img");
+  back_arrow.classList.add("back_arrow_image");
+  modalImage.setAttribute("src", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTlOehIXNfzkIJi2KlYKItQND_Fk8yR4Yf80RyCMtMSQ&s");
+
+  const span_nickname = document.createElement("span");
+  span_nickname.classList.add("span_nickname_text");
+
+  const save_img = document.createElement("img");
+  save_img.classList.add("save_img");
+  modalImage.setAttribute("src", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTlOehIXNfzkIJi2KlYKItQND_Fk8yR4Yf80RyCMtMSQ&s");
+
+
+
+  /* 뒤로가기 */
+  fixedTextElement.prepend(back_arrow)
+  fixedTextElement.appendChild(span_nickname)
+  span_nickname.appendChild(fixedText)
+  fixedTextElement.appendChild(save_img)
+
+
+  
+  // fixedTextElement.appendChild()
+
+  // fixedTextElement.textContent = fixedText;  
+  
   modal.appendChild(fixedTextElement);
   modal.appendChild(modalImage);
   document.body.appendChild(modal);
