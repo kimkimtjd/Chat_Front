@@ -1112,6 +1112,8 @@ function Save_box(){
   const modal_save = document.createElement("div");
   modal_save.classList.add("modal_save");
 
+  console.log("저장하기모달 활성화")
+
   const fixedTextElement = document.createElement("div");
   fixedTextElement.classList.add("save_text");
   fixedTextElement.textContent = "저장하기";
