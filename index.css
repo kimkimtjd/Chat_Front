@@ -401,6 +401,17 @@ li{
   text-align: center;
   color: white;
   font-size: 18px;
-  text-decoration: underline;
-  background-color: #ffffff; /* 흰색 배경 */
+}
+.modal_save{
+  background: white;
+  width: 190px;
+  height: 40px;
+  z-index: 99;
+  position: absolute;
+  top: 50px;
+  right: 20px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 10px;
 }
