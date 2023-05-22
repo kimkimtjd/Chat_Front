@@ -1047,7 +1047,6 @@ const receivesecondMessage = (datesecond, minute) => {
 
 
 function openModal(imageUrl ,fixedText ) {
-  // 모달 열기 및 이미지 설정
   const modal = document.createElement("div");
   modal.classList.add("modal");
 
@@ -1071,24 +1070,16 @@ function openModal(imageUrl ,fixedText ) {
   save_img.classList.add("save_img");
   save_img.setAttribute("src", "https://scrapmarket.s3.ap-northeast-2.amazonaws.com/Icon/chat_img_option.png");
 
-
-
   /* 뒤로가기 */
   fixedTextElement.prepend(back_arrow)
   fixedTextElement.appendChild(span_nickname)
   span_nickname.appendChild(document.createTextNode(fixedText))
   fixedTextElement.appendChild(save_img)
 
-
-  
-  // fixedTextElement.appendChild()
-
-  // fixedTextElement.textContent = fixedText;  
-  
   modal.appendChild(fixedTextElement);
   modal.appendChild(modalImage);
   document.body.appendChild(modal);
-
+  
   // 모달 닫기 이벤트 등록
   back_arrow.addEventListener('click', function() {
     closeModal(modal);
