@@ -61,10 +61,10 @@ function Room(roomname, pk, user, partner, logo_image) {
   // partner_user = partner
   
   /* 아래는 웹 테스트용 inputbox */
-    nickname = "애완용꿀꿀이"
+    nickname = "lee"
     user = nickname
-    pk = 1
-    partner = "lee"
+    pk = 2
+    partner = "애완용꿀꿀이"
     partner_user = partner
     roomname = "d67dc57d-14a3-488b-8f5f-dfeee417ed3c"
     logo_image = "https://scrapmarket.s3.ap-northeast-2.amazonaws.com/Chat/1Screenshot_20230511_110843_KakaoTalk.jpg2023-05-15+13%3A20"
