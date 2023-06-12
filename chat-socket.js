@@ -20,7 +20,6 @@ else {
   var second = Number(formattedfirst.split(',')[1].split('-')[1])
 }
 
-
 var totaltime = formattedfirst.split(',')[0].split('-')[2] + "-" + formattedfirst.split(',')[0].split('-')[0] + "-" + formattedfirst.split(',')[0].split('-')[1] + " " +
   second + ":" + formattedfirst.split(',')[1].split('-')[2]
 
@@ -45,29 +44,23 @@ const message = document.getElementById('message');
 */
 
 
-/******************************************************* 
- * 남은기능
- * 채팅 이미지클릭 확대
- * 이미지 클릭 확대 -> 네이버클라우드 서버 확인 및 배포 [3000번 포트도 https 연결해야함] 
- * 26번째줄  const socket = io("wss:smkchat.site:3000") -> Hello World! 출력되면 정상적으로 서버연결 완료
- * *******************************************************/
+/******************************************************* 채팅 이미지클릭 확대 *******************************************************/
 
 /******************************************************* 방 입장 및 소캣연결 . 메세지 송수신 *******************************************************/
 
 /* 방입장 */
 function Room(roomname, pk, user, partner, logo_image) {
 
-//   nickname = user
-//   partner_user = partner
+  nickname = user
+  partner_user = partner
   
   /* 아래는 웹 테스트용 inputbox */
-    nickname = "애완용꿀꿀이"
-    user = nickname
-    pk = 1
-    partner = "kmskms"
-    partner_user = partner
-    roomname = "8b66e439-3985-4d6b-b928-e19ff008571c"
-    logo_image = ""
+    // nickname = "애완용꿀꿀이"
+    // user = nickname
+    // pk = 1
+    // partner = "lee"
+    // roomname = "d67dc57d-14a3-488b-8f5f-dfeee417ed3c"
+    // logo_image = "https://scrapmarket.s3.ap-northeast-2.amazonaws.com/Chat/1Screenshot_20230511_110843_KakaoTalk.jpg2023-05-15+13%3A20"
 
   socket.emit('room', roomname)
 
@@ -104,10 +97,10 @@ function Room(roomname, pk, user, partner, logo_image) {
         /* 이미지 */
         else if(data[i].image_url !== ""){
           if (data[i].sender === pk) {
-            messages.appendChild(buildNewMessage(nickname + ":" + data[i].image_url.replace('<br/>', '\n') + "방이름" + data[i].group, data[i].biz_logo, data[i].created, String(data[i].today), data[i].minute , data[i].id));
+            messages.appendChild(buildNewMessage(nickname + ":" + data[i].image_url.replace('<br/>', '\n') + "방이름" + data[i].group, data[i].biz_logo, data[i].created, String(data[i].today), data[i].minute));
           }
           else {
-            messages.appendChild(buildNewMessage(data[i].nickname + ":" + data[i].image_url.replace('<br/>', '\n') + "방이름" + data[i].group, data[i].biz_logo, data[i].created, String(data[i].today), data[i].minute , data[i].id));
+            messages.appendChild(buildNewMessage(data[i].nickname + ":" + data[i].image_url.replace('<br/>', '\n') + "방이름" + data[i].group, data[i].biz_logo, data[i].created, String(data[i].today), data[i].minute));
           }
         }
 
@@ -131,6 +124,7 @@ function Room(roomname, pk, user, partner, logo_image) {
 function Test(arg, chat, roomname, today) {
   nickname = arg
 
+  console.log(chat)
   /* 현재시간 1번쨰 메세지가 아닐경우 */
   if (todaysdads === totaltime.slice(10, 16)) {
     if(chat.includes("scrapmarket.s3.ap-northeast-2.amazonaws.com") && !chat.includes('businesscard_certifycode')){
@@ -259,7 +253,7 @@ const handleNewMessage = (message) => {
 
   ] 
   */
-const buildNewMessage = (message, logo_image, date, first_today, minute , id) => {
+const buildNewMessage = (message, logo_image, date, first_today, minute) => {
   
 
   /* 송신 */
@@ -269,13 +263,13 @@ const buildNewMessage = (message, logo_image, date, first_today, minute , id) =>
 
     if (first_today === "null") {
       div.classList.add('senderbox');
-      div.prepend(sendMessage(message.split("방이름")[0] , id));
-      div.appendChild(sendsecondMessage(date, minute ));
+      div.prepend(sendMessage(message.split("방이름")[0]));
+      div.appendChild(sendsecondMessage(date, minute));
     }
     else {
       div.classList.add('sendertoday');
       div.prepend(todayMessage(first_today));
-      div.appendChild(todaysecondMessage(message.split("방이름")[0], date, minute , id));
+      div.appendChild(todaysecondMessage(message.split("방이름")[0], date, minute));
     }
 
     return div;
@@ -299,14 +293,14 @@ const buildNewMessage = (message, logo_image, date, first_today, minute , id) =>
 
     if (first_today === "null") {
       div.prepend(logo);
-      div.appendChild(receivebox(message.split("방이름")[0], date, minute , id));
+      div.appendChild(receivebox(message.split("방이름")[0], date, minute));
       document.body.prepend(div)
     }
     else {
       div.classList.add('receive_sendertoday');
       div.prepend(todayMessage(first_today));
       div.appendChild(logo)
-      div.appendChild(receivesecondbox(message.split("방이름")[0], date, minute , id));
+      div.appendChild(receivesecondbox(message.split("방이름")[0], date, minute));
       
       document.body.prepend(div)
     }
@@ -323,7 +317,7 @@ const buildNewMessage = (message, logo_image, date, first_today, minute , id) =>
 /******************************************************* 송.수신 공용 *******************************************************/
 
 /* 송신 , 수신 - 금일 1번째 메세지일경우 이미지 및 문구 생성 부분 */
-const todayMessage = (first_today , id) => {
+const todayMessage = (first_today) => {
   const div = document.createElement("div");
 
   div.classList.add('today_active');
@@ -350,12 +344,12 @@ const todaybox = (first_today) => {
   return div
 }
 
-const todaysecondMessage = (first, second, minute , id) => {
+const todaysecondMessage = (first, second, minute) => {
   const div = document.createElement("div");
   div.classList.add('today_total_box');
 
-  div.appendChild(sendMessage(first.split("방이름")[0] , id));
-  div.appendChild(sendsecondMessage(second, minute ));
+  div.appendChild(sendMessage(first.split("방이름")[0]));
+  div.appendChild(sendsecondMessage(second, minute));
 
   return div
 }
@@ -363,22 +357,18 @@ const todaysecondMessage = (first, second, minute , id) => {
 /******************************************************* 송신 *******************************************************/
 
 /* 송신 */
-const sendMessage = (message , id) => {
+const sendMessage = (message) => {
 
   /* 이미지 */
   if(message.includes("https://scrapmarket.s3.ap-northeast-2.amazonaws.") && !message.includes('businesscard_certifycode') ){
     const chat_image = document.createElement("img");
     chat_image.classList.add('chat_image');
     if(message.includes("null")){
-      chat_image.setAttribute('src', message.replace(":","").replace(nickname ,"").replace(partner ,"").replace(totaltime.slice(10, 16),"").replace("null",""));
+      chat_image.setAttribute('src', message.replace(":","").replace(nickname ,"").replace(nickname ,"").replace(totaltime.slice(10, 16),"").replace("null",""));
     }
     else{
-      chat_image.setAttribute('src', message.replace(":","").replace(nickname ,"").replace(partner ,"").replace(totaltime.slice(10, 16),""));
+      chat_image.setAttribute('src', message.replace(":","").replace(nickname ,"").replace(nickname ,"").replace(totaltime.slice(10, 16),""));
     }
-
-    chat_image.addEventListener('click', function() {
-      Android.sendDataToApp(id , message.replace(":","").replace(nickname ,"").replace(nickname ,"").replace(totaltime.slice(10, 16),"").replace("null",""));
-    });
  
     return chat_image
   }
@@ -655,7 +645,7 @@ const sendMessage = (message , id) => {
 }
 
 /* 송신 - 시간 */
-const sendsecondMessage = (datesecond, minute ,id) => {
+const sendsecondMessage = (datesecond, minute) => {
   const span = document.createElement("span");
   span.classList.add('sendertime');
 
@@ -709,16 +699,16 @@ const receivebox = (text, date, minute) => {
 }
 
 /* 수신 - 금일 1번째일경우  flex로인해 분리작업진행*/
-const receivesecondbox = (text, date, minute , id) => {
+const receivesecondbox = (text, date, minute) => {
   const div = document.createElement("div");
   div.classList.add('receiversecond_today');
-  div.prepend(receiveMessage(text,id));
+  div.prepend(receiveMessage(text));
   div.appendChild(receivesecondMessage(date));
   return div
 }
 
 /* 수신 - 메세지 , 이미지  */
-const receiveMessage = (message , id) => {
+const receiveMessage = (message) => {
 
   /* 이미지 */
   if(message.includes("https://scrapmarket.s3.ap-northeast-2.amazonaws.")){
@@ -726,15 +716,11 @@ const receiveMessage = (message , id) => {
     chat_image.classList.add('chat_image');
     
     if(message.includes("null")){
-      chat_image.setAttribute('src', message.replace(":","").replace(nickname ,"").replace(partner ,"").replace(totaltime.slice(10, 16),"").replace("null",""));
+      chat_image.setAttribute('src', message.replace(":","").replace(nickname ,"").replace(nickname ,"").replace(totaltime.slice(10, 16),"").replace("null",""));
     }
     else{
-      chat_image.setAttribute('src', message.replace(":","").replace(nickname ,"").replace(partner ,"").replace(totaltime.slice(10, 16),""));
+      chat_image.setAttribute('src', message.replace(":","").replace(nickname ,"").replace(nickname ,"").replace(totaltime.slice(10, 16),""));
     }
-
-    chat_image.addEventListener('click', function() {
-        Android.sendDataToApp(id);
-    });
 
     return chat_image
   }
@@ -1044,97 +1030,12 @@ const receivesecondMessage = (datesecond, minute) => {
 
 
 
-
-
-function openModal(imageUrl ,fixedText ) {
-
-  /* 모달 활성화시  앱으로 정보 전달 */
-  // Android.sendDataToApp("이미지 전체");
-
-  const modal = document.createElement("div");
-  modal.classList.add("modal");
-
-  const modalImage = document.createElement("img");
-  modalImage.classList.add("modal-image");
-  modalImage.setAttribute("src", imageUrl);
-  modalImage.setAttribute("alt", "Image");
-
-  /* 상단에 글자 전체 박스 */
-  const fixedTextElement = document.createElement("div");
-  fixedTextElement.classList.add("fixed-text");
-
-  const back_arrow = document.createElement("img");
-  back_arrow.classList.add("back_arrow_image");
-  back_arrow.setAttribute("src", "https://scrapmarket.s3.ap-northeast-2.amazonaws.com/Icon/chat_img_backarrow.png");
-
-  const span_nickname = document.createElement("span");
-  span_nickname.classList.add("span_nickname_text");
-
-  const save_img = document.createElement("img");
-  save_img.classList.add("save_img");
-  save_img.setAttribute("src", "https://scrapmarket.s3.ap-northeast-2.amazonaws.com/Icon/chat_img_option.png");
-
-  /* 뒤로가기 */
-  fixedTextElement.prepend(back_arrow)
-  fixedTextElement.appendChild(span_nickname)
-  span_nickname.appendChild(document.createTextNode(fixedText))
-  fixedTextElement.appendChild(save_img)
-
-  modal.appendChild(fixedTextElement);
-  modal.appendChild(modalImage);
-  document.body.appendChild(modal);
-
-  // 모달 닫기 이벤트 등록
-  back_arrow.addEventListener('click', function() {
-    closeModal(modal);
-  });
-
-  // 저장하기 열는 이벤트
-  save_img.addEventListener('click', function() {
-    openSaveBox()
-  });
-
-
-
-}
-
-// 모달 닫기
-function closeModal(modal) {
-  document.body.removeChild(modal);
-  /* 모달 활성화시  앱으로 정보 전달 */
-  Android.closefirstmodal("이미지 닫기");
-
-}
-
-function openSaveBox() {
-  const modal_save = document.createElement("div");
-  modal_save.classList.add("modal_save");
-
-  const fixedTextElement = document.createElement("div");
-  fixedTextElement.classList.add("save_text");
-  fixedTextElement.textContent = "저장하기";
-  modal_save.appendChild(fixedTextElement);
-
-  document.body.appendChild(modal_save);
-
-  modal_save.addEventListener('click', function() {
-    closeModal(modal_save);
-    alert("저장하기 기능 실행 및 모달닫기")
-  });
-}
-
-// 저장하기 모달 닫기
-function save_closeModal(modal) {
-  document.body.removeChild(modal);
-}
-
-
 /****************************** 아래 코드는 웹용  위 부분은 공용******************************/
 // socket.emit('room', room)
 
-window.onload = function() {
-  Room()
-};
+// window.onload = function() {
+//     Room()
+//  };
 
 // const handleSubmitNewMessage = () => {
 //   socket.emit('message', "애완용꿀꿀이dflksjfdsjhttps://scrapmarket.s3.ap-northeast-2.amazonaws.com/ProfileCard/logo.jpeg10%3A3924&&애완용꿀꿀이&&비공개&&비공개&&김성원&&서울마포구&&연남로5길 44&&010080758012&&비공개&&비공개businesscard_certifycode" + "2023-05-19null방이름d67dc57d-14a3-488b-8f5f-dfeee417ed3c")
