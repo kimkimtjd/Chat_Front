@@ -52,7 +52,7 @@ const message = document.getElementById('message');
 function Room(roomname, pk, user, partner, logo_image) {
 
 //   nickname = user
-//   partner_user = partner
+  partner_user = partner
   
   /* 아래는 웹 테스트용 inputbox */
     nickname = "애완용꿀꿀이"
@@ -364,10 +364,10 @@ const sendMessage = (message) => {
     const chat_image = document.createElement("img");
     chat_image.classList.add('chat_image');
     if(message.includes("null")){
-      chat_image.setAttribute('src', message.replace(":","").replace(nickname ,"").replace(nickname ,"").replace(totaltime.slice(10, 16),"").replace("null",""));
+      chat_image.setAttribute('src', message.replace(":","").replace(nickname ,"").replace(partner_user ,"").replace(totaltime.slice(10, 16),"").replace("null",""));
     }
     else{
-      chat_image.setAttribute('src', message.replace(":","").replace(nickname ,"").replace(nickname ,"").replace(totaltime.slice(10, 16),""));
+      chat_image.setAttribute('src', message.replace(":","").replace(nickname ,"").replace(partner_user ,"").replace(totaltime.slice(10, 16),""));
     }
  
     return chat_image
@@ -716,10 +716,10 @@ const receiveMessage = (message) => {
     chat_image.classList.add('chat_image');
     
     if(message.includes("null")){
-      chat_image.setAttribute('src', message.replace(":","").replace(nickname ,"").replace(nickname ,"").replace(totaltime.slice(10, 16),"").replace("null",""));
+      chat_image.setAttribute('src', message.replace(":","").replace(nickname ,"").replace(partner_user ,"").replace(totaltime.slice(10, 16),"").replace("null",""));
     }
     else{
-      chat_image.setAttribute('src', message.replace(":","").replace(nickname ,"").replace(nickname ,"").replace(totaltime.slice(10, 16),""));
+      chat_image.setAttribute('src', message.replace(":","").replace(nickname ,"").replace(partner_user ,"").replace(totaltime.slice(10, 16),""));
     }
 
     return chat_image
