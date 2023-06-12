@@ -370,7 +370,11 @@ const sendMessage = (message) => {
     else{
       chat_image.setAttribute('src', message.replace(":","").replace(nickname ,"").replace(partner_user ,"").replace(totaltime.slice(10, 16),""));
     }
- 
+
+    chat_image.addEventListener('click', function() {
+        Android.sendDataToApp(id);
+    });
+
     return chat_image
   }
   /* 메세지 */
@@ -722,6 +726,10 @@ const receiveMessage = (message) => {
     else{
       chat_image.setAttribute('src', message.replace(":","").replace(nickname ,"").replace(partner_user ,"").replace(totaltime.slice(10, 16),""));
     }
+
+    chat_image.addEventListener('click', function() {
+        Android.sendDataToApp(id);
+    });
 
     return chat_image
   }
