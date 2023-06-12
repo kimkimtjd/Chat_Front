@@ -282,7 +282,7 @@ const buildNewMessage = (message, logo_image, date, first_today, minute) => {
     const div = document.createElement("div");
     const logo = document.createElement("img");
 
-    if (logo_image === null || logo_image === "") {
+    if (logo_image === null || logo_image === "" || logo_image === "null") {
       logo.setAttribute('src', "https://scrapmarket.s3.ap-northeast-2.amazonaws.com/App/chat_profile.png");
     }
     else {
