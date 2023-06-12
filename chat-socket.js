@@ -61,7 +61,8 @@ function Room(roomname, pk, user, partner, logo_image) {
     partner = "kmskms"
     roomname = "8b66e439-3985-4d6b-b928-e19ff008571c"
     logo_image = ""
-
+ partner_user = partner
+  
   socket.emit('room', roomname)
 
 
