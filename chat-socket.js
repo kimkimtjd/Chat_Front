@@ -52,7 +52,7 @@ const message = document.getElementById('message');
 function Room(roomname, pk, user, partner, logo_image) {
 
 //   nickname = user
-  partner_user = partner
+//   partner_user = partner
   
   /* 아래는 웹 테스트용 inputbox */
     nickname = "애완용꿀꿀이"
@@ -60,8 +60,8 @@ function Room(roomname, pk, user, partner, logo_image) {
     pk = 1
     partner = "kmskms"
     roomname = "8b66e439-3985-4d6b-b928-e19ff008571c"
-    logo_image = ""
- partner_user = partner
+//     logo_image = ""
+    partner_user = partner
   
   socket.emit('room', roomname)
 
