@@ -64,9 +64,9 @@ function Room(roomname, pk, user, partner, logo_image) {
     nickname = "애완용꿀꿀이"
     user = nickname
     pk = 1
-    partner = "kmskms"
+    partner = "우리자원55"
     partner_user = partner
-    roomname = "8b66e439-3985-4d6b-b928-e19ff008571c"
+    roomname = "5"
     logo_image = ""
 
   socket.emit('room', roomname)
