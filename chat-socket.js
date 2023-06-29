@@ -68,7 +68,7 @@ function Room(roomname, pk, user, partner, logo_image) {
 
   biz_logo = logo_image
 
-  fetch('https://www.scrapmk.com/api/chat/chatroom/' + user + "/" + partner)
+  fetch('https://www.scrapmk.com/api/chat/chatroom/' + user + "/" + partner + "/")
     .then(response => response.json())
     .then(data => {
 
