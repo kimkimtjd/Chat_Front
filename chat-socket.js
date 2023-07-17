@@ -51,17 +51,17 @@ const message = document.getElementById('message');
 /* 방입장 */
 function Room(roomname, pk, user, partner, logo_image) {
 
-  nickname = user
-  partner_user = partner
+  // nickname = user
+  // partner_user = partner
   
   /* 아래는 웹 테스트용 inputbox */
-    // nickname = "애완용꿀꿀이"
-    // user = nickname
-    // pk = 1
-    // partner = "kmskms"
-    // roomname = "b1b32f2f-9ab6-4570-b824-e700c55c1ba8"
-    // logo_image = ""
-    // partner_user = partner
+    nickname = "애완용꿀꿀이"
+    user = nickname
+    pk = 1
+    partner = "kmskms"
+    roomname = "b1b32f2f-9ab6-4570-b824-e700c55c1ba8"
+    logo_image = ""
+    partner_user = partner
   
   socket.emit('room', roomname)
 
@@ -1044,9 +1044,9 @@ const receivesecondMessage = (datesecond, minute) => {
 /****************************** 아래 코드는 웹용  위 부분은 공용******************************/
 // socket.emit('room', room)
 
-// window.onload = function() {
-//     Room()
-//  };
+window.onload = function() {
+    Room()
+ };
 
 // const handleSubmitNewMessage = () => {
 //   socket.emit('message', "애완용꿀꿀이dflksjfdsjhttps://scrapmarket.s3.ap-northeast-2.amazonaws.com/ProfileCard/logo.jpeg10%3A3924&&애완용꿀꿀이&&비공개&&비공개&&김성원&&서울마포구&&연남로5길 44&&010080758012&&비공개&&비공개businesscard_certifycode" + "2023-05-19null방이름d67dc57d-14a3-488b-8f5f-dfeee417ed3c")
