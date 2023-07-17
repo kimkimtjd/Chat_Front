@@ -110,7 +110,6 @@ li{
   display: flex;
   flex-direction: row;
   padding: 8px;
-  margin-top: 10px;
 }
 .receive_sendertoday{
   display: flex;
