@@ -372,7 +372,7 @@ const sendMessage = (message , id) => {
     }
 
     chat_image.addEventListener('click', function() {
-        Android.sendDataToApp(id);
+        Android.sendDataToApp(id , message.replace(":","").replace(nickname ,"").replace(partner_user ,"").replace(totaltime.slice(10, 16),"").replace("null",""));
       console.log("test")
     });
 
