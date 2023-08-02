@@ -53,6 +53,11 @@ const messagestest = document.getElementById('messages');
 var currentPage = 1;
 let loading = false;
 
+var roomname_second = ""
+var pk_second = ""
+var user_second = ""
+var partner_second = ""
+var logo_image_second = ""
 
 /* 방입장 */
 function Room(roomname, pk, user, partner, logo_image) {
@@ -72,7 +77,17 @@ function Room(roomname, pk, user, partner, logo_image) {
 
   biz_logo = logo_image
 
+  /* reload 용 */
+  if(currentPage === 1){
+    roomname_second = roomname
+    pk_second = pk
+    user_second = user
+    partner_second = partner
+    logo_image_second = logo_image
 
+    nickname = user_second
+    partner_user = partner_second
+  
     fetch('https://www.scrapmk.com/api/chat/chatroom/' + user + "/" + partner + "/?&page=" + currentPage)
     .then(response => response.json())
     .then(data => {
@@ -121,6 +136,58 @@ function Room(roomname, pk, user, partner, logo_image) {
       
     })
     .catch(error => console.error(error));
+  }
+  else{
+    fetch('https://www.scrapmk.com/api/chat/chatroom/' + user_second + "/" + partner_second + "/?&page=" + currentPage)
+    .then(response => response.json())
+    .then(data => {
+      
+      for (var i = 0 ; i < data.results.length ; i++) {
+        /* 메세지 */  
+        if (data.results[i].image_url === "") {
+          if (data.results[i].sender === pk) {
+            messages.appendChild(buildNewMessage(nickname + ":" + data.results[i].content.replace('<br/>', '\n') + "방이름" + data.results[i].group, data.results[i].biz_logo, data.results[i].created, String(data.results[i].today), data.results[i].minute));
+          }
+          else {
+            messages.appendChild(buildNewMessage(data.results[i].nickname + ":" + data.results[i].content.replace('<br/>', '\n') + "방이름" + data.results[i].group, data.results[i].biz_logo, data.results[i].created, String(data.results[i].today), data.results[i].minute));
+          }
+        }
+        
+        /* 명함 */
+        else if(data.results[i].image_url === "no"){
+          if (data.results[i].sender === pk) {
+            messages.appendChild(buildNewMessage(nickname + "dflksjfdsj" + data.results[i].content.replace('<br/>', '\n') + "방이름" + data.results[i].group, data.results[i].biz_logo, data.results[i].created, String(data.results[i].today), data.results[i].minute));
+          }
+          else {
+            messages.appendChild(buildNewMessage(data.results[i].nickname + "dflksjfdsj" + data.results[i].content.replace('<br/>', '\n') + "방이름" + data.results[i].group, data.results[i].biz_logo, data.results[i].created, String(data.results[i].today), data.results[i].minute));
+          }
+        }
+
+        /* 이미지 */
+        else if(data.results[i].image_url !== ""){
+          if (data.results[i].sender === pk_second) {
+            messages.appendChild(buildNewMessage(nickname + ":" + data.results[i].image_url.replace('<br/>', '\n') + "방이름" + data.results[i].group, data.results[i].biz_logo, data.results[i].created, String(data.results[i].today), data.results[i].minute  , data.results[i].id));
+          }
+          else {
+            messages.appendChild(buildNewMessage(data.results[i].nickname + ":" + data.results[i].image_url.replace('<br/>', '\n') + "방이름" + data.results[i].group, data.results[i].biz_logo, data.results[i].created, String(data.results[i].today), data.results[i].minute , data.results[i].id));
+          }
+        }
+
+      }
+
+      /* 스크롤 하단으로 이동 */
+    if(currentPage === 1){
+        setTimeout(() => {
+          const messagestest = document.getElementById('messages');
+          messagestest.scrollTop = messagestest.scrollHeight;
+        }, 1000);  
+      }
+      
+      
+    })
+    .catch(error => console.error(error));
+  }
+
 }
 
 
