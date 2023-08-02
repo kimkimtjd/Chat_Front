@@ -50,7 +50,7 @@ const message = document.getElementById('message');
 /******************************************************* 방 입장 및 소캣연결 . 메세지 송수신 *******************************************************/
 
 const messagestest = document.getElementById('messages');
-let currentPage = 1;
+var currentPage = 1;
 let loading = false;
 
 
@@ -75,9 +75,8 @@ function Room(roomname, pk, user, partner, logo_image) {
   fetch('https://www.scrapmk.com/api/chat/chatroom/' + user + "/" + partner + "/?&page=" + currentPage)
     .then(response => response.json())
     .then(data => {
-      console.log(data.results.size)
       
-      for (var i = data.results.size - 1 ; i  >= 0 ; i--) {
+      for (var i = data.results.length - 1 ; i  >= 0 ; i--) {
         /* 메세지 */  
         if (data.results[i].image_url === "") {
           if (data.results[i].sender === pk) {
