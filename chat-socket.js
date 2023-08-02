@@ -121,15 +121,17 @@ function Room(roomname, pk, user, partner, logo_image) {
 let currentPage = 1;
 let loadingData = false; // 데이터를 로딩 중인지 여부
 
+const messagestest = document.getElementById('messages');
+
 // 스크롤 이벤트 리스너 등록
-messages.addEventListener('scroll', function() {
+messagestest.addEventListener('scroll', function() {
     if (loadingData) {
         return; // 이미 데이터를 로딩 중이면 중복 실행 방지
     }
     
-    const scrollTop = messages.scrollTop;
-    const scrollHeight = messages.scrollHeight;
-    const clientHeight = messages.clientHeight;
+    const scrollTop = messagestest.scrollTop;
+    const scrollHeight = messagestest.scrollHeight;
+    const clientHeight = messagestest.clientHeight;
 
     // 상단에 닿았을 때 추가 데이터 로딩
     if (scrollTop === 0) {
@@ -141,7 +143,40 @@ messages.addEventListener('scroll', function() {
             .then(response => response.json())
             .then(data => {
                 // 데이터를 처리하고 스크롤 위치 조정
-                
+                for (var i = 9 ; i  >= 0 ; i--) {
+        
+                  /* 메세지 */  
+                  if (data.results[i].image_url === "") {
+                    if (data.results[i].sender === pk) {
+                      messages.appendChild(buildNewMessage(nickname + ":" + data.results[i].content.replace('<br/>', '\n') + "방이름" + data.results[i].group, data.results[i].biz_logo, data.results[i].created, String(data.results[i].today), data.results[i].minute));
+                    }
+                    else {
+                      messages.appendChild(buildNewMessage(data.results[i].nickname + ":" + data.results[i].content.replace('<br/>', '\n') + "방이름" + data.results[i].group, data.results[i].biz_logo, data.results[i].created, String(data.results[i].today), data.results[i].minute));
+                    }
+                  }
+                  
+                  /* 명함 */
+                  else if(data.results[i].image_url === "no"){
+                    if (data.results[i].sender === pk) {
+                      messages.appendChild(buildNewMessage(nickname + "dflksjfdsj" + data.results[i].content.replace('<br/>', '\n') + "방이름" + data.results[i].group, data.results[i].biz_logo, data.results[i].created, String(data.results[i].today), data.results[i].minute));
+                    }
+                    else {
+                      messages.appendChild(buildNewMessage(data.results[i].nickname + "dflksjfdsj" + data.results[i].content.replace('<br/>', '\n') + "방이름" + data.results[i].group, data.results[i].biz_logo, data.results[i].created, String(data.results[i].today), data.results[i].minute));
+                    }
+                  }
+          
+                  /* 이미지 */
+                  else if(data.results[i].image_url !== ""){
+                    if (data.results[i].sender === pk) {
+                      messages.appendChild(buildNewMessage(nickname + ":" + data.results[i].image_url.replace('<br/>', '\n') + "방이름" + data.results[i].group, data.results[i].biz_logo, data.results[i].created, String(data.results[i].today), data.results[i].minute  , data.results[i].id));
+                    }
+                    else {
+                      messages.appendChild(buildNewMessage(data.results[i].nickname + ":" + data.results[i].image_url.replace('<br/>', '\n') + "방이름" + data.results[i].group, data.results[i].biz_logo, data.results[i].created, String(data.results[i].today), data.results[i].minute , data.results[i].id));
+                    }
+                  }
+          
+                }
+          
                 // 데이터 처리 후
                 loadingData = false;
             })
