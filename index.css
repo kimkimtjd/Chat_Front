@@ -98,7 +98,7 @@ li{
 
 .total{
   width: 100%; 
-  height:auto; 
+  height:700px; 
   background: #E7EAEF;
    display: flex;
   flex-direction: column;
