@@ -111,7 +111,8 @@ function Room(roomname, pk, user, partner, logo_image) {
      
     })
     .catch(error => console.error(error));
-
+ const messagestest = document.getElementById('messages');
+        messagestest.scrollTop = messagestest.scrollHeight;
 }
 
 /* 메세지 송신 */
@@ -1039,8 +1040,7 @@ const receivesecondMessage = (datesecond, minute) => {
 
 window.onload = function() {
     Room()
-   const messagestest = document.getElementById('messages');
-        messagestest.scrollTop = messagestest.scrollHeight;
+  
  };
 
 // const handleSubmitNewMessage = () => {
