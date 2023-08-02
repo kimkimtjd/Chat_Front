@@ -108,8 +108,8 @@ function Room(roomname, pk, user, partner, logo_image) {
       }
 
       /* 스크롤 하단으로 이동 */
-       // const messagestest = document.getElementById('messages');
-       //  messagestest.scrollTop = messagestest.scrollHeight;    
+       const messagestest = document.getElementById('messages');
+        messagestest.scrollTop = messagestest.scrollHeight;    
     })
     .catch(error => console.error(error));
  
@@ -1042,11 +1042,6 @@ window.onload = function() {
     Room()  
  };
 
-window.onscroll = function() {
-if (window.scrollY >= document.body.scrollHeight - window.innerHeight) {
-document.getElementById("messages").scrollTop = document.getElementById("messages").scrollHeight;
-}
-}
 
 
 // const handleSubmitNewMessage = () => {
