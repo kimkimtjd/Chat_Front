@@ -139,7 +139,7 @@ messagestest.addEventListener('scroll', function() {
         currentPage++; // 페이지 번호 증가
 
         // 데이터를 로드하고 불러온 후 처리
-        fetch('https://www.scrapmk.com/api/chat/chatroom/' + user + "/" + partner + "/?&page=" + currentPage)
+        fetch('https://www.scrapmk.com/api/chat/chatroom/' + nickname + "/" + partner_user + "/?&page=" + currentPage)
             .then(response => response.json())
             .then(data => {
                 // 데이터를 처리하고 스크롤 위치 조정
