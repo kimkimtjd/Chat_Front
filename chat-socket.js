@@ -73,7 +73,7 @@ function Room(roomname, pk, user, partner, logo_image) {
     .then(data => {
 
     
-      for (var i = data.results.length; i === 0 ; i--) {
+      for (var i = 14 ; i === 0 ; i--) {
         
         /* 메세지 */  
         if (data.results[i].image_url === "") {
