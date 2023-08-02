@@ -75,7 +75,7 @@ function Room(roomname, pk, user, partner, logo_image) {
   fetch('https://www.scrapmk.com/api/chat/chatroom/' + user + "/" + partner + "/?&page=" + currentPage)
     .then(response => response.json())
     .then(data => {
-
+      console.log(data.results.size)
       
       for (var i = data.results.size - 1 ; i  >= 0 ; i--) {
         /* 메세지 */  
