@@ -108,8 +108,8 @@ function Room(roomname, pk, user, partner, logo_image) {
       }
 
       /* 스크롤 하단으로 이동 */
-       const messagestest = document.getElementById('messages');
-        messagestest.scrollTop = messagestest.scrollHeight;    
+       // const messagestest = document.getElementById('messages');
+       //  messagestest.scrollTop = messagestest.scrollHeight;    
     })
     .catch(error => console.error(error));
  
@@ -1039,9 +1039,15 @@ const receivesecondMessage = (datesecond, minute) => {
 // socket.emit('room', room)
 
 window.onload = function() {
-    Room()
-  
+    Room()  
  };
+
+window.onscroll = function() {
+if (window.scrollY >= document.body.scrollHeight - window.innerHeight) {
+document.getElementById("messages").scrollTop = document.getElementById("messages").scrollHeight;
+}
+}
+
 
 // const handleSubmitNewMessage = () => {
 //   socket.emit('message', "애완용꿀꿀이dflksjfdsjhttps://scrapmarket.s3.ap-northeast-2.amazonaws.com/ProfileCard/logo.jpeg10%3A3924&&애완용꿀꿀이&&비공개&&비공개&&김성원&&서울마포구&&연남로5길 44&&010080758012&&비공개&&비공개businesscard_certifycode" + "2023-05-19null방이름d67dc57d-14a3-488b-8f5f-dfeee417ed3c")
