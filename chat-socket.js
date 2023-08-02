@@ -52,20 +52,19 @@ const message = document.getElementById('message');
 /* 방입장 */
 function Room(roomname, pk, user, partner, logo_image) {
 
-  nickname = user
-  partner_user = partner
+  // nickname = user
+  // partner_user = partner
   page = "1"  
   /* 아래는 웹 테스트용 inputbox */
-    // nickname = "애완용꿀꿀이"
-    // user = nickname
-    // pk = 1
-    // partner = "kmskms"
-    // roomname = "b1b32f2f-9ab6-4570-b824-e700c55c1ba8"
-    // logo_image = ""
-    // partner_user = partner
+    nickname = "애완용꿀꿀이"
+    user = nickname
+    pk = 1
+    partner = "kmskms"
+    roomname = "b1b32f2f-9ab6-4570-b824-e700c55c1ba8"
+    logo_image = ""
+    partner_user = partner
   
   socket.emit('room', roomname)
-
 
   biz_logo = logo_image
 
@@ -117,6 +116,45 @@ function Room(roomname, pk, user, partner, logo_image) {
     .catch(error => console.error(error));
  
 }
+
+// 현재 페이지 번호와 데이터를 담을 변수
+let currentPage = 1;
+let loadingData = false; // 데이터를 로딩 중인지 여부
+
+// 스크롤 이벤트 리스너 등록
+messages.addEventListener('scroll', function() {
+    if (loadingData) {
+        return; // 이미 데이터를 로딩 중이면 중복 실행 방지
+    }
+    
+    const scrollTop = messages.scrollTop;
+    const scrollHeight = messages.scrollHeight;
+    const clientHeight = messages.clientHeight;
+
+    // 상단에 닿았을 때 추가 데이터 로딩
+    if (scrollTop === 0) {
+        loadingData = true;
+        currentPage++; // 페이지 번호 증가
+
+        // 데이터를 로드하고 불러온 후 처리
+        fetch('https://www.scrapmk.com/api/chat/chatroom/' + user + "/" + partner + "/?&page=" + currentPage)
+            .then(response => response.json())
+            .then(data => {
+                // 데이터를 처리하고 스크롤 위치 조정
+                
+                // 데이터 처리 후
+                loadingData = false;
+            })
+            .catch(error => {
+                console.error(error);
+                loadingData = false;
+            });
+    }
+});
+
+window.onload = function() {
+    Room()  
+ };
 
 /* 메세지 송신 */
 function Test(arg, chat, roomname, today) {
@@ -1041,9 +1079,7 @@ const receivesecondMessage = (datesecond, minute) => {
 /****************************** 아래 코드는 웹용  위 부분은 공용******************************/
 // socket.emit('room', room)
 
-// window.onload = function() {
-//     Room()  
-//  };
+
 
 
 
