@@ -57,16 +57,16 @@ let loading = false;
 /* 방입장 */
 function Room(roomname, pk, user, partner, logo_image) {
 
-  // nickname = user
-  // partner_user = partner
+  nickname = user
+  partner_user = partner
   /* 아래는 웹 테스트용 inputbox */
-    nickname = "애완용꿀꿀이"
-    user = nickname
-    pk = 1
-    partner = "kmskms"
-    roomname = "b1b32f2f-9ab6-4570-b824-e700c55c1ba8"
-    logo_image = ""
-    partner_user = partner
+    // nickname = "애완용꿀꿀이"
+    // user = nickname
+    // pk = 1
+    // partner = "kmskms"
+    // roomname = "b1b32f2f-9ab6-4570-b824-e700c55c1ba8"
+    // logo_image = ""
+    // partner_user = partner
   
   socket.emit('room', roomname)
 
@@ -137,9 +137,9 @@ var scrollTop = window.scrollY;
     }
 });
 
-window.onload = function() {
-    Room()  
- };
+// window.onload = function() {
+//     Room()  
+//  };
 
 /* 메세지 송신 */
 function Test(arg, chat, roomname, today) {
