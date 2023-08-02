@@ -139,7 +139,7 @@ function Room(roomname, pk, user, partner, logo_image) {
 
     
     for (i = currentPage ; i >= 0 ; i--) {
-      fetch('https://www.scrapmk.com/api/chat/chatroom/' + user + "/" + partner + "/?&page=" + currentPage)
+      fetch('https://www.scrapmk.com/api/chat/chatroom/' + user + "/" + partner + "/?&page=" + i)
       .then(response => response.json())
       .then(data => {
         
