@@ -133,6 +133,7 @@ var scrollTop = window.scrollY;
         loading = true;
         currentPage++; // 다음 페이지로 변경
         Room();
+      alert("상단감지") 
     }
 });
 
