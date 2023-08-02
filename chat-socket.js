@@ -76,32 +76,32 @@ function Room(roomname, pk, user, partner, logo_image) {
       for (var i = 0; i < data.results.length; i++) {
         
         /* 메세지 */  
-        if (data.result[i].image_url === "") {
-          if (data.result[i].sender === pk) {
-            messages.appendChild(buildNewMessage(nickname + ":" + data.result[i].content.replace('<br/>', '\n') + "방이름" + data.result[i].group, data.result[i].biz_logo, data.result[i].created, String(data.result[i].today), data.result[i].minute));
+        if (data.results[i].image_url === "") {
+          if (data.results[i].sender === pk) {
+            messages.appendChild(buildNewMessage(nickname + ":" + data.results[i].content.replace('<br/>', '\n') + "방이름" + data.results[i].group, data.results[i].biz_logo, data.results[i].created, String(data.results[i].today), data.results[i].minute));
           }
           else {
-            messages.appendChild(buildNewMessage(data.result[i].nickname + ":" + data.result[i].content.replace('<br/>', '\n') + "방이름" + data.result[i].group, data.result[i].biz_logo, data.result[i].created, String(data.result[i].today), data.result[i].minute));
+            messages.appendChild(buildNewMessage(data.results[i].nickname + ":" + data.results[i].content.replace('<br/>', '\n') + "방이름" + data.results[i].group, data.results[i].biz_logo, data.results[i].created, String(data.results[i].today), data.results[i].minute));
           }
         }
         
         /* 명함 */
-        else if(data.result[i].image_url === "no"){
-          if (data.result[i].sender === pk) {
-            messages.appendChild(buildNewMessage(nickname + "dflksjfdsj" + data.result[i].content.replace('<br/>', '\n') + "방이름" + data.result[i].group, data.result[i].biz_logo, data.result[i].created, String(data.result[i].today), data.result[i].minute));
+        else if(data.results[i].image_url === "no"){
+          if (data.results[i].sender === pk) {
+            messages.appendChild(buildNewMessage(nickname + "dflksjfdsj" + data.results[i].content.replace('<br/>', '\n') + "방이름" + data.results[i].group, data.results[i].biz_logo, data.results[i].created, String(data.results[i].today), data.results[i].minute));
           }
           else {
-            messages.appendChild(buildNewMessage(data.result[i].nickname + "dflksjfdsj" + data.result[i].content.replace('<br/>', '\n') + "방이름" + data.result[i].group, data.result[i].biz_logo, data.result[i].created, String(data.result[i].today), data.result[i].minute));
+            messages.appendChild(buildNewMessage(data.results[i].nickname + "dflksjfdsj" + data.results[i].content.replace('<br/>', '\n') + "방이름" + data.results[i].group, data.results[i].biz_logo, data.results[i].created, String(data.results[i].today), data.results[i].minute));
           }
         }
 
         /* 이미지 */
-        else if(data.result[i].image_url !== ""){
-          if (data.result[i].sender === pk) {
-            messages.appendChild(buildNewMessage(nickname + ":" + data.result[i].image_url.replace('<br/>', '\n') + "방이름" + data.result[i].group, data.result[i].biz_logo, data.result[i].created, String(data.result[i].today), data.result[i].minute  , data.result[i].id));
+        else if(data.results[i].image_url !== ""){
+          if (data.results[i].sender === pk) {
+            messages.appendChild(buildNewMessage(nickname + ":" + data.results[i].image_url.replace('<br/>', '\n') + "방이름" + data.results[i].group, data.results[i].biz_logo, data.results[i].created, String(data.results[i].today), data.results[i].minute  , data.results[i].id));
           }
           else {
-            messages.appendChild(buildNewMessage(data.result[i].nickname + ":" + data.result[i].image_url.replace('<br/>', '\n') + "방이름" + data.result[i].group, data.result[i].biz_logo, data.result[i].created, String(data.result[i].today), data.result[i].minute , data.result[i].id));
+            messages.appendChild(buildNewMessage(data.results[i].nickname + ":" + data.results[i].image_url.replace('<br/>', '\n') + "방이름" + data.results[i].group, data.results[i].biz_logo, data.results[i].created, String(data.results[i].today), data.results[i].minute , data.results[i].id));
           }
         }
 
