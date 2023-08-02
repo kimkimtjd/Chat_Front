@@ -72,7 +72,8 @@ function Room(roomname, pk, user, partner, logo_image) {
 
   biz_logo = logo_image
 
-  fetch('https://www.scrapmk.com/api/chat/chatroom/' + user + "/" + partner + "/?&page=" + currentPage)
+  if(currentPage === 1){
+    fetch('https://www.scrapmk.com/api/chat/chatroom/' + user + "/" + partner + "/?&page=" + currentPage)
     .then(response => response.json())
     .then(data => {
       
@@ -116,6 +117,60 @@ function Room(roomname, pk, user, partner, logo_image) {
             }, 1000);
     })
     .catch(error => console.error(error));
+  }
+  else{
+    senderbox.remove();
+    sendertoday.remove();
+    receiverbox.remove();
+    receive_sendertoday.remove();
+    
+    for (i = currentPage ; i >= 0 ; i--) {
+      fetch('https://www.scrapmk.com/api/chat/chatroom/' + user + "/" + partner + "/?&page=" + currentPage)
+      .then(response => response.json())
+      .then(data => {
+        
+        for (var i = data.results.length - 1 ; i  >= 0 ; i--) {
+          /* 메세지 */  
+          if (data.results[i].image_url === "") {
+            if (data.results[i].sender === pk) {
+              messages.appendChild(buildNewMessage(nickname + ":" + data.results[i].content.replace('<br/>', '\n') + "방이름" + data.results[i].group, data.results[i].biz_logo, data.results[i].created, String(data.results[i].today), data.results[i].minute));
+            }
+            else {
+              messages.appendChild(buildNewMessage(data.results[i].nickname + ":" + data.results[i].content.replace('<br/>', '\n') + "방이름" + data.results[i].group, data.results[i].biz_logo, data.results[i].created, String(data.results[i].today), data.results[i].minute));
+            }
+          }
+          
+          /* 명함 */
+          else if(data.results[i].image_url === "no"){
+            if (data.results[i].sender === pk) {
+              messages.appendChild(buildNewMessage(nickname + "dflksjfdsj" + data.results[i].content.replace('<br/>', '\n') + "방이름" + data.results[i].group, data.results[i].biz_logo, data.results[i].created, String(data.results[i].today), data.results[i].minute));
+            }
+            else {
+              messages.appendChild(buildNewMessage(data.results[i].nickname + "dflksjfdsj" + data.results[i].content.replace('<br/>', '\n') + "방이름" + data.results[i].group, data.results[i].biz_logo, data.results[i].created, String(data.results[i].today), data.results[i].minute));
+            }
+          }
+  
+          /* 이미지 */
+          else if(data.results[i].image_url !== ""){
+            if (data.results[i].sender === pk) {
+              messages.appendChild(buildNewMessage(nickname + ":" + data.results[i].image_url.replace('<br/>', '\n') + "방이름" + data.results[i].group, data.results[i].biz_logo, data.results[i].created, String(data.results[i].today), data.results[i].minute  , data.results[i].id));
+            }
+            else {
+              messages.appendChild(buildNewMessage(data.results[i].nickname + ":" + data.results[i].image_url.replace('<br/>', '\n') + "방이름" + data.results[i].group, data.results[i].biz_logo, data.results[i].created, String(data.results[i].today), data.results[i].minute , data.results[i].id));
+            }
+          }
+  
+        }
+  
+        /* 스크롤 하단으로 이동 */
+        setTimeout(() => {
+                  const messagestest = document.getElementById('messages');
+                  messagestest.scrollTop = messagestest.scrollHeight;
+              }, 1000);
+      })
+      .catch(error => console.error(error));
+    }
+  }
  
 }
 
@@ -136,7 +191,6 @@ window.onload = function() {
 function Test(arg, chat, roomname, today) {
   nickname = arg
 
-  console.log(chat)
   /* 현재시간 1번쨰 메세지가 아닐경우 */
   if (todaysdads === totaltime.slice(10, 16)) {
     if(chat.includes("scrapmarket.s3.ap-northeast-2.amazonaws.com") && !chat.includes('businesscard_certifycode')){
