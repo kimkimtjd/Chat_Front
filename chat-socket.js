@@ -125,10 +125,14 @@ function Room(roomname, pk, user, partner, logo_image) {
 
 
 messagestest.addEventListener('scroll', function() {
-    if (messagestest.scrollTop === 1 && !loading) {
+   var scrollHeight = messagestest.scrollHeight;
+    var scrollTop = messagestest.scrollTop;
+    var clientHeight = messagestest.clientHeight;
+
+    if (scrollHeight - scrollTop === clientHeight && !loading) {
         loading = true;
         currentPage++; // 다음 페이지로 변경
-        Room();        
+        Room();
     }
 });
 
