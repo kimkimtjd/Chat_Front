@@ -10,8 +10,6 @@ li{
 #messages{
   display: flex;
   flex-direction: column;
-	
-  height:800px;
   flex-grow: 1;
   overflow-y: scroll;
   overflow-x: hidden;
@@ -105,6 +103,8 @@ li{
   background: #E7EAEF;
    display: flex;
   flex-direction: column;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 /* 수신 */
