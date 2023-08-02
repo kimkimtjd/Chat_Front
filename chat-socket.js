@@ -53,7 +53,7 @@ function Room(roomname, pk, user, partner, logo_image) {
 
   nickname = user
   partner_user = partner
-  page = "1"  
+  var page_number = "1"  
   /* 아래는 웹 테스트용 inputbox */
     // nickname = "애완용꿀꿀이"
     // user = nickname
@@ -68,7 +68,7 @@ function Room(roomname, pk, user, partner, logo_image) {
 
   biz_logo = logo_image
 
-  fetch('https://www.scrapmk.com/api/chat/chatroom/' + user + "/" + partner + "/?&page=" + page)
+  fetch('https://www.scrapmk.com/api/chat/chatroom/' + user + "/" + partner + "/?&page=" + page_number)
     .then(response => response.json())
     .then(data => {
 
