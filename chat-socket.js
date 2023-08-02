@@ -76,12 +76,8 @@ function Room(roomname, pk, user, partner, logo_image) {
     .then(response => response.json())
     .then(data => {
 
-      if(currentPage === 2){
-        console.log(data)
-      }
       
-      for (var i = 9 ; i  >= 0 ; i--) {
-        
+      for (var i = data.results.size - 1 ; i  >= 0 ; i--) {
         /* 메세지 */  
         if (data.results[i].image_url === "") {
           if (data.results[i].sender === pk) {
