@@ -110,7 +110,7 @@ function Room(roomname, pk, user, partner, logo_image) {
 
       /* 스크롤 하단으로 이동 */
       setTimeout(() => {
-                const messagestest = document.getElementById('messages');
+                const messagestest = document.getElementsByClassName('total');
                 messagestest.scrollTop = messagestest.scrollHeight;
             }, 1000);
     })
