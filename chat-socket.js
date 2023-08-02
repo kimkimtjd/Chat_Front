@@ -108,7 +108,8 @@ function Room(roomname, pk, user, partner, logo_image) {
       }
 
       /* 스크롤 하단으로 이동 */
-      document.getElementById("messages").scrollTo(0, document.getElementById("messages").scrollHeight);
+      const messages = document.getElementById('messages');
+        messages.scrollTop = messages.scrollHeight;
     })
     .catch(error => console.error(error));
 
