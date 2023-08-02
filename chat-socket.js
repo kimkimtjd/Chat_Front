@@ -53,7 +53,7 @@ function Room(roomname, pk, user, partner, logo_image) {
 
   nickname = user
   partner_user = partner
-  
+  page = "1"  
   /* 아래는 웹 테스트용 inputbox */
     // nickname = "애완용꿀꿀이"
     // user = nickname
@@ -68,40 +68,40 @@ function Room(roomname, pk, user, partner, logo_image) {
 
   biz_logo = logo_image
 
-  fetch('https://www.scrapmk.com/api/chat/chatroom/' + user + "/" + partner + "/")
+  fetch('https://www.scrapmk.com/api/chat/chatroom/' + user + "/" + partner + "/?&page=" + page)
     .then(response => response.json())
     .then(data => {
 
     
-      for (var i = 0; i < data.length; i++) {
+      for (var i = 0; i < data.results.length; i++) {
         
         /* 메세지 */  
-        if (data[i].image_url === "") {
-          if (data[i].sender === pk) {
-            messages.appendChild(buildNewMessage(nickname + ":" + data[i].content.replace('<br/>', '\n') + "방이름" + data[i].group, data[i].biz_logo, data[i].created, String(data[i].today), data[i].minute));
+        if (data.result[i].image_url === "") {
+          if (data.result[i].sender === pk) {
+            messages.appendChild(buildNewMessage(nickname + ":" + data.result[i].content.replace('<br/>', '\n') + "방이름" + data.result[i].group, data.result[i].biz_logo, data.result[i].created, String(data.result[i].today), data.result[i].minute));
           }
           else {
-            messages.appendChild(buildNewMessage(data[i].nickname + ":" + data[i].content.replace('<br/>', '\n') + "방이름" + data[i].group, data[i].biz_logo, data[i].created, String(data[i].today), data[i].minute));
+            messages.appendChild(buildNewMessage(data.result[i].nickname + ":" + data.result[i].content.replace('<br/>', '\n') + "방이름" + data.result[i].group, data.result[i].biz_logo, data.result[i].created, String(data.result[i].today), data.result[i].minute));
           }
         }
         
         /* 명함 */
-        else if(data[i].image_url === "no"){
-          if (data[i].sender === pk) {
-            messages.appendChild(buildNewMessage(nickname + "dflksjfdsj" + data[i].content.replace('<br/>', '\n') + "방이름" + data[i].group, data[i].biz_logo, data[i].created, String(data[i].today), data[i].minute));
+        else if(data.result[i].image_url === "no"){
+          if (data.result[i].sender === pk) {
+            messages.appendChild(buildNewMessage(nickname + "dflksjfdsj" + data.result[i].content.replace('<br/>', '\n') + "방이름" + data.result[i].group, data.result[i].biz_logo, data.result[i].created, String(data.result[i].today), data.result[i].minute));
           }
           else {
-            messages.appendChild(buildNewMessage(data[i].nickname + "dflksjfdsj" + data[i].content.replace('<br/>', '\n') + "방이름" + data[i].group, data[i].biz_logo, data[i].created, String(data[i].today), data[i].minute));
+            messages.appendChild(buildNewMessage(data.result[i].nickname + "dflksjfdsj" + data.result[i].content.replace('<br/>', '\n') + "방이름" + data.result[i].group, data.result[i].biz_logo, data.result[i].created, String(data.result[i].today), data.result[i].minute));
           }
         }
 
         /* 이미지 */
-        else if(data[i].image_url !== ""){
-          if (data[i].sender === pk) {
-            messages.appendChild(buildNewMessage(nickname + ":" + data[i].image_url.replace('<br/>', '\n') + "방이름" + data[i].group, data[i].biz_logo, data[i].created, String(data[i].today), data[i].minute  , data[i].id));
+        else if(data.result[i].image_url !== ""){
+          if (data.result[i].sender === pk) {
+            messages.appendChild(buildNewMessage(nickname + ":" + data.result[i].image_url.replace('<br/>', '\n') + "방이름" + data.result[i].group, data.result[i].biz_logo, data.result[i].created, String(data.result[i].today), data.result[i].minute  , data.result[i].id));
           }
           else {
-            messages.appendChild(buildNewMessage(data[i].nickname + ":" + data[i].image_url.replace('<br/>', '\n') + "방이름" + data[i].group, data[i].biz_logo, data[i].created, String(data[i].today), data[i].minute , data[i].id));
+            messages.appendChild(buildNewMessage(data.result[i].nickname + ":" + data.result[i].image_url.replace('<br/>', '\n') + "방이름" + data.result[i].group, data.result[i].biz_logo, data.result[i].created, String(data.result[i].today), data.result[i].minute , data.result[i].id));
           }
         }
 
