@@ -111,7 +111,7 @@ function Room(roomname, pk, user, partner, logo_image) {
       setTimeout(() => {
                 const messagestest = document.getElementById('messages');
                 messagestest.scrollTop = messagestest.scrollHeight;
-            }, 1000);
+            }, 100);
     })
     .catch(error => console.error(error));
  
