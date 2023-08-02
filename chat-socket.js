@@ -117,7 +117,18 @@ function Room(roomname, pk, user, partner, logo_image) {
  
 }
 
+const messagestest = document.getElementById('messages');
+let currentPage = 1;
+let loading = false;
 
+messagestest.addEventListener('scroll', function() {
+    if (messagestest.scrollTop === 0 && !loading) {
+        loading = true;
+        currentPage++; // 다음 페이지로 변경
+        // loadAndAppendData(currentPage);
+        console.log("상단으로이동")
+    }
+});
 
 window.onload = function() {
     Room()  
