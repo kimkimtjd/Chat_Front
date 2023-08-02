@@ -49,12 +49,16 @@ const message = document.getElementById('message');
 
 /******************************************************* 방 입장 및 소캣연결 . 메세지 송수신 *******************************************************/
 
+const messagestest = document.getElementById('messages');
+let currentPage = 1;
+let loading = false;
+
+
 /* 방입장 */
 function Room(roomname, pk, user, partner, logo_image) {
 
   // nickname = user
   // partner_user = partner
-  page = "1"  
   /* 아래는 웹 테스트용 inputbox */
     nickname = "애완용꿀꿀이"
     user = nickname
@@ -68,7 +72,7 @@ function Room(roomname, pk, user, partner, logo_image) {
 
   biz_logo = logo_image
 
-  fetch('https://www.scrapmk.com/api/chat/chatroom/' + user + "/" + partner + "/?&page=" + page)
+  fetch('https://www.scrapmk.com/api/chat/chatroom/' + user + "/" + partner + "/?&page=" + currentPage)
     .then(response => response.json())
     .then(data => {
 
@@ -117,16 +121,12 @@ function Room(roomname, pk, user, partner, logo_image) {
  
 }
 
-const messagestest = document.getElementById('messages');
-let currentPage = 1;
-let loading = false;
 
 messagestest.addEventListener('scroll', function() {
     if (messagestest.scrollTop === 0 && !loading) {
         loading = true;
         currentPage++; // 다음 페이지로 변경
-        // loadAndAppendData(currentPage);
-        console.log("상단으로이동")
+        Room();        
     }
 });
 
