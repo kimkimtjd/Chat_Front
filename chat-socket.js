@@ -119,10 +119,24 @@ function Room(roomname, pk, user, partner, logo_image) {
     .catch(error => console.error(error));
   }
   else{
-    senderbox.remove();
-    sendertoday.remove();
-    receiverbox.remove();
-    receive_sendertoday.remove();
+    const senderboxElements = document.getElementsByClassName('senderbox');
+    const senderboxSecond = document.getElementsByClassName('sendertoday');
+    const senderboxThird = document.getElementsByClassName('receiverbox');
+    const senderboxFour = document.getElementsByClassName('receive_sendertoday');
+    
+    for (const senderbox of senderboxElements) {
+        senderbox.remove();
+    }
+    for (const senderboxsecond of senderboxSecond) {
+      senderboxsecond.remove();
+    }
+    for (const senderboxthird of senderboxThird) {
+      senderboxthird.remove();
+    }
+    for (const senderboxfour of senderboxFour) {
+      senderboxfour.remove();
+    }
+
     
     for (i = currentPage ; i >= 0 ; i--) {
       fetch('https://www.scrapmk.com/api/chat/chatroom/' + user + "/" + partner + "/?&page=" + currentPage)
