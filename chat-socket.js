@@ -266,7 +266,8 @@ function Test(arg, chat, roomname, today) {
 /* 소켓연결 및 스크롤 이동 */
 socket.on('message', (data) => {
   handleNewMessage(data);
-  messages.scrollTop = messages.scrollHeight;
+  console.log("소켓연결")
+  // messages.scrollTop = messages.scrollHeight;
 })
 
 /******************************************************* 명함 *******************************************************/
