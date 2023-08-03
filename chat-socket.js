@@ -93,7 +93,7 @@ function Room(roomname, pk, user, partner, logo_image) {
     .then(response => response.json())
     .then(data => {
       
-      for (var i = 0 ; i < data.results.length ; i++) {
+      for (var i = data.results.length ; i >= 0 ; i--) {
         /* 메세지 */  
         if (data.results[i].image_url === "") {
           if (data.results[i].sender === pk) {
@@ -143,7 +143,7 @@ function Room(roomname, pk, user, partner, logo_image) {
     .then(response => response.json())
     .then(data => {
       
-      for (var i = 0 ; i < data.results.length ; i++) {
+      for (var i = data.results.length ; i >= 0 ; i--) {
         /* 메세지 */  
         if (data.results[i].image_url === "") {
           if (data.results[i].sender === pk) {
@@ -196,7 +196,7 @@ messagestest.addEventListener('scroll', function() {
    var scrollHeight = messagestest.scrollHeight;
     var scrollTop = messagestest.scrollTop;
     var clientHeight = messagestest.clientHeight;
-var scrollTop = window.scrollY;
+    var scrollTop = window.scrollY;
     if (scrollTop === 0) {
         // loading = true;
         currentPage++; // 다음 페이지로 변경
