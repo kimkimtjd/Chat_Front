@@ -197,8 +197,8 @@ messagestest.addEventListener('scroll', function() {
     var scrollTop = messagestest.scrollTop;
     var clientHeight = messagestest.clientHeight;
 var scrollTop = window.scrollY;
-    if (scrollTop === 0 && !loading) {
-        loading = true;
+    if (scrollTop === 0) {
+        // loading = true;
         currentPage++; // 다음 페이지로 변경
         Room();
     
