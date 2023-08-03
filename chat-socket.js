@@ -244,11 +244,10 @@ function Test(arg, chat, roomname, today) {
   }
 
   /* 스크롤 하단으로 이동 */
-   setTimeout(() => {
+  setTimeout(() => {
     const messagestest = document.getElementById('messages');
-    messagestest.scrollTop = messagestest.scrollHeight;
+    messagestest.scrollTop = messagestest.scrollHeight+50;
   }, 1000);  
-
 
   /* Refresh */
   // senderbox.remove();
@@ -318,10 +317,10 @@ const handleNewMessage_socket = (message) => {
   if(message.includes("scrapmarket.s3.ap-northeast-2.amazonaws.com/Chat") && !message.includes('businesscard_certifycode')){
     console.log("이미지")
     if (message.includes("null")) {
-      messages.appendChild(buildNewMessage(message.replace("null", ""), biz_logo, totaltime, "null", "null"));
+      messages.prepend(buildNewMessage(message.replace("null", ""), biz_logo, totaltime, "null", "null"));
     }
     else {
-      messages.appendChild(buildNewMessage(message.replace(totaltime.slice(0, 10), "").replace(totaltime.slice(10, 16), ""), biz_logo, totaltime, totaltime.slice(0, 10), totaltime.slice(10, 16)));
+      messages.prepend(buildNewMessage(message.replace(totaltime.slice(0, 10), "").replace(totaltime.slice(10, 16), ""), biz_logo, totaltime, totaltime.slice(0, 10), totaltime.slice(10, 16)));
     }
   }
 
@@ -329,10 +328,10 @@ const handleNewMessage_socket = (message) => {
   else if (message.includes("scrapmarket.s3.ap-northeast-2.amazonaws.com/Chat") && message.includes('businesscard_certifycode')){
     console.log("명함")
     if (message.includes("null")) {
-      messages.appendChild(buildNewMessage(message.replace("null", ""), biz_logo, totaltime, "null", "null"));
+      messages.prepend(buildNewMessage(message.replace("null", ""), biz_logo, totaltime, "null", "null"));
     }
     else {
-      messages.appendChild(buildNewMessage(message.replace(totaltime.slice(0, 10), "").replace(totaltime.slice(10, 16), ""), biz_logo, totaltime, totaltime.slice(0, 10), totaltime.slice(10, 16)));
+      messages.prepend(buildNewMessage(message.replace(totaltime.slice(0, 10), "").replace(totaltime.slice(10, 16), ""), biz_logo, totaltime, totaltime.slice(0, 10), totaltime.slice(10, 16)));
     }
   }
   /* 메세지 */
