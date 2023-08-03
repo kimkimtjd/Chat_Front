@@ -192,15 +192,14 @@ messagestest.addEventListener('scroll', function() {
     var scrollTop = messagestest.scrollTop;
     var clientHeight = messagestest.clientHeight;
     var scrollTop = window.scrollY;
-    if (scrollTop === 0) {
+    var pageContentHeight = document.body.clientHeight;
+    if (scrollTop === 0 || pageContentHeight < 500) {
         // loading = true;
         if(total_post != currentPage){
           currentPage++;
           Room();
         }
-         // 다음 페이지로 변경
-        
-    
+         // 다음 페이지로 변경    
     }
 });
 
