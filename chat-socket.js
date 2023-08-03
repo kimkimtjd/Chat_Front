@@ -245,12 +245,11 @@ function Test(arg, chat, roomname, today) {
   }
 
   /* 스크롤 하단으로 이동 */
-  const scrollTop = messages.scrollTop;
-  const scrollHeight = messages.scrollHeight;
-  if (scrollTop !== scrollHeight) {
-    messages.scrollTop = scrollHeight;
-    window.scrollBy(0, window.innerHeight);
-  }
+   setTimeout(() => {
+    const messagestest = document.getElementById('messages');
+    messagestest.scrollTop = messagestest.scrollHeight;
+  }, 100);  
+
 
   /* Refresh */
   // senderbox.remove();
