@@ -59,6 +59,7 @@ var user_second = ""
 var partner_second = ""
 var logo_image_second = ""
 
+var total_post = ""
 /* 방입장 */
 function Room(roomname, pk, user, partner, logo_image) {
 
@@ -93,6 +94,8 @@ function Room(roomname, pk, user, partner, logo_image) {
     .then(response => response.json())
     .then(data => {
       
+      total_post = Number(data.count/10) + 1 
+
       for (var i = 0 ; i < data.results.length ; i++) {
         /* 메세지 */  
         if (data.results[i].image_url === "") {
@@ -142,7 +145,7 @@ function Room(roomname, pk, user, partner, logo_image) {
     fetch('https://www.scrapmk.com/api/chat/chatroom/' + user_second + "/" + partner_second + "/?&page=" + currentPage)
     .then(response => response.json())
     .then(data => {
-      
+
       for (var i = 0 ; i < data.results.length ; i++) {
         /* 메세지 */  
         if (data.results[i].image_url === "") {
@@ -176,15 +179,7 @@ function Room(roomname, pk, user, partner, logo_image) {
 
       }
 
-      /* 스크롤 하단으로 이동 */
-    if(currentPage === 1){
-        setTimeout(() => {
-          const messagestest = document.getElementById('messages');
-          messagestest.scrollTop = messagestest.scrollHeight;
-        }, 1000);  
-      }
-      
-      
+          
     })
     .catch(error => console.error(error));
   }
@@ -199,7 +194,10 @@ messagestest.addEventListener('scroll', function() {
     var scrollTop = window.scrollY;
     if (scrollTop === 0) {
         // loading = true;
-        currentPage++; // 다음 페이지로 변경
+        if(total_post != currentPage){
+          currentPage++;
+        }
+         // 다음 페이지로 변경
         Room();
     
     }
