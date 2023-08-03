@@ -205,9 +205,9 @@ var scrollTop = window.scrollY;
     }
 });
 
-// window.onload = function() {
-//     Room()  
-//  };
+window.onload = function() {
+    Room()  
+ };
 
 /* 메세지 송신 */
 function Test(arg, chat, roomname, today) {
