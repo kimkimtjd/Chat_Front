@@ -247,7 +247,7 @@ function Test(arg, chat, roomname, today) {
   /* 스크롤 하단으로 이동 */
    setTimeout(() => {
     const messagestest = document.getElementById('messages');
-    messagestest.scrollTop = messagestest.scrollHeight;
+    messagestest.scrollTop = messagestest.scrollHeight+50;
   }, 100);  
 
 
