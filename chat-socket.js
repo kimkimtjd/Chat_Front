@@ -196,14 +196,16 @@ messagestest.addEventListener('scroll', function() {
    var scrollHeight = messagestest.scrollHeight;
     var scrollTop = messagestest.scrollTop;
     var clientHeight = messagestest.clientHeight;
-    var scrollTop = window.scrollY;
-    if (scrollTop === 0) {
-        // loading = true;
-        currentPage++; // 다음 페이지로 변경
-        Room();
-    
-    }
+    setTimeout(() => {
+      var scrollTop = window.scrollY;
+      if (scrollTop === 0) {
+          // loading = true;
+          currentPage++; // 다음 페이지로 변경
+          Room();
+      }
+    }, 2000);  
 });
+
 
 window.onload = function() {
     Room()  
