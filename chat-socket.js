@@ -196,6 +196,7 @@ messagestest.addEventListener('scroll', function() {
         // loading = true;
         if(total_post != currentPage){
           currentPage++;
+          console.log(total_post)
         }
          // 다음 페이지로 변경
         Room();
@@ -263,7 +264,7 @@ function Test(arg, chat, roomname, today) {
 
 /* 소켓연결 및 스크롤 이동 */
 socket.on('message', (data) => {
-  handleNewMessage(data);
+  handleNewMessage_socket(data);
   console.log("소켓연결")
   // messages.scrollTop = messages.scrollHeight;
 })
@@ -313,6 +314,39 @@ const handleNewMessage = (message) => {
   }
 }
 
+const handleNewMessage_socket = (message) => {
+
+  /* 이미지 */
+  if(message.includes("scrapmarket.s3.ap-northeast-2.amazonaws.com/Chat") && !message.includes('businesscard_certifycode')){
+    console.log("이미지")
+    if (message.includes("null")) {
+      messages.appendChild(buildNewMessage(message.replace("null", ""), biz_logo, totaltime, "null", "null"));
+    }
+    else {
+      messages.appendChild(buildNewMessage(message.replace(totaltime.slice(0, 10), "").replace(totaltime.slice(10, 16), ""), biz_logo, totaltime, totaltime.slice(0, 10), totaltime.slice(10, 16)));
+    }
+  }
+
+  /* 명함 */
+  else if (message.includes("scrapmarket.s3.ap-northeast-2.amazonaws.com/Chat") && message.includes('businesscard_certifycode')){
+    console.log("명함")
+    if (message.includes("null")) {
+      messages.appendChild(buildNewMessage(message.replace("null", ""), biz_logo, totaltime, "null", "null"));
+    }
+    else {
+      messages.appendChild(buildNewMessage(message.replace(totaltime.slice(0, 10), "").replace(totaltime.slice(10, 16), ""), biz_logo, totaltime, totaltime.slice(0, 10), totaltime.slice(10, 16)));
+    }
+  }
+  /* 메세지 */
+  else{
+    if (message.includes("null")) {
+      messages.prepend(buildNewMessage(message.replace("null", ""), biz_logo, totaltime, "null", "null"));
+    }
+    else {
+      messages.prepend(buildNewMessage(message.replace(totaltime.slice(0, 10), "").replace(totaltime.slice(10, 16), ""), biz_logo, totaltime, totaltime.slice(0, 10), totaltime.slice(10, 16)));
+    }
+  }
+}
 /* 
   소켓 연결 후 메세지 송수신 [2차 -> 
     
