@@ -93,7 +93,7 @@ function Room(roomname, pk, user, partner, logo_image) {
     .then(response => response.json())
     .then(data => {
       
-      for (var i = data.results.length ; i >= 0 ; i--) {
+      for (var i = data.results.length-1 ; i >= 0 ; i--) {
         /* 메세지 */  
         if (data.results[i].image_url === "") {
           if (data.results[i].sender === pk) {
@@ -143,7 +143,7 @@ function Room(roomname, pk, user, partner, logo_image) {
     .then(response => response.json())
     .then(data => {
       
-      for (var i = data.results.length ; i >= 0 ; i--) {
+      for (var i = data.results.length-1 ; i >= 0 ; i--) {
         /* 메세지 */  
         if (data.results[i].image_url === "") {
           if (data.results[i].sender === pk) {
