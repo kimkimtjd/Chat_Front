@@ -196,9 +196,10 @@ messagestest.addEventListener('scroll', function() {
         // loading = true;
         if(total_post != currentPage){
           currentPage++;
+          Room();
         }
          // 다음 페이지로 변경
-        Room();
+        
     
     }
 });
