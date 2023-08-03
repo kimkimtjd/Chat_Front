@@ -253,12 +253,12 @@ function Test(arg, chat, roomname, today) {
   }
 
   /* Refresh */
-  senderbox.remove();
-  sendertoday.remove();
-  receiverbox.remove();
-  receive_sendertoday.remove();
+  // senderbox.remove();
+  // sendertoday.remove();
+  // receiverbox.remove();
+  // receive_sendertoday.remove();
 
-  Room();
+  // Room();
 
 }
 
