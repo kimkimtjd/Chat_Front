@@ -9,7 +9,7 @@ li{
 /* 메세지 전체 리스트 [송,수신]*/
 #messages{
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   overflow-y: scroll;
   overflow-x: hidden;
 }
